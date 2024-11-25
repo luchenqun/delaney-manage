@@ -3,6 +3,7 @@ import { Button, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import { divideByMillionAndRound } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
+import { AddressText } from '@/components/Common/Address';
 
 const { Text } = Typography;
 
@@ -29,7 +30,7 @@ export function getColumns(
     },
     {
       title: '奖励期数',
-      width: 230,
+      width: 120,
       sorter: true,
       dataIndex: 'period',
     },
@@ -38,7 +39,7 @@ export function getColumns(
       width: 230,
       sorter: true,
       dataIndex: 'address',
-      render: (value) => <Text copyable>{value}</Text>,
+      render: (value) => <AddressText address={value} />,
     },
     {
       title: '奖励usdt数量',
@@ -51,6 +52,7 @@ export function getColumns(
       title: '交易哈希',
       width: 240,
       dataIndex: 'hash',
+      render: (value) => <AddressText address={value} />,
     },
     {
       title: '状态',
