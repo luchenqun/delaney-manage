@@ -49,6 +49,20 @@ export const routes: IRoute[] = [
         name: '静态奖励列表',
         key: 'list/static-table',
       },
+      {
+        name: '领取奖励列表',
+        key: 'list/reward-table',
+      },
+    ],
+  },
+  {
+    name: '消息中心',
+    key: 'list',
+    children: [
+      {
+        name: '消息列表',
+        key: 'list/message-table',
+      },
     ],
   },
   // {
