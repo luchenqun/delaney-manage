@@ -37,10 +37,18 @@ export const routes: IRoute[] = [
         name: '用户列表',
         key: 'list/user-table',
       },
-      // {
-      //   name: 'menu.list.cardList',
-      //   key: 'list/card',
-      // },
+      {
+        name: '质押列表',
+        key: 'list/pledge-table',
+      },
+      {
+        name: '动态奖励列表',
+        key: 'list/dynamics-table',
+      },
+      {
+        name: '静态奖励列表',
+        key: 'list/static-table',
+      },
     ],
   },
   // {

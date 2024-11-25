@@ -14,8 +14,8 @@ import SearchForm from './form';
 import locale from './locale';
 import styles from './style/index.module.less';
 import { getColumns } from './constants';
-import { getUserList } from './api';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
+import { getDynamicRewardsList } from './api';
 
 const { Title } = Typography;
 
@@ -55,7 +55,7 @@ function SearchTable() {
   function fetchData() {
     const { current, pageSize } = pagination;
     setLoading(true);
-    getUserList({
+    getDynamicRewardsList({
       page: current,
       page_size: pageSize,
       ...formParams,
@@ -102,7 +102,7 @@ function SearchTable() {
 
   return (
     <Card>
-      <Title heading={6}>用户列表</Title>
+      <Title heading={6}>动态奖励列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper
         requiredPermissions={[
