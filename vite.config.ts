@@ -21,6 +21,16 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    port: 3003,
+    proxy: {
+      '/api': {
+        target: 'https://delaney-api.mud-chain.net',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       less: {
