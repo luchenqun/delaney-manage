@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
-import { divideByMillionAndRound } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
+import { AddressText } from '@/components/Common/Address';
 
 const { Text } = Typography;
 
@@ -21,6 +21,7 @@ export function getColumns(
       title: '操作者地址',
       width: 200,
       dataIndex: 'address',
+      render: (value) => <AddressText address={value} />,
     },
     {
       title: '日志类型',
