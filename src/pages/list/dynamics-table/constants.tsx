@@ -21,7 +21,7 @@ export function getColumns(
     {
       title: '质押id',
       width: 80,
-      dataIndex: 'cid',
+      dataIndex: 'delegate_id',
     },
     {
       title: '领取奖励id',
