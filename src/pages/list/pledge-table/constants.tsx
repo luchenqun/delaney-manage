@@ -13,123 +13,126 @@ export function getColumns(
 ) {
   return [
     {
-      title: 'id',
+      title: 'ID',
       fixed: 'left',
-      width: 50,
+      width: 60,
       dataIndex: 'id',
     },
     {
-      title: '质押id',
+      title: '质押ID',
       fixed: 'left',
-      width: 80,
+      width: 75,
       dataIndex: 'cid',
     },
     {
       title: '用户地址',
-      width: 230,
+      width: 190,
       dataIndex: 'address',
       render: (value) => <AddressText address={value} />,
     },
     {
-      title: '质押数量',
-      width: 150,
+      title: '质押MUD',
+      width: 120,
       dataIndex: 'mud',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
-      title: '最小usdt价值',
-      width: 170,
+      title: '最小USDT',
+      width: 120,
       dataIndex: 'min_usdt',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
-      title: 'usdt',
+      title: '实际USDT',
       width: 120,
       dataIndex: 'usdt',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
-      title: '取消质押返回最小mud',
-      width: 170,
+      title: '返回MUD',
+      width: 120,
       dataIndex: 'back_min_mud',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
-      title: '取消质押返回的mud',
-      width: 180,
+      title: '实际MUD',
+      width: 120,
       dataIndex: 'back_mud',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
-      title: '交易哈希',
-      width: 200,
+      title: '质押哈希',
+      width: 190,
       dataIndex: 'hash',
       render: (value) => <AddressText address={value} />,
     },
     {
-      title: '取消质押对应的hash',
-      width: 200,
+      title: '取消质押哈希',
+      width: 190,
       dataIndex: 'undelegate_hash',
       render: (value) => <AddressText address={value} />,
     },
     {
-      title: '每期时间',
+      title: '每期时长',
       width: 110,
       sorter: true,
       dataIndex: 'period_duration',
     },
     {
-      title: '总期数',
-      width: 100,
+      title: '期数',
+      width: 80,
       sorter: true,
       dataIndex: 'period_num',
+      render: (value) => <>{value}s</>,
     },
     {
-      title: '每期奖励百分比率',
-      width: 120,
+      title: '期化率',
+      width: 100,
       sorter: true,
       dataIndex: 'period_reward_ratio',
+      render: (value) => <>{value}%</>,
     },
     {
-      title: '质押状态',
-      width: 140,
+      title: '状态',
+      width: 80,
       dataIndex: 'status',
       render: (value) => (
         <>
           {value === 0 && '质押中'}
           {value === 1 && '成功'}
           {value === 2 && '失败'}
-          {value === 3 && '取消质押中'}
-          {value === 4 && '已取消质押'}
+          {value === 3 && '撤回中'}
+          {value === 4 && '已撤回'}
         </>
       ),
     },
     {
-      title: '质押解锁日期',
-      width: 180,
+      title: '创建日期',
+      width: 170,
+      dataIndex: 'create_time',
+      sorter: true,
+      render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
+    },
+    {
+      title: '解锁日期',
+      width: 170,
       dataIndex: 'unlock_time',
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: '取消质押日期',
-      width: 180,
+      title: '取消质押',
+      width: 170,
       dataIndex: 'undelegate_time',
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
-    {
-      title: '创建日期',
-      width: 180,
-      dataIndex: 'create_time',
-      sorter: true,
-      render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
-    },
+
     {
       title: '操作',
       dataIndex: 'operations',
