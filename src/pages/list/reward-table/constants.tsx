@@ -58,8 +58,8 @@ export function getColumns(
       render: (value) => (
         <>
           {value === 0 && '未领取'}
-          {value === 1 && '领取中'}
-          {value === 2 && '已领取'}
+          {value === 1 && '已领取'}
+          {value === 2 && '领取失败'}
         </>
       ),
     },
