@@ -91,22 +91,21 @@ export function getColumns(
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
-
-    // {
-    //   title: '操作',
-    //   dataIndex: 'operations',
-    //   width: 100,
-    //   fixed: 'right',
-    //   headerCellStyle: { paddingLeft: '15px' },
-    //   render: (_, record) => (
-    //     <Button
-    //       type="text"
-    //       size="small"
-    //       onClick={() => callback(record, 'view')}
-    //     >
-    //       {t['searchTable.columns.operations.view']}
-    //     </Button>
-    //   ),
-    // },
+    {
+      title: '操作',
+      dataIndex: 'operations',
+      width: 100,
+      fixed: 'right',
+      headerCellStyle: { paddingLeft: '15px' },
+      render: (_, record) => (
+        <Button
+          type="text"
+          size="small"
+          onClick={() => callback(record, 'view')}
+        >
+          {t['searchTable.columns.operations.view']}
+        </Button>
+      ),
+    },
   ];
 }
