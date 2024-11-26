@@ -22,7 +22,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: 3003,
+    port: 4000,
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:3000' || 'https://delaney-api.mud-chain.net',
