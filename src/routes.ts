@@ -47,6 +47,13 @@ export const routes: IRoute[] = [
       {
         name: '质押列表',
         key: 'list/delegate-table',
+        children: [
+          {
+            ignore: true,
+            name: '质押详情',
+            key: 'list/delegate-detail',
+          },
+        ],
       },
       {
         name: '动态奖励列表',
@@ -59,6 +66,13 @@ export const routes: IRoute[] = [
       {
         name: '领取奖励列表',
         key: 'list/claim-table',
+        children: [
+          {
+            ignore: true,
+            name: '领取奖励详情',
+            key: 'list/claim-detail',
+          },
+        ],
       },
     ],
   },
