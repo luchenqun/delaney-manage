@@ -91,7 +91,7 @@ function SearchTable() {
     const obj = {};
     for (const key in params) {
       if (params[key] !== '') {
-        obj[`filters[${key}]`] = `=${params[key].toLowerCase()}`;
+        obj[`filters[${key}]`] = `= '${params[key].toLowerCase()}'`;
       }
     }
 

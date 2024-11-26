@@ -1,23 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-  Table,
-  Card,
-  PaginationProps,
-  Button,
-  Space,
-  Typography,
-} from '@arco-design/web-react';
+import { Table, PaginationProps, Tag } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
-import { getUserList } from '../user-table/api';
-import { divideByMillionAndRound } from '@/utils/tools';
+import { getMessagesList } from '../message-table/api';
 
-const { Title } = Typography;
-
-function DeletegateTable({ address }: { address: string }) {
+function MessageTable({ address }: { address: string }) {
   const t = useLocale(locale);
 
   const tableCallback = async (record, type) => {
@@ -55,7 +45,7 @@ function DeletegateTable({ address }: { address: string }) {
   function fetchData() {
     const { current, pageSize } = pagination;
     setLoading(true);
-    getUserList({
+    getMessagesList({
       page: current,
       page_size: pageSize,
       ...formParams,
@@ -87,20 +77,6 @@ function DeletegateTable({ address }: { address: string }) {
     });
   }
 
-  function handleSearch(params) {
-    setPatination({ ...pagination, current: 1 });
-    const obj = {};
-    for (const key in params) {
-      if (params[key] !== '') {
-        obj[`filters[${key}]`] = `= '${params[key].toLowerCase()}'`;
-      }
-    }
-
-    setFormParams({
-      ...obj,
-    });
-  }
-
   return (
     <Table
       rowKey="id"
@@ -120,97 +96,69 @@ export function getColumns(
 ) {
   return [
     {
-      title: 'ID',
+      title: 'id',
       fixed: 'left',
-      width: 60,
+      width: 50,
       dataIndex: 'id',
     },
     {
-      title: '用户地址',
-      fixed: 'left',
-      width: 190,
+      title: '操作者地址',
+      width: 200,
       dataIndex: 'address',
       render: (value) => <AddressText address={value} />,
     },
     {
-      title: '推荐人地址',
-      width: 190,
-      dataIndex: 'parent',
-      render: (value) => <AddressText address={value} />,
-    },
-    {
-      title: '星级',
-      width: 80,
-      dataIndex: 'star',
+      title: '日志类型',
+      width: 120,
       sorter: true,
+      dataIndex: 'type',
     },
     {
-      title: '最小星级',
-      width: 110,
-      dataIndex: 'min_star',
+      title: '日志标题',
+      width: 240,
+      dataIndex: 'title',
+    },
+    {
+      title: '日志消息',
+      width: 240,
+      dataIndex: 'content',
+    },
+    {
+      title: '是否已读日志',
+      width: 140,
+      dataIndex: 'is_read',
       sorter: true,
+      render: (value) => (
+        <>
+          {value === 0 && <Tag color="gray">未读</Tag>}
+          {value === 1 && <Tag color="green">已读</Tag>}
+        </>
+      ),
     },
     {
-      title: '质押MUD',
-      width: 130,
-      dataIndex: 'mud',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '质押USDT',
-      width: 130,
-      dataIndex: 'usdt',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '直推MUD',
-      width: 130,
-      dataIndex: 'sub_mud',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '直推USDT',
-      width: 130,
-      dataIndex: 'sub_usdt',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '团队MUD',
-      width: 130,
-      dataIndex: 'team_mud',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '团队USDT',
-      width: 130,
-      dataIndex: 'team_usdt',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '推荐码',
-      width: 100,
-      dataIndex: 'ref',
-    },
-    {
-      title: '绑定码',
-      width: 100,
-      dataIndex: 'parent_ref',
-      render: (value) => <>{value ? value : '创始人'}</>,
-    },
-    {
-      title: '创建时间',
+      title: '创建日期',
       width: 175,
       dataIndex: 'create_time',
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
+    // {
+    //   title: '操作',
+    //   dataIndex: 'operations',
+    //   width: 100,
+    //   fixed: 'right',
+    //   headerCellStyle: { paddingLeft: '15px' },
+    //   render: (_, record) => (
+    //     <Button
+    //       type="text"
+    //       size="small"
+    //       onClick={() => callback(record, 'view')}
+    //     >
+    //       {t['searchTable.columns.operations.view']}
+    //     </Button>
+    //   ),
+    // },
   ];
 }
 
-export default DeletegateTable;
+export default MessageTable;

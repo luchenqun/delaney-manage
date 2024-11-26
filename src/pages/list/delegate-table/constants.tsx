@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from '@arco-design/web-react';
+import { Button, Tag, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import { divideByMillionAndRound } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
@@ -103,11 +103,11 @@ export function getColumns(
       dataIndex: 'status',
       render: (value) => (
         <>
-          {value === 0 && '质押中'}
-          {value === 1 && '成功'}
-          {value === 2 && '失败'}
-          {value === 3 && '撤回中'}
-          {value === 4 && '已撤回'}
+          {value === 0 && <Tag color="gray">质押中</Tag>}
+          {value === 1 && <Tag color="green">成功</Tag>}
+          {value === 2 && <Tag color="red">失败</Tag>}
+          {value === 3 && <Tag color="cyan">撤回中</Tag>}
+          {value === 4 && <Tag color="magenta">已撤回</Tag>}
         </>
       ),
     },

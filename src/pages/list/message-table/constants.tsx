@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from '@arco-design/web-react';
+import { Button, Tag, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
@@ -44,7 +44,12 @@ export function getColumns(
       width: 140,
       dataIndex: 'is_read',
       sorter: true,
-      render: (value) => <>{value ? '已读' : '未读'}</>,
+      render: (value) => (
+        <>
+          {value === 0 && <Tag color="gray">未读</Tag>}
+          {value === 1 && <Tag color="green">已读</Tag>}
+        </>
+      ),
     },
     {
       title: '创建日期',

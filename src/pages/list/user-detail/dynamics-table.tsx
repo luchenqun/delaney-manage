@@ -6,6 +6,7 @@ import {
   Button,
   Space,
   Typography,
+  Tag,
 } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
@@ -14,10 +15,11 @@ import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
 import { getUserList } from '../user-table/api';
 import { divideByMillionAndRound } from '@/utils/tools';
+import { getDynamicRewardsList } from '../dynamics-table/api';
 
 const { Title } = Typography;
 
-function DeletegateTable({ address }: { address: string }) {
+function DynamicsTable({ address }: { address: string }) {
   const t = useLocale(locale);
 
   const tableCallback = async (record, type) => {
@@ -55,7 +57,7 @@ function DeletegateTable({ address }: { address: string }) {
   function fetchData() {
     const { current, pageSize } = pagination;
     setLoading(true);
-    getUserList({
+    getDynamicRewardsList({
       page: current,
       page_size: pageSize,
       ...formParams,
@@ -126,91 +128,75 @@ export function getColumns(
       dataIndex: 'id',
     },
     {
+      title: '质押ID',
+      width: 75,
+      dataIndex: 'delegate_id',
+    },
+    {
+      title: '领取ID',
+      width: 75,
+      dataIndex: 'claim_id',
+    },
+    {
       title: '用户地址',
-      fixed: 'left',
       width: 190,
+      sorter: true,
       dataIndex: 'address',
       render: (value) => <AddressText address={value} />,
     },
     {
-      title: '推荐人地址',
-      width: 190,
-      dataIndex: 'parent',
-      render: (value) => <AddressText address={value} />,
-    },
-    {
-      title: '星级',
-      width: 80,
-      dataIndex: 'star',
-      sorter: true,
-    },
-    {
-      title: '最小星级',
-      width: 110,
-      dataIndex: 'min_star',
-      sorter: true,
-    },
-    {
-      title: '质押MUD',
-      width: 130,
-      dataIndex: 'mud',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '质押USDT',
-      width: 130,
+      title: 'USDT',
+      width: 100,
       dataIndex: 'usdt',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
-      title: '直推MUD',
-      width: 130,
-      dataIndex: 'sub_mud',
+      title: '奖励类型',
+      width: 110,
+      dataIndex: 'type',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => (
+        <>
+          {value === 0 && '个人奖励'}
+          {value === 1 && '团队奖励'}
+        </>
+      ),
     },
     {
-      title: '直推USDT',
-      width: 130,
-      dataIndex: 'sub_usdt',
+      title: '哈希',
+      width: 190,
+      dataIndex: 'hash',
+      render: (value) => <AddressText address={value} />,
+    },
+    {
+      title: '状态',
+      width: 80,
+      dataIndex: 'status',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => (
+        <>
+          {value === 0 && <Tag color="gray">未领取</Tag>}
+          {value === 1 && <Tag color="lime">领取中</Tag>}
+          {value === 2 && <Tag color="green">已领取</Tag>}
+        </>
+      ),
     },
     {
-      title: '团队MUD',
-      width: 130,
-      dataIndex: 'team_mud',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '团队USDT',
-      width: 130,
-      dataIndex: 'team_usdt',
-      sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
-    },
-    {
-      title: '推荐码',
-      width: 100,
-      dataIndex: 'ref',
-    },
-    {
-      title: '绑定码',
-      width: 100,
-      dataIndex: 'parent_ref',
-      render: (value) => <>{value ? value : '创始人'}</>,
-    },
-    {
-      title: '创建时间',
+      title: '创建日期',
       width: 175,
       dataIndex: 'create_time',
+      sorter: true,
+      render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
+    },
+    {
+      title: '领取奖励时间',
+      width: 175,
+      dataIndex: 'claim_time',
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
   ];
 }
 
-export default DeletegateTable;
+export default DynamicsTable;

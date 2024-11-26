@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Card, Tabs } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import InfoHeader from './header';
-import InfoForm from './info';
-import Security from './security';
-import Verified from './verified';
 import { getUser } from './api';
 import Deletegate from './delegate-table';
+import DynamicsTable from './dynamics-table';
+import StaticTable from './static-table';
+import ClaimTable from './claim-table';
+import MessageTable from './message-table';
 
 function UserInfo() {
   const t = useLocale(locale);
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
   const [userInfo, setUserInfo] = useState({});
-  // const userInfo = useSelector((state: any) => state.userInfo);
-  const loading = useSelector((state: any) => state.userLoading);
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('1');
 
   useEffect(() => {
@@ -24,6 +23,7 @@ function UserInfo() {
       address: id,
     }).then((res) => {
       setUserInfo(res.data.data);
+      setLoading(false);
     });
   }, []);
 
@@ -37,17 +37,17 @@ function UserInfo() {
           <Tabs.TabPane key="1" title="质押">
             <Deletegate address={id} />
           </Tabs.TabPane>
-          <Tabs.TabPane key="2" title="动态奖励">
-            <Security />
+          <Tabs.TabPane key="2" title="动态奖励" lazyload>
+            <DynamicsTable address={id} />
           </Tabs.TabPane>
-          <Tabs.TabPane key="3" title="静态奖励">
-            <Verified />
+          <Tabs.TabPane key="3" title="静态奖励" lazyload>
+            <StaticTable address={id} />
           </Tabs.TabPane>
-          <Tabs.TabPane key="4" title="领取奖励">
-            <Verified />
+          <Tabs.TabPane key="4" title="领取奖励" lazyload>
+            <ClaimTable address={id} />
           </Tabs.TabPane>
-          <Tabs.TabPane key="5" title="消息">
-            <Verified />
+          <Tabs.TabPane key="5" title="消息" lazyload>
+            <MessageTable address={id} />
           </Tabs.TabPane>
         </Tabs>
       </Card>
