@@ -8,7 +8,7 @@ import { AddressText } from '@/components/Common/Address';
 import { divideByMillionAndRound } from '@/utils/tools';
 import { getStaticRewardsList } from '../static-table/api';
 
-function StaticTable({ hash }: { hash: string }) {
+function StaticTable({ ids }: { ids: string }) {
   const t = useLocale(locale);
 
   const tableCallback = async (record, type) => {
@@ -43,13 +43,17 @@ function StaticTable({ hash }: { hash: string }) {
 
   function fetchData() {
     const { current, pageSize } = pagination;
+    if (!ids) {
+      setData([]);
+      return;
+    }
     setLoading(true);
     getStaticRewardsList({
       page: current,
       page_size: pageSize,
       ...formParams,
       ...sortParams,
-      'filters[hash]': `='${hash}'`,
+      'filters[id]': `in (${ids})`,
     }).then((res) => {
       setData(res.data.data.items);
       setPatination({

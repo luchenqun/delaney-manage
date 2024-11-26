@@ -24,7 +24,10 @@ function SearchTable() {
 
   const tableCallback = async (record, type) => {
     if (type === 'view') {
-      window.location.href = `/list/claim-detail/?hash=${record.hash}`;
+      const parseData = JSON.parse(record.reward_ids);
+      window.location.href = `/list/claim-detail/?dynamic_ids=${parseData.dynamic_ids.join(
+        ','
+      )}&static_ids=${parseData.static_ids.join(',')}`;
     }
   };
 

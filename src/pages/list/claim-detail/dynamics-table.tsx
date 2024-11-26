@@ -19,7 +19,7 @@ import { getDynamicRewardsList } from '../dynamics-table/api';
 
 const { Title } = Typography;
 
-function DynamicsTable({ hash }: { hash: string }) {
+function DynamicsTable({ ids }: { ids: string }) {
   const t = useLocale(locale);
 
   const tableCallback = async (record, type) => {
@@ -54,13 +54,17 @@ function DynamicsTable({ hash }: { hash: string }) {
 
   function fetchData() {
     const { current, pageSize } = pagination;
+    if (!ids) {
+      setData([]);
+      return;
+    }
     setLoading(true);
     getDynamicRewardsList({
       page: current,
       page_size: pageSize,
       ...formParams,
       ...sortParams,
-      'filters[hash]': `='${hash}'`,
+      'filters[id]': `in (${ids})`,
     }).then((res) => {
       setData(res.data.data.items);
       setPatination({
