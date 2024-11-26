@@ -82,13 +82,13 @@ export function getColumns(
       width: 110,
       sorter: true,
       dataIndex: 'period_duration',
+      render: (value) => <>{value}s</>,
     },
     {
       title: '期数',
       width: 80,
       sorter: true,
       dataIndex: 'period_num',
-      render: (value) => <>{value}s</>,
     },
     {
       title: '期化率',
