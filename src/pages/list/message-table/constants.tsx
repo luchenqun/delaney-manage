@@ -48,7 +48,7 @@ export function getColumns(
     },
     {
       title: '创建日期',
-      width: 180,
+      width: 175,
       dataIndex: 'create_time',
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
