@@ -39,7 +39,7 @@ export const routes: IRoute[] = [
       },
       {
         name: '质押列表',
-        key: 'list/pledge-table',
+        key: 'list/delegate-table',
       },
       {
         name: '动态奖励列表',
@@ -51,7 +51,7 @@ export const routes: IRoute[] = [
       },
       {
         name: '领取奖励列表',
-        key: 'list/reward-table',
+        key: 'list/claim-table',
       },
     ],
   },
