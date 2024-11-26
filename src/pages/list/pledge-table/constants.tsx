@@ -19,7 +19,7 @@ export function getColumns(
       dataIndex: 'id',
     },
     {
-      title: '质押ID',
+      title: '合约ID',
       fixed: 'left',
       width: 75,
       dataIndex: 'cid',
