@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Card, Tabs } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
@@ -6,14 +6,26 @@ import locale from './locale';
 import InfoHeader from './header';
 import InfoForm from './info';
 import Security from './security';
-import './mock';
 import Verified from './verified';
+import { getUser } from './api';
 
 function UserInfo() {
   const t = useLocale(locale);
-  const userInfo = useSelector((state: any) => state.userInfo);
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get('id');
+  const [userInfo, setUserInfo] = useState({});
+  // const userInfo = useSelector((state: any) => state.userInfo);
   const loading = useSelector((state: any) => state.userLoading);
   const [activeTab, setActiveTab] = useState('basic');
+
+  useEffect(() => {
+    getUser({
+      address: id,
+    }).then((res) => {
+      setUserInfo(res.data.data);
+    });
+  }, []);
+
   return (
     <div>
       <Card style={{ padding: '14px 20px' }}>

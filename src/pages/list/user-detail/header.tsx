@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Avatar,
-  Upload,
-  Descriptions,
-  Tag,
-  Skeleton,
-  Link,
-} from '@arco-design/web-react';
-import { IconCamera, IconPlus } from '@arco-design/web-react/icon';
+import { Avatar, Upload, Descriptions, Skeleton } from '@arco-design/web-react';
+import { IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
+import dayjs from 'dayjs';
 import styles from './style/header.module.less';
+import { divideByMillionAndRound } from '@/utils/tools';
 
 export default function Info({
   userInfo = {},
@@ -22,14 +16,12 @@ export default function Info({
 }) {
   const t = useLocale(locale);
 
-  const [avatar, setAvatar] = useState('');
-
-  function onAvatarChange(_, file) {
-    setAvatar(file.originFile ? URL.createObjectURL(file.originFile) : '');
-  }
+  const [avatar, setAvatar] = useState(
+    'https://black-unnecessary-koi-219.mypinata.cloud/ipfs/QmYDxbHvxCLpKQk1G9a9KzAJjZryUC7v5dXDEk9xR685KX'
+  );
 
   useEffect(() => {
-    setAvatar(userInfo.avatar);
+    // setAvatar(userInfo.avatar);
   }, [userInfo]);
 
   const loadingImg = (
@@ -41,17 +33,14 @@ export default function Info({
   );
 
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
+
   return (
     <div className={styles['info-wrapper']}>
-      <Upload showUploadList={false} onChange={onAvatarChange}>
+      <Upload showUploadList={false}>
         {loading ? (
           loadingImg
         ) : (
-          <Avatar
-            size={100}
-            triggerIcon={<IconCamera />}
-            className={styles['info-avatar']}
-          >
+          <Avatar size={100} className={styles['info-avatar']}>
             {avatar ? <img src={avatar} /> : <IconPlus />}
           </Avatar>
         )}
@@ -63,50 +52,72 @@ export default function Info({
         labelStyle={{ textAlign: 'right' }}
         data={[
           {
-            label: t['userSetting.label.name'],
-            value: loading ? loadingNode : userInfo.name,
+            label: '用户地址',
+            span: 24,
+            value: loading ? loadingNode : userInfo.address,
           },
           {
-            label: t['userSetting.label.verified'],
-            value: loading ? (
-              loadingNode
-            ) : (
-              <span>
-                {userInfo.verified ? (
-                  <Tag color="green" className={styles['verified-tag']}>
-                    {t['userSetting.value.verified']}
-                  </Tag>
-                ) : (
-                  <Tag color="red" className={styles['verified-tag']}>
-                    {t['userSetting.value.notVerified']}
-                  </Tag>
-                )}
-                <Link role="button" className={styles['edit-btn']}>
-                  {t['userSetting.btn.edit']}
-                </Link>
-              </span>
-            ),
+            label: '推荐人地址',
+            span: 24,
+            value: loading ? loadingNode : userInfo.parent,
           },
           {
-            label: t['userSetting.label.accountId'],
-            value: loading ? loadingNode : userInfo.accountId,
+            label: '团队星级',
+            value: loading ? loadingNode : userInfo.star,
           },
           {
-            label: t['userSetting.label.phoneNumber'],
-            value: loading ? (
-              loadingNode
-            ) : (
-              <span>
-                {userInfo.phoneNumber}
-                <Link role="button" className={styles['edit-btn']}>
-                  {t['userSetting.btn.edit']}
-                </Link>
-              </span>
-            ),
+            label: '最小团队星级',
+            value: loading ? loadingNode : userInfo.min_star,
           },
           {
-            label: t['userSetting.label.registrationTime'],
-            value: loading ? loadingNode : userInfo.registrationTime,
+            label: '个人质押mud数量',
+            value: loading
+              ? loadingNode
+              : divideByMillionAndRound(userInfo.mud),
+          },
+          {
+            label: '个人质押usdt数量',
+            value: loading
+              ? loadingNode
+              : divideByMillionAndRound(userInfo.usdt),
+          },
+          {
+            label: '直推总额mud数量',
+            value: loading
+              ? loadingNode
+              : divideByMillionAndRound(userInfo.sub_mud),
+          },
+          {
+            label: '直推总额usdt数量',
+            value: loading
+              ? loadingNode
+              : divideByMillionAndRound(userInfo.sub_usdt),
+          },
+          {
+            label: '团队总额mud数量',
+            value: loading
+              ? loadingNode
+              : divideByMillionAndRound(userInfo.team_mud),
+          },
+          {
+            label: '团队总额usdt数量',
+            value: loading
+              ? loadingNode
+              : divideByMillionAndRound(userInfo.team_usdt),
+          },
+          {
+            label: '推荐码',
+            value: loading ? loadingNode : userInfo.ref,
+          },
+          {
+            label: '父节点的推荐码',
+            value: loading ? loadingNode : userInfo.parent_ref,
+          },
+          {
+            label: '创建时间',
+            value: loading
+              ? loadingNode
+              : dayjs(userInfo.created_at).format('YYYY-MM-DD HH:mm:ss'),
           },
         ]}
       ></Descriptions>

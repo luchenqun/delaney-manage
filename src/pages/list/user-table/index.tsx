@@ -23,7 +23,9 @@ function SearchTable() {
   const t = useLocale(locale);
 
   const tableCallback = async (record, type) => {
-    console.log(record, type);
+    if (type === 'view') {
+      window.location.href = `/list/user-detail/?id=${record.address}`;
+    }
   };
 
   const columns = useMemo(
