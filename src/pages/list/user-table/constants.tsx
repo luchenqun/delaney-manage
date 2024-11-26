@@ -94,6 +94,7 @@ export function getColumns(
       title: '绑定码',
       width: 100,
       dataIndex: 'parent_ref',
+      render: (value) => <>{value ? value : '创始人'}</>,
     },
     {
       title: '创建时间',
