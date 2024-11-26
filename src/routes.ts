@@ -36,6 +36,13 @@ export const routes: IRoute[] = [
       {
         name: '用户列表',
         key: 'list/user-table',
+        children: [
+          {
+            ignore: true,
+            name: '用户详情',
+            key: 'list/user-detail',
+          },
+        ],
       },
       {
         name: '质押列表',
