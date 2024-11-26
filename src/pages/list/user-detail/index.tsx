@@ -8,6 +8,7 @@ import InfoForm from './info';
 import Security from './security';
 import Verified from './verified';
 import { getUser } from './api';
+import Deletegate from './delegate-table';
 
 function UserInfo() {
   const t = useLocale(locale);
@@ -16,7 +17,7 @@ function UserInfo() {
   const [userInfo, setUserInfo] = useState({});
   // const userInfo = useSelector((state: any) => state.userInfo);
   const loading = useSelector((state: any) => state.userLoading);
-  const [activeTab, setActiveTab] = useState('basic');
+  const [activeTab, setActiveTab] = useState('1');
 
   useEffect(() => {
     getUser({
@@ -33,13 +34,19 @@ function UserInfo() {
       </Card>
       <Card style={{ marginTop: '16px' }}>
         <Tabs activeTab={activeTab} onChange={setActiveTab} type="rounded">
-          <Tabs.TabPane key="basic" title={t['userSetting.title.basicInfo']}>
-            <InfoForm loading={loading} />
+          <Tabs.TabPane key="1" title="质押">
+            <Deletegate address={id} />
           </Tabs.TabPane>
-          <Tabs.TabPane key="security" title={t['userSetting.title.security']}>
+          <Tabs.TabPane key="2" title="动态奖励">
             <Security />
           </Tabs.TabPane>
-          <Tabs.TabPane key="verified" title={t['userSetting.label.verified']}>
+          <Tabs.TabPane key="3" title="静态奖励">
+            <Verified />
+          </Tabs.TabPane>
+          <Tabs.TabPane key="4" title="领取奖励">
+            <Verified />
+          </Tabs.TabPane>
+          <Tabs.TabPane key="5" title="消息">
             <Verified />
           </Tabs.TabPane>
         </Tabs>

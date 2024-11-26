@@ -117,7 +117,7 @@ export default function Info({
             label: '创建时间',
             value: loading
               ? loadingNode
-              : dayjs(userInfo.created_at).format('YYYY-MM-DD HH:mm:ss'),
+              : dayjs.unix(userInfo.create_time).format('YYYY-MM-DD HH:mm:ss'),
           },
         ]}
       ></Descriptions>

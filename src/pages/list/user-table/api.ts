@@ -12,4 +12,5 @@ export interface PageParams {
   filters?: {
     [key: string]: string;
   };
+  [key: string]: any;
 }
