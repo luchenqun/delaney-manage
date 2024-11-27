@@ -58,6 +58,12 @@ export function getColumns(
       render: (value) => <>{divideByMillionAndRound(value)}</>,
     },
     {
+      title: '直推人数',
+      width: 130,
+      dataIndex: 'sub_person',
+      sorter: true,
+    },
+    {
       title: '直推MUD',
       width: 130,
       dataIndex: 'sub_mud',
@@ -70,6 +76,12 @@ export function getColumns(
       dataIndex: 'sub_usdt',
       sorter: true,
       render: (value) => <>{divideByMillionAndRound(value)}</>,
+    },
+    {
+      title: '团队人数',
+      width: 130,
+      dataIndex: 'team_person',
+      sorter: true,
     },
     {
       title: '团队MUD',
