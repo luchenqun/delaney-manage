@@ -119,6 +119,13 @@ export function getColumns(
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
+      title: '质押日期',
+      width: 175,
+      dataIndex: 'delegate_time',
+      sorter: true,
+      render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
+    },
+    {
       title: '解锁日期',
       width: 175,
       dataIndex: 'unlock_time',
