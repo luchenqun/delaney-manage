@@ -45,14 +45,16 @@ export default function LoginForm() {
     axios
       .post('/api/user/login', params)
       .then((res) => {
-        const { status, msg } = res.data;
-        if (status === 'ok') {
-          afterLoginSuccess(params);
-        } else {
-          setErrorMessage(msg || t['login.form.login.errMsg']);
-        }
+        afterLoginSuccess(params);
+        // const { status, msg } = res.data;
+        // if (status === 'ok') {
+        //   afterLoginSuccess(params);
+        // } else {
+        //   setErrorMessage(msg || t['login.form.login.errMsg']);
+        // }
       })
       .finally(() => {
+        afterLoginSuccess(params);
         setLoading(false);
       });
   }
