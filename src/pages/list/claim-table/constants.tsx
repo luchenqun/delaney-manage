@@ -64,7 +64,7 @@ export function getColumns(
       sorter: true,
       render: (value) => (
         <>
-          {value === 0 && <Tag color="gray">未领取</Tag>}
+          {value === 0 && <Tag color="gray">领取中</Tag>}
           {value === 1 && <Tag color="green">已领取</Tag>}
           {value === 2 && <Tag color="red">领取失败</Tag>}
         </>
