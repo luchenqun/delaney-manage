@@ -6,7 +6,7 @@ import locale from './locale';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
 import { getUserList } from '../user-table/api';
-import { divideByMillionAndRound } from '@/utils/tools';
+import { humanReadable, UsdtPrecision } from '@/utils/tools';
 
 const { Title } = Typography;
 
@@ -127,42 +127,42 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       width: 130,
       dataIndex: 'mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '质押USDT',
       width: 130,
       dataIndex: 'usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '直推MUD',
       width: 130,
       dataIndex: 'sub_mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '直推USDT',
       width: 130,
       dataIndex: 'sub_usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '团队MUD',
       width: 130,
       dataIndex: 'team_mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '团队USDT',
       width: 130,
       dataIndex: 'team_usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '推荐码',

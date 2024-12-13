@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
-import { divideByMillionAndRound } from '@/utils/tools';
+import { humanReadable, UsdtPrecision } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
 
@@ -45,14 +45,14 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       width: 130,
       dataIndex: 'mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '质押USDT',
       width: 130,
       dataIndex: 'usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '直推人数',
@@ -65,14 +65,14 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       width: 130,
       dataIndex: 'sub_mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '直推USDT',
       width: 130,
       dataIndex: 'sub_usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '团队人数',
@@ -85,14 +85,14 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       width: 130,
       dataIndex: 'team_mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '团队USDT',
       width: 130,
       dataIndex: 'team_usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '推荐码',

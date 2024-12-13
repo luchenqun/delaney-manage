@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
-import { divideByMillionAndRound } from '@/utils/tools';
+import { humanReadable, UsdtPrecision } from '@/utils/tools';
 import { getStaticRewardsList } from '../static-table/api';
 import { getClaimsList } from '../claim-table/api';
 
@@ -99,21 +99,21 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       width: 120,
       dataIndex: 'usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '最小MUD',
       width: 120,
       dataIndex: 'min_mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '实际MUD',
       width: 120,
       dataIndex: 'mud',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value)}</>,
     },
     {
       title: '交易哈希',

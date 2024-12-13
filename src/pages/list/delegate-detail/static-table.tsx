@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
-import { divideByMillionAndRound } from '@/utils/tools';
+import { humanReadable, UsdtPrecision } from '@/utils/tools';
 import { getStaticRewardsList } from '../static-table/api';
 
 function StaticTable({ hash }: { hash: string }) {
@@ -121,7 +121,7 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       width: 100,
       dataIndex: 'usdt',
       sorter: true,
-      render: (value) => <>{divideByMillionAndRound(value)}</>,
+      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
     },
     {
       title: '交易哈希',
