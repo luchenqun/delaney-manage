@@ -15,9 +15,7 @@ function MyTeam() {
   const [loading, setLoading] = useState(true);
 
   const getData = async () => {
-    const { data } = await axios
-      .get('/api/users/teamList')
-      .finally(() => setLoading(false));
+    const { data } = await axios.get('/api/users/teamList').finally(() => setLoading(false));
     setData(data);
   };
 
@@ -30,20 +28,9 @@ function MyTeam() {
       dataSource={data}
       render={(item, index) => {
         return (
-          <List.Item
-            key={index}
-            style={
-              index !== data.length - 1
-                ? { padding: '8px 0px' }
-                : { padding: '8px 0px 0px 0px' }
-            }
-          >
+          <List.Item key={index} style={index !== data.length - 1 ? { padding: '8px 0px' } : { padding: '8px 0px 0px 0px' }}>
             {loading ? (
-              <Skeleton
-                animation
-                text={{ width: ['80%', '20%'], rows: 2 }}
-                image={{ shape: 'circle' }}
-              />
+              <Skeleton animation text={{ width: ['80%', '20%'], rows: 2 }} image={{ shape: 'circle' }} />
             ) : (
               <List.Item.Meta
                 avatar={
@@ -52,11 +39,7 @@ function MyTeam() {
                   </Avatar>
                 }
                 title={item.name}
-                description={
-                  <Text type="secondary" style={{ fontSize: '12px' }}>{`共${(
-                    item.members || 0
-                  ).toLocaleString()}人`}</Text>
-                }
+                description={<Text type="secondary" style={{ fontSize: '12px' }}>{`共${(item.members || 0).toLocaleString()}人`}</Text>}
               />
             )}
           </List.Item>

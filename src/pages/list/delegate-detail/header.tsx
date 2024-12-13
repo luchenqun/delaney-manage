@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Avatar,
-  Upload,
-  Descriptions,
-  Skeleton,
-  Tag,
-} from '@arco-design/web-react';
+import { Avatar, Upload, Descriptions, Skeleton, Tag } from '@arco-design/web-react';
 import { IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -13,13 +7,7 @@ import dayjs from 'dayjs';
 import styles from './style/header.module.less';
 import { divideByMillionAndRound } from '@/utils/tools';
 
-export default function Info({
-  userInfo = {},
-  loading,
-}: {
-  userInfo: any;
-  loading: boolean;
-}) {
+export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
 
   return (
@@ -55,33 +43,23 @@ export default function Info({
           },
           {
             label: '质押数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.mud),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.mud),
           },
           {
             label: '希望得到最小的usdt价值',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.min_usdt),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.min_usdt),
           },
           {
             label: '质押的对应usdt数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.usdt),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.usdt),
           },
           {
             label: '取消质押希望返回最小mud',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.back_min_mud),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.back_min_mud),
           },
           {
             label: '取消质押返回的mud',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.back_mud),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.back_mud),
           },
           {
             label: '每期多久',
@@ -111,23 +89,15 @@ export default function Info({
           },
           {
             label: '质押解锁日期',
-            value: loading
-              ? loadingNode
-              : dayjs.unix(userInfo.unlock_time).format('YYYY-MM-DD HH:mm:ss'),
+            value: loading ? loadingNode : dayjs.unix(userInfo.unlock_time).format('YYYY-MM-DD HH:mm:ss'),
           },
           {
             label: '取消质押日期',
-            value: loading
-              ? loadingNode
-              : dayjs
-                  .unix(userInfo.undelegate_time)
-                  .format('YYYY-MM-DD HH:mm:ss'),
+            value: loading ? loadingNode : dayjs.unix(userInfo.undelegate_time).format('YYYY-MM-DD HH:mm:ss'),
           },
           {
             label: '创建时间',
-            value: loading
-              ? loadingNode
-              : dayjs.unix(userInfo.create_time).format('YYYY-MM-DD HH:mm:ss'),
+            value: loading ? loadingNode : dayjs.unix(userInfo.create_time).format('YYYY-MM-DD HH:mm:ss'),
           },
         ]}
       ></Descriptions>

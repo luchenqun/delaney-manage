@@ -3,15 +3,7 @@ import { Chart, Tooltip, Interval, Axis, Coordinate, G2 } from 'bizcharts';
 import { Spin } from '@arco-design/web-react';
 import CustomTooltip from './customer-tooltip';
 
-function HorizontalInterval({
-  data,
-  loading,
-  height,
-}: {
-  data: any[];
-  loading: boolean;
-  height?: number;
-}) {
+function HorizontalInterval({ data, loading, height }: { data: any[]; loading: boolean; height?: number }) {
   G2.registerShape('interval', 'border-radius', {
     draw(cfg, container) {
       const points = cfg.points as unknown as { x: string; y: number };
@@ -41,20 +33,9 @@ function HorizontalInterval({
 
   return (
     <Spin loading={loading} style={{ width: '100%' }}>
-      <Chart
-        height={height || 370}
-        padding="auto"
-        data={data}
-        autoFit
-        className={'chart-wrapper'}
-      >
+      <Chart height={height || 370} padding="auto" data={data} autoFit className={'chart-wrapper'}>
         <Coordinate transpose />
-        <Interval
-          color="#4086FF"
-          position="name*count"
-          size={10}
-          shape="border-radius"
-        />
+        <Interval color="#4086FF" position="name*count" size={10} shape="border-radius" />
         <Tooltip>
           {(title, items) => {
             return <CustomTooltip title={title} data={items} />;

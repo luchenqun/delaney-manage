@@ -9,12 +9,7 @@ interface AddCardProps {
 }
 function AddCard(props: AddCardProps) {
   return (
-    <Card
-      className={cs(styles['card-block'], styles['add-card'])}
-      title={null}
-      bordered={true}
-      size="small"
-    >
+    <Card className={cs(styles['card-block'], styles['add-card'])} title={null} bordered={true} size="small">
       <div className={styles.content}>
         <div className={styles['add-icon']}>
           <IconPlus />

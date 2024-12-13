@@ -13,17 +13,14 @@ const i18n = {
     'stepForm.desc.created': 'Created successfully',
     'stepForm.basicInfo.name': 'Event name',
     'stepForm.basicInfo.name.required': 'Please enter the event name',
-    'stepForm.basicInfo.name.placeholder':
-      'Enter Chinese characters, letters or numbers, up to 20 characters',
+    'stepForm.basicInfo.name.placeholder': 'Enter Chinese characters, letters or numbers, up to 20 characters',
     'stepForm.basicInfo.channelType': 'Channel Type',
     'stepForm.basicInfo.channelType.required': 'Please select the channel type',
     'stepForm.basicInfo.time': 'Promotion time',
     'stepForm.basicInfo.time.required': 'Please select the promotion time',
     'stepForm.basicInfo.link': 'Promotion URL',
-    'stepForm.basicInfo.link.placeholder':
-      'Please enter the promotion page address',
-    'stepForm.basicInfo.link.tips':
-      'Such as Android or iOS download address, intermediate redirect URL, the URL must start with http:// or https://',
+    'stepForm.basicInfo.link.placeholder': 'Please enter the promotion page address',
+    'stepForm.basicInfo.link.tips': 'Such as Android or iOS download address, intermediate redirect URL, the URL must start with http:// or https://',
     'stepForm.channel.source': 'Advertising source',
     'stepForm.channel.source.required': 'Please enter the advertising source',
     'stepForm.channel.source.placeholder': 'Referral address: sohu, sina',
@@ -34,8 +31,7 @@ const i18n = {
     'stepForm.channel.remind': 'Push reminder',
     'stepForm.channel.content': 'Advertising content',
     'stepForm.channel.content.required': 'Please enter the advertising content',
-    'stepForm.channel.content.placeholder':
-      'Please enter the description of the advertisement content, no more than 200 words',
+    'stepForm.channel.content.placeholder': 'Please enter the description of the advertisement content, no more than 200 words',
     'stepForm.created.success.title': 'Created successfully',
     'stepForm.created.success.desc': 'Form created successfully',
     'stepForm.created.success.view': 'View form',
@@ -66,8 +62,7 @@ const i18n = {
     'stepForm.basicInfo.time.required': '请选择推广时间',
     'stepForm.basicInfo.link': '推广地址',
     'stepForm.basicInfo.link.placeholder': '请输入推广页面地址',
-    'stepForm.basicInfo.link.tips':
-      '如 Android 或 iOS 的下载地址、中间跳转URL，网址必须以 http:// 或 https:// 开头',
+    'stepForm.basicInfo.link.tips': '如 Android 或 iOS 的下载地址、中间跳转URL，网址必须以 http:// 或 https:// 开头',
     'stepForm.channel.source': '广告来源',
     'stepForm.channel.source.required': '请输入广告来源',
     'stepForm.channel.source.placeholder': '引荐来源地址：sohu、sina',
@@ -78,15 +73,13 @@ const i18n = {
     'stepForm.channel.remind': '推送提醒',
     'stepForm.channel.content': '广告内容',
     'stepForm.channel.content.required': '请输入广告内容',
-    'stepForm.channel.content.placeholder':
-      '请输入广告内容介绍，最多不超过200字',
+    'stepForm.channel.content.placeholder': '请输入广告内容介绍，最多不超过200字',
     'stepForm.created.success.title': '创建成功',
     'stepForm.created.success.desc': '表单创建成功',
     'stepForm.created.success.view': '查看表单',
     'stepForm.created.success.again': '再次创建',
     'stepForm.created.extra.title': '渠道表单说明',
-    'stepForm.created.extra.desc':
-      '广告商渠道推广支持追踪在第三方广告商投放广告下载App用户的场景，例如在今日头条渠道投放下载App广告，追踪通过在渠道下载激活App的用户。',
+    'stepForm.created.extra.desc': '广告商渠道推广支持追踪在第三方广告商投放广告下载App用户的场景，例如在今日头条渠道投放下载App广告，追踪通过在渠道下载激活App的用户。',
     'stepForm.created.extra.detail': '查看详情',
   },
 };

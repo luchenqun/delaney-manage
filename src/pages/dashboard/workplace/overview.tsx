@@ -1,12 +1,5 @@
 import React, { useState, useEffect, ReactNode } from 'react';
-import {
-  Grid,
-  Card,
-  Typography,
-  Divider,
-  Skeleton,
-  Link,
-} from '@arco-design/web-react';
+import { Grid, Card, Typography, Divider, Skeleton, Link } from '@arco-design/web-react';
 import { useSelector } from 'react-redux';
 import { IconCaretUp } from '@arco-design/web-react/icon';
 import OverviewAreaLine from '@/components/Chart/overview-area-line';
@@ -88,33 +81,15 @@ function Overview() {
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem
-            icon={<IconCalendar />}
-            title={t['workplace.totalOnlyData']}
-            count={data.allContents}
-            loading={loading}
-            unit={t['workplace.pecs']}
-          />
+          <StatisticItem icon={<IconCalendar />} title={t['workplace.totalOnlyData']} count={data.allContents} loading={loading} unit={t['workplace.pecs']} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem
-            icon={<IconContent />}
-            title={t['workplace.contentInMarket']}
-            count={data.liveContents}
-            loading={loading}
-            unit={t['workplace.pecs']}
-          />
+          <StatisticItem icon={<IconContent />} title={t['workplace.contentInMarket']} count={data.liveContents} loading={loading} unit={t['workplace.pecs']} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem
-            icon={<IconComments />}
-            title={t['workplace.comments']}
-            count={data.increaseComments}
-            loading={loading}
-            unit={t['workplace.pecs']}
-          />
+          <StatisticItem icon={<IconComments />} title={t['workplace.comments']} count={data.increaseComments} loading={loading} unit={t['workplace.pecs']} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
@@ -123,10 +98,7 @@ function Overview() {
             title={t['workplace.growth']}
             count={
               <span>
-                {data.growthRate}{' '}
-                <IconCaretUp
-                  style={{ fontSize: 18, color: 'rgb(var(--green-6))' }}
-                />
+                {data.growthRate} <IconCaretUp style={{ fontSize: 18, color: 'rgb(var(--green-6))' }} />
               </span>
             }
             loading={loading}
@@ -136,14 +108,9 @@ function Overview() {
       <Divider />
       <div>
         <div className={styles.ctw}>
-          <Typography.Paragraph
-            className={styles['chart-title']}
-            style={{ marginBottom: 0 }}
-          >
+          <Typography.Paragraph className={styles['chart-title']} style={{ marginBottom: 0 }}>
             {t['workplace.contentData']}
-            <span className={styles['chart-sub-title']}>
-              ({t['workplace.1year']})
-            </span>
+            <span className={styles['chart-sub-title']}>({t['workplace.1year']})</span>
           </Typography.Paragraph>
           <Link>{t['workplace.seeMore']}</Link>
         </div>

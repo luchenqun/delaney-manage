@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import {
-  Typography,
-  Grid,
-  Link,
-  Result,
-  Skeleton,
-} from '@arco-design/web-react';
+import { Typography, Grid, Link, Result, Skeleton } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import UserInfoHeader from './header';
@@ -82,11 +76,7 @@ function UserInfo() {
             {noticeLoading ? (
               <Skeleton text={{ rows: 10 }} animation />
             ) : (
-              <Result
-                status="404"
-                subTitle={t['userInfo.notice.empty']}
-                style={{ paddingTop: '60px', paddingBottom: '130px' }}
-              />
+              <Result status="404" subTitle={t['userInfo.notice.empty']} style={{ paddingTop: '60px', paddingBottom: '130px' }} />
             )}
           </Card>
         </Col>

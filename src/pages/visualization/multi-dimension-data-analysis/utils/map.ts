@@ -45,12 +45,7 @@ export function keepMapRatio(mapData, c) {
     const curScaleXRange = c.getScaleByField('x').range;
     const curScaleYRange = c.getScaleByField('y').range;
 
-    if (
-      curScaleXRange[0] !== scale.x.range[0] ||
-      curScaleXRange[1] !== scale.x.range[1] ||
-      curScaleYRange[0] !== scale.y.range[0] ||
-      curScaleYRange[1] !== scale.y.range[1]
-    ) {
+    if (curScaleXRange[0] !== scale.x.range[0] || curScaleXRange[1] !== scale.x.range[1] || curScaleYRange[0] !== scale.y.range[0] || curScaleYRange[1] !== scale.y.range[1]) {
       setTimeout(() => {
         c.scale(scale);
         c.render(true);

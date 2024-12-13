@@ -61,9 +61,7 @@ function getFlattenRoutes(routes) {
   const res = [];
   function travel(_routes) {
     _routes.forEach((route) => {
-      const visibleChildren = (route.children || []).filter(
-        (child) => !child.ignore
-      );
+      const visibleChildren = (route.children || []).filter((child) => !child.ignore);
       if (route.key && (!route.children || !visibleChildren.length)) {
         try {
           route.component = lazyload(mod[`./pages/${route.key}/index.tsx`]);
@@ -89,9 +87,7 @@ function PageLayout() {
   const pathname = history.location.pathname;
   const currentComponent = qs.parseUrl(pathname).url.slice(1);
   const locale = useLocale();
-  const { settings, userLoading, userInfo } = useSelector(
-    (state: GlobalState) => state
-  );
+  const { settings, userLoading, userInfo } = useSelector((state: GlobalState) => state);
 
   const [routes, defaultRoute] = useRoute(userInfo?.permissions);
   const defaultSelectedKeys = [currentComponent || defaultRoute];
@@ -100,14 +96,11 @@ function PageLayout() {
 
   const [breadcrumb, setBreadCrumb] = useState([]);
   const [collapsed, setCollapsed] = useState<boolean>(false);
-  const [selectedKeys, setSelectedKeys] =
-    useState<string[]>(defaultSelectedKeys);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>(defaultSelectedKeys);
   const [openKeys, setOpenKeys] = useState<string[]>(defaultOpenKeys);
 
   const routeMap = useRef<Map<string, React.ReactNode[]>>(new Map());
-  const menuMap = useRef<
-    Map<string, { menuItem?: boolean; subMenu?: boolean }>
-  >(new Map());
+  const menuMap = useRef<Map<string, { menuItem?: boolean; subMenu?: boolean }>>(new Map());
 
   const navbarHeight = 60;
   const menuWidth = collapsed ? 48 : settings.menuWidth;
@@ -149,18 +142,12 @@ function PageLayout() {
           </>
         );
 
-        routeMap.current.set(
-          `/${route.key}`,
-          breadcrumb ? [...parentNode, route.name] : []
-        );
+        routeMap.current.set(`/${route.key}`, breadcrumb ? [...parentNode, route.name] : []);
 
         const visibleChildren = (route.children || []).filter((child) => {
           const { ignore, breadcrumb = true } = child;
           if (ignore || route.ignore) {
-            routeMap.current.set(
-              `/${child.key}`,
-              breadcrumb ? [...parentNode, route.name, child.name] : []
-            );
+            routeMap.current.set(`/${child.key}`, breadcrumb ? [...parentNode, route.name, child.name] : []);
           }
 
           return !ignore;
@@ -257,9 +244,7 @@ function PageLayout() {
                 <div className={styles['layout-breadcrumb']}>
                   <Breadcrumb>
                     {breadcrumb.map((node, index) => (
-                      <Breadcrumb.Item key={index}>
-                        {typeof node === 'string' ? locale[node] || node : node}
-                      </Breadcrumb.Item>
+                      <Breadcrumb.Item key={index}>{typeof node === 'string' ? locale[node] || node : node}</Breadcrumb.Item>
                     ))}
                   </Breadcrumb>
                 </div>
@@ -267,21 +252,12 @@ function PageLayout() {
               <Content>
                 <Switch>
                   {flattenRoutes.map((route, index) => {
-                    return (
-                      <Route
-                        key={index}
-                        path={`/${route.key}`}
-                        component={route.component}
-                      />
-                    );
+                    return <Route key={index} path={`/${route.key}`} component={route.component} />;
                   })}
                   <Route exact path="/">
                     <Redirect to={`/${defaultRoute}`} />
                   </Route>
-                  <Route
-                    path="*"
-                    component={lazyload(() => import('./pages/exception/403'))}
-                  />
+                  <Route path="*" component={lazyload(() => import('./pages/exception/403'))} />
                 </Switch>
               </Content>
             </div>

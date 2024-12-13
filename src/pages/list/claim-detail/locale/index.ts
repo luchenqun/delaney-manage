@@ -24,8 +24,7 @@ const i18n = {
     'userSetting.reset': 'Reset',
 
     'userSetting.info.email': 'Email',
-    'userSetting.info.email.placeholder':
-      'Please enter your email address, such as xxx@bytedance.com',
+    'userSetting.info.email.placeholder': 'Please enter your email address, such as xxx@bytedance.com',
     'userSetting.info.nickName': 'Nick name',
     'userSetting.info.nickName.placeholder': 'Please enter your nickname',
     'userSetting.info.area': 'Country / Region',
@@ -34,14 +33,12 @@ const i18n = {
     'userSetting.info.address': 'Specific address',
     'userSetting.info.address.placeholder': 'Please enter your address',
     'userSetting.info.profile': 'Personal profile',
-    'userSetting.info.profile.placeholder':
-      'Please enter your profile, no more than 200 words.',
+    'userSetting.info.profile.placeholder': 'Please enter your profile, no more than 200 words.',
     'userSetting.security.password': 'Login Password',
     'userSetting.security.password.tips':
       'Has been set. The password has at least 6 characters, supports numbers, letters and special characters except spaces, and must contain both numbers and uppercase and lowercase letters. ',
     'userSetting.security.question': 'Secure question',
-    'userSetting.security.question.placeholder':
-      'You have not set a secret security question, which can effectively protect the security of your account.',
+    'userSetting.security.question.placeholder': 'You have not set a secret security question, which can effectively protect the security of your account.',
     'userSetting.security.phone': 'Secure phone',
     'userSetting.security.phone.tips': 'Bound:',
     'userSetting.security.email': 'Secure email',
@@ -54,14 +51,11 @@ const i18n = {
     'userSetting.verified.label.isVerified': 'Authentication status',
     'userSetting.verified.label.verifiedTime': 'Authentication time',
     'userSetting.verified.label.legalPersonName': 'Legal Person name',
-    'userSetting.verified.label.certificateType':
-      'Type of legal person certificate',
-    'userSetting.verified.label.certificationNumber':
-      'Legal person certification number',
+    'userSetting.verified.label.certificateType': 'Type of legal person certificate',
+    'userSetting.verified.label.certificationNumber': 'Legal person certification number',
     'userSetting.verified.label.enterpriseName': 'Enterprise Name',
 
-    'userSetting.verified.label.enterpriseCertificateType':
-      'Enterprise certificate type',
+    'userSetting.verified.label.enterpriseCertificateType': 'Enterprise certificate type',
     'userSetting.verified.label.organizationCode': 'Organization Code',
 
     'userSetting.verified.authType': 'Authentication type',
@@ -109,19 +103,15 @@ const i18n = {
     'userSetting.info.address': '具体地址',
     'userSetting.info.address.placeholder': '请输入您的地址',
     'userSetting.info.profile': '个人简介',
-    'userSetting.info.profile.placeholder':
-      '请输入您的个人简介，最多不超过200字。',
+    'userSetting.info.profile.placeholder': '请输入您的个人简介，最多不超过200字。',
     'userSetting.security.password': '登陆密码',
-    'userSetting.security.password.tips':
-      '已设置。密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。',
+    'userSetting.security.password.tips': '已设置。密码至少6位字符，支持数字、字母和除空格外的特殊字符，且必须同时包含数字和大小写字母。',
     'userSetting.security.question': '密保问题',
-    'userSetting.security.question.placeholder':
-      '您暂未设置密保问题，密保问题可以有效的保护账号的安全。',
+    'userSetting.security.question.placeholder': '您暂未设置密保问题，密保问题可以有效的保护账号的安全。',
     'userSetting.security.phone': '安全手机',
     'userSetting.security.phone.tips': '已绑定：',
     'userSetting.security.email': '安全邮箱',
-    'userSetting.security.email.placeholder':
-      '您暂未设置邮箱，绑定邮箱可以用来找回密码、接收通知等。',
+    'userSetting.security.email.placeholder': '您暂未设置邮箱，绑定邮箱可以用来找回密码、接收通知等。',
 
     'userSetting.verified.enterprise': '企业实名认证',
     'userSetting.verified.label.accountType': '账号类型',

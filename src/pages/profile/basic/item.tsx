@@ -73,15 +73,11 @@ function ProfileItem(props: ProfileItemProps) {
       },
       {
         label: t['basicProfile.label.audio.acquisition.channels'],
-        value: `${data?.audio?.acquisition.channels || '-'} ${
-          t['basicProfile.unit.audio.channels']
-        }`,
+        value: `${data?.audio?.acquisition.channels || '-'} ${t['basicProfile.unit.audio.channels']}`,
       },
       {
         label: t['basicProfile.label.audio.encoding.channels'],
-        value: `${data?.audio?.encoding.channels || '-'} ${
-          t['basicProfile.unit.audio.channels']
-        }`,
+        value: `${data?.audio?.encoding.channels || '-'} ${t['basicProfile.unit.audio.channels']}`,
       },
       {
         label: t['basicProfile.label.audio.encoding.rate'],
@@ -108,12 +104,7 @@ function ProfileItem(props: ProfileItemProps) {
               loading
                 ? blockData.map((item) => ({
                     ...item,
-                    value: (
-                      <Skeleton
-                        text={{ rows: 1, style: { width: '200px' } }}
-                        animation
-                      />
-                    ),
+                    value: <Skeleton text={{ rows: 1, style: { width: '200px' } }} animation />,
                   }))
                 : blockData
             }

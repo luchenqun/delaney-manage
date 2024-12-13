@@ -27,30 +27,13 @@ function Success() {
           ]}
         />
         <div className={styles['steps-wrapper']}>
-          <Typography.Paragraph bold>
-            {t['success.result.progress']}
-          </Typography.Paragraph>
+          <Typography.Paragraph bold>{t['success.result.progress']}</Typography.Paragraph>
           <Steps type="dot" current={2}>
-            <Step
-              title={t['success.submitApplication']}
-              description="2020/10/10 14:00:39"
-            />
-            <Step
-              title={t['success.leaderReview']}
-              description={t['success.processing']}
-            />
-            <Step
-              title={t['success.purchaseCertificate']}
-              description={t['success.waiting']}
-            />
-            <Step
-              title={t['success.safetyTest']}
-              description={t['success.waiting']}
-            />
-            <Step
-              title={t['success.launched']}
-              description={t['success.waiting']}
-            />
+            <Step title={t['success.submitApplication']} description="2020/10/10 14:00:39" />
+            <Step title={t['success.leaderReview']} description={t['success.processing']} />
+            <Step title={t['success.purchaseCertificate']} description={t['success.waiting']} />
+            <Step title={t['success.safetyTest']} description={t['success.waiting']} />
+            <Step title={t['success.launched']} description={t['success.waiting']} />
           </Steps>
         </div>
       </div>

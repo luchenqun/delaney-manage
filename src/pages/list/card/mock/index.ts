@@ -5,13 +5,7 @@ import setupMock from '@/utils/setupMock';
 const qualityCategory = ['视频类', '图文类', '纯文本'];
 const qualityName = ['历史导入', '内容版权', '敏感内容', '商业品牌'];
 
-const serviceName = [
-  '漏斗分析',
-  '用户分布',
-  '资源分发',
-  '用户画像分析',
-  '事件分析',
-];
+const serviceName = ['漏斗分析', '用户分布', '资源分发', '用户画像分析', '事件分析'];
 
 const serviceDescriptions = [
   '用户行为分析之漏斗分析模型是企业实现精细化运营、进行用户行为分析的重要数据分析模型。 ',
@@ -21,13 +15,7 @@ const serviceDescriptions = [
   '事件分析即可进行筛选、分组、聚合的灵活多维数据分析。详情请点击卡片。',
 ];
 
-const rulesName = [
-  '内容屏蔽规则',
-  '内容置顶规则',
-  '内容加权规则',
-  '内容分发规则',
-  '多语言文字符号识别',
-];
+const rulesName = ['内容屏蔽规则', '内容置顶规则', '内容加权规则', '内容分发规则', '多语言文字符号识别'];
 
 const rulesDescription = [
   '用户在执行特定的内容分发任务时，可使用内容屏蔽规则根据特定标签，过滤内容集合。  ',
@@ -40,14 +28,8 @@ const getQualityCard = () => {
   const { list } = Mock.mock({
     'list|10': [
       {
-        title: () =>
-          `${Mock.Random.pick(qualityCategory)}-${Mock.Random.pick(
-            qualityName
-          )}`,
-        time: () =>
-          dayjs()
-            .subtract(Mock.Random.natural(0, 30), 'days')
-            .format('YYYY-MM-DD HH:mm:ss'),
+        title: () => `${Mock.Random.pick(qualityCategory)}-${Mock.Random.pick(qualityName)}`,
+        time: () => dayjs().subtract(Mock.Random.natural(0, 30), 'days').format('YYYY-MM-DD HH:mm:ss'),
         qualityCount: () => Mock.Random.natural(100, 500),
         randomCount: () => Mock.Random.natural(0, 100),
         duration: () => Mock.Random.natural(0, 200),

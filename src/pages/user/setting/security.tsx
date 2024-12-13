@@ -25,9 +25,7 @@ function Security() {
     },
     {
       title: t['userSetting.security.phone'],
-      value: userInfo.phoneNumber
-        ? `${t['userSetting.security.phone.tips']} ${userInfo.phoneNumber}`
-        : '',
+      value: userInfo.phoneNumber ? `${t['userSetting.security.phone.tips']} ${userInfo.phoneNumber}` : '',
     },
     {
       title: t['userSetting.security.email'],
@@ -51,11 +49,7 @@ function Security() {
             </span>
 
             <span>
-              <Button type="text">
-                {item.value
-                  ? t['userSetting.btn.edit']
-                  : t['userSetting.btn.set']}
-              </Button>
+              <Button type="text">{item.value ? t['userSetting.btn.edit'] : t['userSetting.btn.set']}</Button>
             </span>
           </div>
         </div>

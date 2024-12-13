@@ -1,19 +1,8 @@
 // 数据总览
 import React, { useEffect, useState, useMemo } from 'react';
-import {
-  Card,
-  Typography,
-  Grid,
-  Statistic,
-  Skeleton,
-} from '@arco-design/web-react';
+import { Card, Typography, Grid, Statistic, Skeleton } from '@arco-design/web-react';
 import axios from 'axios';
-import {
-  IconUser,
-  IconEdit,
-  IconHeart,
-  IconThumbUp,
-} from '@arco-design/web-react/icon';
+import { IconUser, IconEdit, IconHeart, IconThumbUp } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/data-overview.module.less';
@@ -28,9 +17,7 @@ export default () => {
 
   const getData = async () => {
     setLoading(true);
-    const { data } = await axios
-      .get('/api/multi-dimension/overview')
-      .finally(() => setLoading(false));
+    const { data } = await axios.get('/api/multi-dimension/overview').finally(() => setLoading(false));
 
     const { overviewData, chartData } = data;
     setLineData(chartData);
@@ -81,21 +68,10 @@ export default () => {
           <Card className={styles.card} title={null}>
             <Title heading={6}>{item.title}</Title>
             <div className={styles.content}>
-              <div
-                style={{ backgroundColor: item.background, color: item.color }}
-                className={styles['content-icon']}
-              >
+              <div style={{ backgroundColor: item.background, color: item.color }} className={styles['content-icon']}>
                 {item.icon}
               </div>
-              {loading ? (
-                <Skeleton
-                  animation
-                  text={{ rows: 1, className: styles['skeleton'] }}
-                  style={{ width: '120px' }}
-                />
-              ) : (
-                <Statistic value={item.value} groupSeparator />
-              )}
+              {loading ? <Skeleton animation text={{ rows: 1, className: styles['skeleton'] }} style={{ width: '120px' }} /> : <Statistic value={item.value} groupSeparator />}
             </div>
           </Card>
         </Grid.Col>

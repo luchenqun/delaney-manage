@@ -7,30 +7,16 @@ import dayjs from 'dayjs';
 import styles from './style/header.module.less';
 import { divideByMillionAndRound } from '@/utils/tools';
 
-export default function Info({
-  userInfo = {},
-  loading,
-}: {
-  userInfo: any;
-  loading: boolean;
-}) {
+export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const t = useLocale(locale);
 
-  const [avatar, setAvatar] = useState(
-    'https://black-unnecessary-koi-219.mypinata.cloud/ipfs/QmYDxbHvxCLpKQk1G9a9KzAJjZryUC7v5dXDEk9xR685KX'
-  );
+  const [avatar, setAvatar] = useState('https://black-unnecessary-koi-219.mypinata.cloud/ipfs/QmYDxbHvxCLpKQk1G9a9KzAJjZryUC7v5dXDEk9xR685KX');
 
   useEffect(() => {
     // setAvatar(userInfo.avatar);
   }, [userInfo]);
 
-  const loadingImg = (
-    <Skeleton
-      text={{ rows: 0 }}
-      style={{ width: '100px', height: '100px' }}
-      animation
-    />
-  );
+  const loadingImg = <Skeleton text={{ rows: 0 }} style={{ width: '100px', height: '100px' }} animation />;
 
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
 
@@ -71,39 +57,27 @@ export default function Info({
           },
           {
             label: '个人质押mud数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.mud),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.mud),
           },
           {
             label: '个人质押usdt数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.usdt),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.usdt),
           },
           {
             label: '直推总额mud数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.sub_mud),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.sub_mud),
           },
           {
             label: '直推总额usdt数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.sub_usdt),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.sub_usdt),
           },
           {
             label: '团队总额mud数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.team_mud),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.team_mud),
           },
           {
             label: '团队总额usdt数量',
-            value: loading
-              ? loadingNode
-              : divideByMillionAndRound(userInfo.team_usdt),
+            value: loading ? loadingNode : divideByMillionAndRound(userInfo.team_usdt),
           },
           {
             label: '推荐码',
@@ -115,9 +89,7 @@ export default function Info({
           },
           {
             label: '创建时间',
-            value: loading
-              ? loadingNode
-              : dayjs.unix(userInfo.create_time).format('YYYY-MM-DD HH:mm:ss'),
+            value: loading ? loadingNode : dayjs.unix(userInfo.create_time).format('YYYY-MM-DD HH:mm:ss'),
           },
         ]}
       ></Descriptions>

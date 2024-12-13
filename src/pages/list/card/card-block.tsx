@@ -1,26 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cs from 'classnames';
-import {
-  Button,
-  Switch,
-  Tag,
-  Card,
-  Descriptions,
-  Typography,
-  Dropdown,
-  Menu,
-  Skeleton,
-} from '@arco-design/web-react';
-import {
-  IconStarFill,
-  IconThumbUpFill,
-  IconSunFill,
-  IconFaceSmileFill,
-  IconPenFill,
-  IconCheckCircleFill,
-  IconCloseCircleFill,
-  IconMore,
-} from '@arco-design/web-react/icon';
+import { Button, Switch, Tag, Card, Descriptions, Typography, Dropdown, Menu, Skeleton } from '@arco-design/web-react';
+import { IconStarFill, IconThumbUpFill, IconSunFill, IconFaceSmileFill, IconPenFill, IconCheckCircleFill, IconCloseCircleFill, IconMore } from '@arco-design/web-react/icon';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -33,13 +14,7 @@ interface CardBlockType {
   loading?: boolean;
 }
 
-const IconList = [
-  IconStarFill,
-  IconThumbUpFill,
-  IconSunFill,
-  IconFaceSmileFill,
-  IconPenFill,
-].map((Tag, index) => <Tag key={index} />);
+const IconList = [IconStarFill, IconThumbUpFill, IconSunFill, IconFaceSmileFill, IconPenFill].map((Tag, index) => <Tag key={index} />);
 
 const { Paragraph } = Typography;
 
@@ -72,11 +47,7 @@ function CardBlock(props: CardBlockType) {
 
   const getTitleIcon = () => {
     if (type === 'service' && typeof card.icon === 'number') {
-      return (
-        <div className={styles.icon}>
-          {IconList[card.icon % IconList.length]}
-        </div>
-      );
+      return <div className={styles.icon}>{IconList[card.icon % IconList.length]}</div>;
     }
     return null;
   };
@@ -85,25 +56,13 @@ function CardBlock(props: CardBlockType) {
     if (type === 'quality') {
       return (
         <>
-          <PermissionWrapper
-            requiredPermissions={[
-              { resource: /^menu.list.*/, actions: ['read'] },
-            ]}
-          >
-            <Button
-              type="primary"
-              style={{ marginLeft: '12px' }}
-              loading={loading}
-            >
+          <PermissionWrapper requiredPermissions={[{ resource: /^menu.list.*/, actions: ['read'] }]}>
+            <Button type="primary" style={{ marginLeft: '12px' }} loading={loading}>
               {t['cardList.options.qualityInspection']}
             </Button>
           </PermissionWrapper>
 
-          <PermissionWrapper
-            requiredPermissions={[
-              { resource: /^menu.list.*/, actions: ['write'] },
-            ]}
-          >
+          <PermissionWrapper requiredPermissions={[{ resource: /^menu.list.*/, actions: ['write'] }]}>
             <Button loading={loading}>{t['cardList.options.remove']}</Button>
           </PermissionWrapper>
         </>
@@ -119,29 +78,20 @@ function CardBlock(props: CardBlockType) {
             </Button>
           ) : (
             <Button type="outline" loading={loading} onClick={changeStatus}>
-              {status === 0
-                ? t['cardList.options.subscribe']
-                : t['cardList.options.renewal']}
+              {status === 0 ? t['cardList.options.subscribe'] : t['cardList.options.renewal']}
             </Button>
           )}
         </>
       );
     }
 
-    return (
-      <Switch checked={!!status} loading={loading} onChange={changeStatus} />
-    );
+    return <Switch checked={!!status} loading={loading} onChange={changeStatus} />;
   };
 
   const getStatus = () => {
     if (type === 'rules' && status) {
       return (
-        <Tag
-          color="green"
-          icon={<IconCheckCircleFill />}
-          className={styles.status}
-          size="small"
-        >
+        <Tag color="green" icon={<IconCheckCircleFill />} className={styles.status} size="small">
           {t['cardList.tag.activated']}
         </Tag>
       );
@@ -149,23 +99,13 @@ function CardBlock(props: CardBlockType) {
     switch (status) {
       case 1:
         return (
-          <Tag
-            color="green"
-            icon={<IconCheckCircleFill />}
-            className={styles.status}
-            size="small"
-          >
+          <Tag color="green" icon={<IconCheckCircleFill />} className={styles.status} size="small">
             {t['cardList.tag.opened']}
           </Tag>
         );
       case 2:
         return (
-          <Tag
-            color="red"
-            icon={<IconCloseCircleFill />}
-            className={styles.status}
-            size="small"
-          >
+          <Tag color="red" icon={<IconCloseCircleFill />} className={styles.status} size="small">
             {t['cardList.tag.expired']}
           </Tag>
         );
@@ -176,13 +116,7 @@ function CardBlock(props: CardBlockType) {
 
   const getContent = () => {
     if (loading) {
-      return (
-        <Skeleton
-          text={{ rows: type !== 'quality' ? 3 : 2 }}
-          animation
-          className={styles['card-block-skeleton']}
-        />
-      );
+      return <Skeleton text={{ rows: type !== 'quality' ? 3 : 2 }} animation className={styles['card-block-skeleton']} />;
     }
     if (type !== 'quality') {
       return <Paragraph>{card.description}</Paragraph>;
@@ -208,12 +142,7 @@ function CardBlock(props: CardBlockType) {
       size="small"
       title={
         loading ? (
-          <Skeleton
-            animation
-            text={{ rows: 1, width: ['100%'] }}
-            style={{ width: '120px', height: '24px' }}
-            className={styles['card-block-skeleton']}
-          />
+          <Skeleton animation text={{ rows: 1, width: ['100%'] }} style={{ width: '120px', height: '24px' }} className={styles['card-block-skeleton']} />
         ) : (
           <>
             <div

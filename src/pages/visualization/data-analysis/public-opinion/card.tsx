@@ -1,16 +1,7 @@
 import React from 'react';
 import { Skeleton, Statistic, Typography } from '@arco-design/web-react';
 import cs from 'classnames';
-import {
-  Chart,
-  Line,
-  Interval,
-  Coordinate,
-  Interaction,
-  Tooltip,
-  G2,
-  Legend,
-} from 'bizcharts';
+import { Chart, Line, Interval, Coordinate, Interaction, Tooltip, G2, Legend } from 'bizcharts';
 
 import { IconArrowRise, IconArrowFall } from '@arco-design/web-react/icon';
 import styles from '../style/public-opinion.module.less';
@@ -112,13 +103,7 @@ function SimplePie(props: { chartData: any[] }) {
   return (
     <Chart data={chartData} {...basicChartProps} padding={[0, 20, 0, 0]}>
       <Coordinate type="theta" radius={0.8} innerRadius={0.7} />
-      <Interval
-        adjust="stack"
-        position="count"
-        shape="sliceShape"
-        color={['name', ['#8D4EDA', '#00B2FF', '#165DFF']]}
-        label={false}
-      />
+      <Interval adjust="stack" position="count" shape="sliceShape" color={['name', ['#8D4EDA', '#00B2FF', '#165DFF']]} label={false} />
       <Tooltip visible={true} />
       <Legend position="right" />
       <Interaction type="element-single-selected" />
@@ -127,8 +112,7 @@ function SimplePie(props: { chartData: any[] }) {
 }
 
 function PublicOpinionCard(props: PublicOpinionCardProps) {
-  const { chartType, title, count, increment, diff, chartData, loading } =
-    props;
+  const { chartType, title, count, increment, diff, chartData, loading } = props;
   const className = cs(styles.card, styles[`card-${chartType}`]);
 
   return (
@@ -166,15 +150,10 @@ function PublicOpinionCard(props: PublicOpinionCardProps) {
       </div>
       <div className={styles.chart}>
         {loading ? (
-          <Skeleton
-            text={{ rows: 3, width: Array(3).fill('100%') }}
-            animation
-          />
+          <Skeleton text={{ rows: 3, width: Array(3).fill('100%') }} animation />
         ) : (
           <>
-            {chartType === 'interval' && (
-              <SimpleInterval chartData={chartData} />
-            )}
+            {chartType === 'interval' && <SimpleInterval chartData={chartData} />}
             {chartType === 'line' && <SimpleLine chartData={chartData} />}
             {chartType === 'pie' && <SimplePie chartData={chartData} />}
           </>

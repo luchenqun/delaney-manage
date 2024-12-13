@@ -12,13 +12,8 @@ const getDefaultStorage = (key) => {
   }
 };
 
-function useStorage(
-  key: string,
-  defaultValue?: string
-): [string, (string) => void, () => void] {
-  const [storedValue, setStoredValue] = useState(
-    getDefaultStorage(key) || defaultValue
-  );
+function useStorage(key: string, defaultValue?: string): [string, (string) => void, () => void] {
+  const [storedValue, setStoredValue] = useState(getDefaultStorage(key) || defaultValue);
 
   const setStorageValue = (value: string) => {
     if (!isSSR) {

@@ -12,16 +12,9 @@ export const ContentType = ['图文', '横版短视频', '竖版短视频'];
 export const FilterType = ['规则筛选', '人工'];
 export const Status = ['未上线', '已上线'];
 
-const ContentIcon = [
-  <IconText key={0} />,
-  <IconHorizontalVideo key={1} />,
-  <IconVerticalVideo key={2} />,
-];
+const ContentIcon = [<IconText key={0} />, <IconHorizontalVideo key={1} />, <IconVerticalVideo key={2} />];
 
-export function getColumns(
-  t: any,
-  callback: (record: Record<string, any>, type: string) => Promise<void>
-) {
+export function getColumns(t: any, callback: (record: Record<string, any>, type: string) => Promise<void>) {
   return [
     {
       title: t['searchTable.columns.id'],
@@ -76,11 +69,7 @@ export function getColumns(
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <Button
-          type="text"
-          size="small"
-          onClick={() => callback(record, 'view')}
-        >
+        <Button type="text" size="small" onClick={() => callback(record, 'view')}>
           {t['searchTable.columns.operations.view']}
         </Button>
       ),

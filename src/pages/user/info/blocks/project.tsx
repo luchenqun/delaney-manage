@@ -19,11 +19,7 @@ function ProjectCard(props: ProjectProps) {
   const { loading, contributors } = props;
   return (
     <Card className={styles['project-wrapper']} bordered={true} size="small">
-      {loading ? (
-        <Skeleton text={{ rows: 1 }} animation />
-      ) : (
-        <Title heading={6}>{props.title}</Title>
-      )}
+      {loading ? <Skeleton text={{ rows: 1 }} animation /> : <Title heading={6}>{props.title}</Title>}
 
       {loading ? (
         <Skeleton text={{ rows: 1 }} animation style={{ marginTop: '4px' }} />

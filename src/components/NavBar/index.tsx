@@ -1,15 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import {
-  Tooltip,
-  Input,
-  Avatar,
-  Select,
-  Dropdown,
-  Menu,
-  Divider,
-  Message,
-  Button,
-} from '@arco-design/web-react';
+import { Tooltip, Input, Avatar, Select, Dropdown, Menu, Divider, Message, Button } from '@arco-design/web-react';
 import {
   IconLanguage,
   IconNotification,
@@ -75,11 +65,7 @@ function Navbar({ show }: { show: boolean }) {
   if (!show) {
     return (
       <div className={styles['fixed-settings']}>
-        <Settings
-          trigger={
-            <Button icon={<IconSettings />} type="primary" size="large" />
-          }
-        />
+        <Settings trigger={<Button icon={<IconSettings />} type="primary" size="large" />} />
       </div>
     );
   }
@@ -96,11 +82,7 @@ function Navbar({ show }: { show: boolean }) {
         title={
           <>
             <IconUser className={styles['dropdown-icon']} />
-            <span className={styles['user-role']}>
-              {role === 'admin'
-                ? t['menu.user.role.admin']
-                : t['menu.user.role.user']}
-            </span>
+            <span className={styles['user-role']}>{role === 'admin' ? t['menu.user.role.admin'] : t['menu.user.role.user']}</span>
           </>
         }
       >
@@ -182,17 +164,8 @@ function Navbar({ show }: { show: boolean }) {
           </MessageBox>
         </li> */}
         <li>
-          <Tooltip
-            content={
-              theme === 'light'
-                ? t['settings.navbar.theme.toDark']
-                : t['settings.navbar.theme.toLight']
-            }
-          >
-            <IconButton
-              icon={theme !== 'dark' ? <IconMoonFill /> : <IconSunFill />}
-              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-            />
+          <Tooltip content={theme === 'light' ? t['settings.navbar.theme.toDark'] : t['settings.navbar.theme.toLight']}>
+            <IconButton icon={theme !== 'dark' ? <IconMoonFill /> : <IconSunFill />} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
           </Tooltip>
         </li>
         {/* <Settings /> */}
@@ -200,11 +173,7 @@ function Navbar({ show }: { show: boolean }) {
           <li>
             <Dropdown droplist={droplist} position="br" disabled={userLoading}>
               <Avatar size={32} style={{ cursor: 'pointer' }}>
-                {userLoading ? (
-                  <IconLoading />
-                ) : (
-                  <img alt="avatar" src={userInfo.avatar} />
-                )}
+                {userLoading ? <IconLoading /> : <img alt="avatar" src={userInfo.avatar} />}
               </Avatar>
             </Dropdown>
           </li>

@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Chart,
-  Line,
-  Axis,
-  Area,
-  Tooltip,
-  Coordinate,
-  Legend,
-} from 'bizcharts';
+import { Chart, Line, Axis, Area, Tooltip, Coordinate, Legend } from 'bizcharts';
 import CustomTooltip from './customer-tooltip';
 import { Spin } from '@arco-design/web-react';
 import DataSet from '@antv/data-set';
@@ -52,23 +44,8 @@ function AreaPolar(props: AreaPolarProps) {
             return <CustomTooltip title={title} data={items} />;
           }}
         </Tooltip>
-        <Line
-          position="item*score"
-          size="2"
-          color={['category', ['#313CA9', '#21CCFF', '#249EFF']]}
-        />
-        <Area
-          position="item*score"
-          tooltip={false}
-          color={[
-            'category',
-            [
-              'rgba(49, 60, 169, 0.4)',
-              'rgba(33, 204, 255, 0.4)',
-              'rgba(36, 158, 255, 0.4)',
-            ],
-          ]}
-        />
+        <Line position="item*score" size="2" color={['category', ['#313CA9', '#21CCFF', '#249EFF']]} />
+        <Area position="item*score" tooltip={false} color={['category', ['rgba(49, 60, 169, 0.4)', 'rgba(33, 204, 255, 0.4)', 'rgba(36, 158, 255, 0.4)']]} />
         <Axis name="score" label={false} />
         <Legend
           position="right"

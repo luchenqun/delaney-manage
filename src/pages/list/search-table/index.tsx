@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-  Table,
-  Card,
-  PaginationProps,
-  Button,
-  Space,
-  Typography,
-} from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import axios from 'axios';
@@ -86,11 +79,7 @@ function SearchTable() {
     <Card>
       <Title heading={6}>{t['menu.list.searchTable']}</Title>
       <SearchForm onSearch={handleSearch} />
-      <PermissionWrapper
-        requiredPermissions={[
-          { resource: 'menu.list.searchTable', actions: ['write'] },
-        ]}
-      >
+      <PermissionWrapper requiredPermissions={[{ resource: 'menu.list.searchTable', actions: ['write'] }]}>
         <div className={styles['button-group']}>
           <Space>
             <Button type="primary" icon={<IconPlus />}>
@@ -99,20 +88,11 @@ function SearchTable() {
             <Button>{t['searchTable.operations.upload']}</Button>
           </Space>
           <Space>
-            <Button icon={<IconDownload />}>
-              {t['searchTable.operation.download']}
-            </Button>
+            <Button icon={<IconDownload />}>{t['searchTable.operation.download']}</Button>
           </Space>
         </div>
       </PermissionWrapper>
-      <Table
-        rowKey="id"
-        loading={loading}
-        onChange={onChangeTable}
-        pagination={pagination}
-        columns={columns}
-        data={data}
-      />
+      <Table rowKey="id" loading={loading} onChange={onChangeTable} pagination={pagination} columns={columns} data={data} />
     </Card>
   );
 }

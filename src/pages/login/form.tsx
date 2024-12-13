@@ -1,11 +1,4 @@
-import {
-  Form,
-  Input,
-  Checkbox,
-  Link,
-  Button,
-  Space,
-} from '@arco-design/web-react';
+import { Form, Input, Checkbox, Link, Button, Space } from '@arco-design/web-react';
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import { IconLock, IconUser } from '@arco-design/web-react/icon';
 import React, { useEffect, useRef, useState } from 'react';
@@ -19,8 +12,7 @@ export default function LoginForm() {
   const formRef = useRef<FormInstance>();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [loginParams, setLoginParams, removeLoginParams] =
-    useStorage('loginParams');
+  const [loginParams, setLoginParams, removeLoginParams] = useStorage('loginParams');
 
   const t = useLocale(locale);
 
@@ -78,35 +70,14 @@ export default function LoginForm() {
   return (
     <div className={styles['login-form-wrapper']}>
       <div className={styles['login-form-title']}>{t['login.form.title']}</div>
-      <div className={styles['login-form-sub-title']}>
-        {t['login.form.title']}
-      </div>
+      <div className={styles['login-form-sub-title']}>{t['login.form.title']}</div>
       <div className={styles['login-form-error-msg']}>{errorMessage}</div>
-      <Form
-        className={styles['login-form']}
-        layout="vertical"
-        ref={formRef}
-        initialValues={{ userName: 'admin', password: 'admin' }}
-      >
-        <Form.Item
-          field="userName"
-          rules={[{ required: true, message: t['login.form.userName.errMsg'] }]}
-        >
-          <Input
-            prefix={<IconUser />}
-            placeholder={t['login.form.userName.placeholder']}
-            onPressEnter={onSubmitClick}
-          />
+      <Form className={styles['login-form']} layout="vertical" ref={formRef} initialValues={{ userName: 'admin', password: 'admin' }}>
+        <Form.Item field="userName" rules={[{ required: true, message: t['login.form.userName.errMsg'] }]}>
+          <Input prefix={<IconUser />} placeholder={t['login.form.userName.placeholder']} onPressEnter={onSubmitClick} />
         </Form.Item>
-        <Form.Item
-          field="password"
-          rules={[{ required: true, message: t['login.form.password.errMsg'] }]}
-        >
-          <Input.Password
-            prefix={<IconLock />}
-            placeholder={t['login.form.password.placeholder']}
-            onPressEnter={onSubmitClick}
-          />
+        <Form.Item field="password" rules={[{ required: true, message: t['login.form.password.errMsg'] }]}>
+          <Input.Password prefix={<IconLock />} placeholder={t['login.form.password.placeholder']} onPressEnter={onSubmitClick} />
         </Form.Item>
         <Space size={16} direction="vertical">
           <div className={styles['login-form-password-actions']}>
@@ -118,11 +89,7 @@ export default function LoginForm() {
           <Button type="primary" long onClick={onSubmitClick} loading={loading}>
             {t['login.form.login']}
           </Button>
-          <Button
-            type="text"
-            long
-            className={styles['login-form-register-btn']}
-          >
+          <Button type="text" long className={styles['login-form-register-btn']}>
             {t['login.form.register']}
           </Button>
         </Space>

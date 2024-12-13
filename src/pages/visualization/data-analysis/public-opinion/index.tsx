@@ -39,18 +39,14 @@ function PublicOpinion() {
 
   const getData = async () => {
     const requestList = cardInfo.map(async (info) => {
-      const { data } = await axios
-        .get(`/api/data-analysis/overview?type=${info.type}`)
-        .catch(() => ({ data: {} }));
+      const { data } = await axios.get(`/api/data-analysis/overview?type=${info.type}`).catch(() => ({ data: {} }));
       return {
         ...data,
         key: info.key,
         chartType: info.type,
       };
     });
-    const result = await Promise.all(requestList).finally(() =>
-      setLoading(false)
-    );
+    const result = await Promise.all(requestList).finally(() => setLoading(false));
     setData(result);
   };
 
@@ -70,11 +66,7 @@ function PublicOpinion() {
       <Row gutter={20}>
         {formatData.map((item, index) => (
           <Col span={6} key={index}>
-            <PublicOpinionCard
-              {...item}
-              compareTime={t['dataAnalysis.yesterday']}
-              loading={loading}
-            />
+            <PublicOpinionCard {...item} compareTime={t['dataAnalysis.yesterday']} loading={loading} />
           </Col>
         ))}
       </Row>

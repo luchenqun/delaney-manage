@@ -6,10 +6,7 @@ import { AddressText } from '@/components/Common/Address';
 
 const { Text } = Typography;
 
-export function getColumns(
-  t: ColumnProps,
-  callback: (record: ColumnProps<any>, type: string) => Promise<void>
-) {
+export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, type: string) => Promise<void>) {
   return [
     {
       title: 'id',

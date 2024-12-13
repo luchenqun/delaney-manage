@@ -37,10 +37,7 @@ export default function ListCard() {
     getData();
   }, []);
   7;
-  const getCardList = (
-    list: Array<BasicCard & QualityInspection>,
-    type: keyof typeof data
-  ) => {
+  const getCardList = (list: Array<BasicCard & QualityInspection>, type: keyof typeof data) => {
     return (
       <Row gutter={24} className={styles['card-content']}>
         {type === 'quality' && (
@@ -64,12 +61,7 @@ export default function ListCard() {
         activeTab={activeKey}
         type="rounded"
         onChange={setActiveKey}
-        extra={
-          <Input.Search
-            style={{ width: '240px' }}
-            placeholder={t[`cardList.tab.${activeKey}.placeholder`]}
-          />
-        }
+        extra={<Input.Search style={{ width: '240px' }} placeholder={t[`cardList.tab.${activeKey}.placeholder`]} />}
       >
         <Tabs.TabPane key="all" title={t['cardList.tab.title.all']} />
         <Tabs.TabPane key="quality" title={t['cardList.tab.title.quality']} />
@@ -85,9 +77,7 @@ export default function ListCard() {
             </div>
           ))
         ) : (
-          <div className={styles['single-content']}>
-            {getCardList(data[activeKey], activeKey as keyof typeof data)}
-          </div>
+          <div className={styles['single-content']}>{getCardList(data[activeKey], activeKey as keyof typeof data)}</div>
         )}
       </div>
     </Card>

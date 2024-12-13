@@ -1,18 +1,6 @@
 import React from 'react';
-import {
-  Link,
-  Card,
-  Divider,
-  Message,
-  Typography,
-} from '@arco-design/web-react';
-import {
-  IconFile,
-  IconStorage,
-  IconSettings,
-  IconMobile,
-  IconFire,
-} from '@arco-design/web-react/icon';
+import { Link, Card, Divider, Message, Typography } from '@arco-design/web-react';
+import { IconFile, IconStorage, IconSettings, IconMobile, IconFire } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/shortcuts.module.less';
@@ -79,18 +67,12 @@ function Shortcuts() {
   return (
     <Card>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography.Title heading={6}>
-          {t['workplace.shortcuts']}
-        </Typography.Title>
+        <Typography.Title heading={6}>{t['workplace.shortcuts']}</Typography.Title>
         <Link>{t['workplace.seeMore']}</Link>
       </div>
       <div className={styles.shortcuts}>
         {shortcuts.map((shortcut) => (
-          <div
-            className={styles.item}
-            key={shortcut.key}
-            onClick={() => onClickShortcut(shortcut.key)}
-          >
+          <div className={styles.item} key={shortcut.key} onClick={() => onClickShortcut(shortcut.key)}>
             <div className={styles.icon}>{shortcut.icon}</div>
             <div className={styles.title}>{shortcut.title}</div>
           </div>
@@ -100,11 +82,7 @@ function Shortcuts() {
       <div className={styles.recent}>{t['workplace.recent']}</div>
       <div className={styles.shortcuts}>
         {recentShortcuts.map((shortcut) => (
-          <div
-            className={styles.item}
-            key={shortcut.key}
-            onClick={() => onClickShortcut(shortcut.key)}
-          >
+          <div className={styles.item} key={shortcut.key} onClick={() => onClickShortcut(shortcut.key)}>
             <div className={styles.icon}>{shortcut.icon}</div>
             <div className={styles.title}>{shortcut.title}</div>
           </div>

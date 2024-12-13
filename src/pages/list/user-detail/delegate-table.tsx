@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-  Table,
-  Card,
-  PaginationProps,
-  Button,
-  Space,
-  Typography,
-} from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -26,10 +19,7 @@ function DeletegateTable({ address }: { address: string }) {
     }
   };
 
-  const columns = useMemo(
-    () => getColumns(t, tableCallback),
-    [t]
-  ) as ColumnProps[];
+  const columns = useMemo(() => getColumns(t, tableCallback), [t]) as ColumnProps[];
 
   const [data, setData] = useState([]);
   const [pagination, setPatination] = useState<PaginationProps>({
@@ -45,12 +35,7 @@ function DeletegateTable({ address }: { address: string }) {
 
   useEffect(() => {
     fetchData();
-  }, [
-    pagination.current,
-    pagination.pageSize,
-    JSON.stringify(formParams),
-    JSON.stringify(sortParams),
-  ]);
+  }, [pagination.current, pagination.pageSize, JSON.stringify(formParams), JSON.stringify(sortParams)]);
 
   function fetchData() {
     const { current, pageSize } = pagination;
@@ -101,23 +86,10 @@ function DeletegateTable({ address }: { address: string }) {
     });
   }
 
-  return (
-    <Table
-      rowKey="id"
-      loading={loading}
-      onChange={onChangeTable}
-      pagination={pagination}
-      columns={columns}
-      data={data}
-      scroll={{ x: '100%' }}
-    />
-  );
+  return <Table rowKey="id" loading={loading} onChange={onChangeTable} pagination={pagination} columns={columns} data={data} scroll={{ x: '100%' }} />;
 }
 
-export function getColumns(
-  t: ColumnProps,
-  callback: (record: ColumnProps<any>, type: string) => Promise<void>
-) {
+export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, type: string) => Promise<void>) {
   return [
     {
       title: 'ID',

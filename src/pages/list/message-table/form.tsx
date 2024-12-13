@@ -1,13 +1,6 @@
 import React, { useContext } from 'react';
 import dayjs from 'dayjs';
-import {
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  Button,
-  Grid,
-} from '@arco-design/web-react';
+import { Form, Input, Select, DatePicker, Button, Grid } from '@arco-design/web-react';
 import { GlobalContext } from '@/context';
 import locale from './locale';
 import useLocale from '@/utils/useLocale';
@@ -17,9 +10,7 @@ import styles from './style/index.module.less';
 const { Row, Col } = Grid;
 const { useForm } = Form;
 
-function SearchForm(props: {
-  onSearch: (values: Record<string, any>) => void;
-}) {
+function SearchForm(props: { onSearch: (values: Record<string, any>) => void }) {
   const { lang } = useContext(GlobalContext);
 
   const t = useLocale(locale);
@@ -39,13 +30,7 @@ function SearchForm(props: {
 
   return (
     <div className={styles['search-form-wrapper']}>
-      <Form
-        form={form}
-        className={styles['search-form']}
-        labelAlign="left"
-        labelCol={{ span: 5 }}
-        wrapperCol={{ span: 19 }}
-      >
+      <Form form={form} className={styles['search-form']} labelAlign="left" labelCol={{ span: 5 }} wrapperCol={{ span: 19 }}>
         <Row gutter={24}>
           <Col span={colSpan}>
             <Form.Item label="用户地址" field="address">

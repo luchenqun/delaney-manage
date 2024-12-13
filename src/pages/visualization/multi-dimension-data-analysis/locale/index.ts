@@ -7,8 +7,7 @@ const i18n = {
     'multiDAnalysis.card.title.officeVisitors': 'Office Visitors',
     'multiDAnalysis.card.title.downloads': 'Downloads',
     'multiDAnalysis.card.title.dataOverview': 'Overview',
-    'multiDAnalysis.card.title.todayActivity':
-      "Today's Likes and Comments Statistics",
+    'multiDAnalysis.card.title.todayActivity': "Today's Likes and Comments Statistics",
     'multiDAnalysis.card.title.contentTheme': 'Content theme distribution',
     'multiDAnalysis.card.title.contentSource': 'Content publishing source',
     'multiDAnalysis.dataOverview.contentProduction': 'Content production',
@@ -17,8 +16,7 @@ const i18n = {
     'multiDAnalysis.dataOverview.activeUsers': 'Active users',
     'multiDAnalysis.cardList.userRetentionTrend': 'User retention trends',
     'multiDAnalysis.cardList.userRetention': 'User retention',
-    'multiDAnalysis.cardList.contentConsumptionTrend':
-      'Content consumption trends',
+    'multiDAnalysis.cardList.contentConsumptionTrend': 'Content consumption trends',
     'multiDAnalysis.cardList.contentConsumption': 'Content consumption',
   },
   'zh-CN': {

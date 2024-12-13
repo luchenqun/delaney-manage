@@ -20,17 +20,13 @@ function DataAnalysis() {
 
   const getChartData = async () => {
     setLoading(true);
-    const { data } = await axios
-      .get('/api/data-analysis/content-publishing')
-      .finally(() => setLoading(false));
+    const { data } = await axios.get('/api/data-analysis/content-publishing').finally(() => setLoading(false));
     setChartData(data);
   };
 
   const getTableData = async () => {
     setTableLoading(true);
-    const { data } = await axios
-      .get('/api/data-analysis/author-list')
-      .finally(() => setTableLoading(false));
+    const { data } = await axios.get('/api/data-analysis/author-list').finally(() => setTableLoading(false));
     setTableData(data.list);
   };
 
@@ -71,33 +67,21 @@ function DataAnalysis() {
   return (
     <Space size={16} direction="vertical" style={{ width: '100%' }}>
       <Card>
-        <Typography.Title heading={6}>
-          {t['dataAnalysis.title.publicOpinion']}
-        </Typography.Title>
+        <Typography.Title heading={6}>{t['dataAnalysis.title.publicOpinion']}</Typography.Title>
         <PublicOpinion />
       </Card>
       <Row gutter={16}>
         <Col span={14}>
           <Card>
-            <Typography.Title heading={6}>
-              {t['dataAnalysis.title.publishingRate']}
-            </Typography.Title>
+            <Typography.Title heading={6}>{t['dataAnalysis.title.publishingRate']}</Typography.Title>
             <MultiInterval data={chartData} loading={loading} />
           </Card>
         </Col>
         <Col span={10}>
           <Card>
-            <Typography.Title heading={6}>
-              {t['dataAnalysis.title.authorsList']}
-            </Typography.Title>
+            <Typography.Title heading={6}>{t['dataAnalysis.title.authorsList']}</Typography.Title>
             <div style={{ height: '370px' }}>
-              <Table
-                rowKey="id"
-                loading={tableLoading}
-                pagination={false}
-                data={tableData}
-                columns={columns}
-              />
+              <Table rowKey="id" loading={tableLoading} pagination={false} data={tableData} columns={columns} />
             </div>
           </Card>
         </Col>
@@ -105,9 +89,7 @@ function DataAnalysis() {
       <Row>
         <Col span={24}>
           <Card>
-            <Typography.Title heading={6}>
-              {t['dataAnalysis.title.publishingTiming']}
-            </Typography.Title>
+            <Typography.Title heading={6}>{t['dataAnalysis.title.publishingTiming']}</Typography.Title>
             <PeriodLine data={chartData} loading={loading} />
           </Card>
         </Col>

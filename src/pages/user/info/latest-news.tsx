@@ -15,9 +15,7 @@ function LatestNews() {
   const [loading, setLoading] = useState(true);
 
   const getData = async () => {
-    const { data } = await axios
-      .get('/api/user/latestNews')
-      .finally(() => setLoading(false));
+    const { data } = await axios.get('/api/user/latestNews').finally(() => setLoading(false));
     setData(data);
   };
 
@@ -32,11 +30,7 @@ function LatestNews() {
         return (
           <List.Item key={index} style={{ padding: '24px 20px 24px 0px' }}>
             {loading ? (
-              <Skeleton
-                animation
-                text={{ width: ['60%', '90%'], rows: 2 }}
-                image={{ shape: 'circle' }}
-              />
+              <Skeleton animation text={{ width: ['60%', '90%'], rows: 2 }} image={{ shape: 'circle' }} />
             ) : (
               <List.Item.Meta
                 className={styles['list-meta-ellipsis']}
@@ -47,11 +41,7 @@ function LatestNews() {
                 }
                 title={item.title}
                 description={
-                  <Paragraph
-                    ellipsis={{ rows: 1 }}
-                    type="secondary"
-                    style={{ fontSize: '12px', margin: 0 }}
-                  >
+                  <Paragraph ellipsis={{ rows: 1 }} type="secondary" style={{ fontSize: '12px', margin: 0 }}>
                     {item.description}
                   </Paragraph>
                 }

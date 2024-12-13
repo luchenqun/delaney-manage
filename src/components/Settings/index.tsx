@@ -59,10 +59,7 @@ function Setting(props: SettingProps) {
             { name: 'settings.menuWidth', value: 'menuWidth', type: 'number' },
           ]}
         />
-        <Block
-          title={locale['settings.otherSettings']}
-          options={[{ name: 'settings.colorWeek', value: 'colorWeek' }]}
-        />
+        <Block title={locale['settings.otherSettings']} options={[{ name: 'settings.colorWeek', value: 'colorWeek' }]} />
         <Alert content={locale['settings.alertContent']} />
       </Drawer>
     </>

@@ -1,18 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Steps,
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  InputTag,
-  Button,
-  Typography,
-  Space,
-  Card,
-  Switch,
-  Result,
-} from '@arco-design/web-react';
+import { Steps, Form, Input, Select, DatePicker, InputTag, Button, Typography, Space, Card, Switch, Result } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
@@ -47,18 +34,9 @@ function StepForm() {
         <Title heading={5}>{t['stepForm.desc.basicInfo']}</Title>
         <div className={styles.wrapper}>
           <Steps current={current} lineless>
-            <Steps.Step
-              title={t['stepForm.title.basicInfo']}
-              description={t['stepForm.desc.basicInfo']}
-            />
-            <Steps.Step
-              title={t['stepForm.title.channel']}
-              description={t['stepForm.desc.channel']}
-            />
-            <Steps.Step
-              title={t['stepForm.title.created']}
-              description={t['stepForm.desc.created']}
-            />
+            <Steps.Step title={t['stepForm.title.basicInfo']} description={t['stepForm.desc.basicInfo']} />
+            <Steps.Step title={t['stepForm.title.channel']} description={t['stepForm.desc.channel']} />
+            <Steps.Step title={t['stepForm.title.created']} description={t['stepForm.desc.created']} />
           </Steps>
           <Form form={form} className={styles.form}>
             {current === 1 && (
@@ -81,9 +59,7 @@ function StepForm() {
                     },
                   ]}
                 >
-                  <Input
-                    placeholder={t['stepForm.basicInfo.name.placeholder']}
-                  />
+                  <Input placeholder={t['stepForm.basicInfo.name.placeholder']} />
                 </Form.Item>
                 <Form.Item
                   label={t['stepForm.basicInfo.channelType']}
@@ -124,9 +100,7 @@ function StepForm() {
                   initialValue={'https://arco.design'}
                   rules={[{ required: true }]}
                 >
-                  <Input
-                    placeholder={t['stepForm.basicInfo.link.placeholder']}
-                  />
+                  <Input placeholder={t['stepForm.basicInfo.link.placeholder']} />
                 </Form.Item>
               </Form.Item>
             )}
@@ -143,9 +117,7 @@ function StepForm() {
                     },
                   ]}
                 >
-                  <Input
-                    placeholder={t['stepForm.channel.source.placeholder']}
-                  />
+                  <Input placeholder={t['stepForm.channel.source.placeholder']} />
                 </Form.Item>
                 <Form.Item
                   label={t['stepForm.channel.media']}
@@ -158,27 +130,12 @@ function StepForm() {
                     },
                   ]}
                 >
-                  <Input
-                    placeholder={t['stepForm.channel.media.placeholder']}
-                  />
+                  <Input placeholder={t['stepForm.channel.media.placeholder']} />
                 </Form.Item>
-                <Form.Item
-                  label={t['stepForm.channel.keywords']}
-                  required
-                  field="channel.keywords"
-                  initialValue={['今日头条', '火山']}
-                  rules={[{ required: true }]}
-                >
+                <Form.Item label={t['stepForm.channel.keywords']} required field="channel.keywords" initialValue={['今日头条', '火山']} rules={[{ required: true }]}>
                   <InputTag />
                 </Form.Item>
-                <Form.Item
-                  label={t['stepForm.channel.remind']}
-                  required
-                  initialValue={true}
-                  field="channel.remind"
-                  triggerPropName="checked"
-                  rules={[{ required: true }]}
-                >
+                <Form.Item label={t['stepForm.channel.remind']} required initialValue={true} field="channel.remind" triggerPropName="checked" rules={[{ required: true }]}>
                   <Switch />
                 </Form.Item>
 
@@ -193,9 +150,7 @@ function StepForm() {
                     },
                   ]}
                 >
-                  <Input.TextArea
-                    placeholder={t['stepForm.channel.content.placeholder']}
-                  />
+                  <Input.TextArea placeholder={t['stepForm.channel.content.placeholder']} />
                 </Form.Item>
               </Form.Item>
             )}
@@ -203,10 +158,7 @@ function StepForm() {
               <Form.Item label=" ">
                 <Space>
                   {current === 2 && (
-                    <Button
-                      size="large"
-                      onClick={() => setCurrent(current - 1)}
-                    >
+                    <Button size="large" onClick={() => setCurrent(current - 1)}>
                       {t['stepForm.prev']}
                     </Button>
                   )}
@@ -224,11 +176,7 @@ function StepForm() {
                   title={t['stepForm.created.success.title']}
                   subTitle={t['stepForm.created.success.desc']}
                   extra={[
-                    <Button
-                      key="reset"
-                      style={{ marginRight: 16 }}
-                      onClick={viewForm}
-                    >
+                    <Button key="reset" style={{ marginRight: 16 }} onClick={viewForm}>
                       {t['stepForm.created.success.view']}
                     </Button>,
                     <Button key="again" type="primary" onClick={reCreateForm}>

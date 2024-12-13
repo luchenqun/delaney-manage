@@ -28,14 +28,10 @@ export default function Welcome() {
           </Typography.Title>
           <Typography.Text>
             {t['welcome.step.content.pickup']}
-            <Tag style={{ marginLeft: 8 }}>
-              @arco-design/pro-pages-workplace
-            </Tag>
+            <Tag style={{ marginLeft: 8 }}>@arco-design/pro-pages-workplace</Tag>
           </Typography.Text>
 
-          <Typography.Title heading={6}>
-            2. {t['welcome.step.title.install']}
-          </Typography.Title>
+          <Typography.Title heading={6}>2. {t['welcome.step.title.install']}</Typography.Title>
           <Typography.Text>{t['welcome.step.content.install']}</Typography.Text>
           <CodeBlock code="arco block use @arco-design/pro-pages-workplace" />
 
@@ -47,10 +43,7 @@ export default function Welcome() {
         <Card style={{ marginTop: 20 }}>
           <Typography.Text>{t['welcome.title.material']}</Typography.Text>
           <div style={{ marginTop: 8 }}>
-            <Link
-              target="_blank"
-              href="https://arco.design/material?category=arco-design-pro"
-            >
+            <Link target="_blank" href="https://arco.design/material?category=arco-design-pro">
               {t['welcome.link.material-pro']} <IconDoubleRight />
             </Link>
           </div>

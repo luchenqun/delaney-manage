@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-  Table,
-  Card,
-  PaginationProps,
-  Button,
-  Space,
-  Typography,
-} from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
@@ -25,16 +18,11 @@ function SearchTable() {
   const tableCallback = async (record, type) => {
     if (type === 'view') {
       const parseData = JSON.parse(record.reward_ids);
-      window.location.href = `/list/claim-detail/?dynamic_ids=${parseData.dynamic_ids.join(
-        ','
-      )}&static_ids=${parseData.static_ids.join(',')}`;
+      window.location.href = `/list/claim-detail/?dynamic_ids=${parseData.dynamic_ids.join(',')}&static_ids=${parseData.static_ids.join(',')}`;
     }
   };
 
-  const columns = useMemo(
-    () => getColumns(t, tableCallback),
-    [t]
-  ) as ColumnProps[];
+  const columns = useMemo(() => getColumns(t, tableCallback), [t]) as ColumnProps[];
 
   const [data, setData] = useState([]);
   const [pagination, setPatination] = useState<PaginationProps>({
@@ -50,12 +38,7 @@ function SearchTable() {
 
   useEffect(() => {
     fetchData();
-  }, [
-    pagination.current,
-    pagination.pageSize,
-    JSON.stringify(formParams),
-    JSON.stringify(sortParams),
-  ]);
+  }, [pagination.current, pagination.pageSize, JSON.stringify(formParams), JSON.stringify(sortParams)]);
 
   function fetchData() {
     const { current, pageSize } = pagination;
@@ -109,11 +92,7 @@ function SearchTable() {
     <Card>
       <Title heading={6}>领取奖励列表</Title>
       <SearchForm onSearch={handleSearch} />
-      <PermissionWrapper
-        requiredPermissions={[
-          { resource: 'menu.list.searchTable', actions: ['write'] },
-        ]}
-      >
+      <PermissionWrapper requiredPermissions={[{ resource: 'menu.list.searchTable', actions: ['write'] }]}>
         <div className={styles['button-group']}>
           <Space>
             <Button type="primary" icon={<IconPlus />}>
@@ -122,21 +101,11 @@ function SearchTable() {
             <Button>{t['searchTable.operations.upload']}</Button>
           </Space>
           <Space>
-            <Button icon={<IconDownload />}>
-              {t['searchTable.operation.download']}
-            </Button>
+            <Button icon={<IconDownload />}>{t['searchTable.operation.download']}</Button>
           </Space>
         </div>
       </PermissionWrapper>
-      <Table
-        rowKey="id"
-        loading={loading}
-        onChange={onChangeTable}
-        pagination={pagination}
-        columns={columns}
-        data={data}
-        scroll={{ x: '100%' }}
-      />
+      <Table rowKey="id" loading={loading} onChange={onChangeTable} pagination={pagination} columns={columns} data={data} scroll={{ x: '100%' }} />
     </Card>
   );
 }

@@ -15,45 +15,15 @@ const lineColorMap = ['#722ED1', '#33D1C9', '#F77234', '#165DFF'];
 function MultiAreaLine({ data, loading }: { data: any[]; loading: boolean }) {
   return (
     <Spin loading={loading} style={{ width: '100%' }}>
-      <Chart
-        height={352}
-        data={data}
-        padding={[10, 0, 30, 30]}
-        autoFit
-        scale={{ time: 'time' }}
-        className={'chart-wrapper'}
-      >
-        <Line
-          shape="smooth"
-          position="time*count"
-          color={['name', lineColorMap]}
-        />
-        <Area
-          position="time*count"
-          shape="smooth"
-          color={['name', areaColorMap]}
-          tooltip={false}
-        />
-        <Tooltip
-          crosshairs={{ type: 'x' }}
-          showCrosshairs
-          shared
-          showMarkers={true}
-        >
+      <Chart height={352} data={data} padding={[10, 0, 30, 30]} autoFit scale={{ time: 'time' }} className={'chart-wrapper'}>
+        <Line shape="smooth" position="time*count" color={['name', lineColorMap]} />
+        <Area position="time*count" shape="smooth" color={['name', areaColorMap]} tooltip={false} />
+        <Tooltip crosshairs={{ type: 'x' }} showCrosshairs shared showMarkers={true}>
           {(title, items) => {
-            return (
-              <CustomTooltip
-                title={title}
-                data={items.sort((a, b) => b.value - a.value)}
-                formatter={(value) => Number(value).toLocaleString()}
-              />
-            );
+            return <CustomTooltip title={title} data={items.sort((a, b) => b.value - a.value)} formatter={(value) => Number(value).toLocaleString()} />;
           }}
         </Tooltip>
-        <Axis
-          name="count"
-          label={{ formatter: (value) => `${Number(value) / 100} k` }}
-        />
+        <Axis name="count" label={{ formatter: (value) => `${Number(value) / 100} k` }} />
         <Legend visible={false} />
       </Chart>
     </Spin>

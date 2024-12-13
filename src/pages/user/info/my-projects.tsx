@@ -24,15 +24,7 @@ function MyProject() {
   return (
     <Row gutter={12}>
       {data.map((item, index) => (
-        <Col
-          key={index}
-          span={8}
-          style={
-            index > data.length - 4 && index < data.length
-              ? { marginTop: '16px' }
-              : {}
-          }
-        >
+        <Col key={index} span={8} style={index > data.length - 4 && index < data.length ? { marginTop: '16px' } : {}}>
           <ProjectCard {...item} loading={loading} />
         </Col>
       ))}

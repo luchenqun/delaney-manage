@@ -7,10 +7,7 @@ import { AddressText } from '@/components/Common/Address';
 
 const { Text } = Typography;
 
-export function getColumns(
-  t: ColumnProps,
-  callback: (record: ColumnProps<any>, type: string) => Promise<void>
-) {
+export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, type: string) => Promise<void>) {
   return [
     {
       title: 'ID',
@@ -98,11 +95,7 @@ export function getColumns(
       fixed: 'right',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <Button
-          type="text"
-          size="small"
-          onClick={() => callback(record, 'view')}
-        >
+        <Button type="text" size="small" onClick={() => callback(record, 'view')}>
           {t['searchTable.columns.operations.view']}
         </Button>
       ),

@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import groupBy from 'lodash/groupBy';
-import {
-  Trigger,
-  Badge,
-  Tabs,
-  Avatar,
-  Spin,
-  Button,
-} from '@arco-design/web-react';
-import {
-  IconMessage,
-  IconCustomerService,
-  IconFile,
-  IconDesktop,
-} from '@arco-design/web-react/icon';
+import { Trigger, Badge, Tabs, Avatar, Spin, Button } from '@arco-design/web-react';
+import { IconMessage, IconCustomerService, IconFile, IconDesktop } from '@arco-design/web-react/icon';
 import useLocale from '../../utils/useLocale';
 import MessageList, { MessageListType } from './list';
 import styles from './style/index.module.less';
@@ -55,10 +43,7 @@ function DropContent() {
   }, []);
 
   useEffect(() => {
-    const groupData: { [key: string]: MessageListType } = groupBy(
-      sourceData,
-      'type'
-    );
+    const groupData: { [key: string]: MessageListType } = groupBy(sourceData, 'type');
     setGroupData(groupData);
   }, [sourceData]);
 
@@ -134,13 +119,7 @@ function DropContent() {
 
 function MessageBox({ children }) {
   return (
-    <Trigger
-      trigger="hover"
-      popup={() => <DropContent />}
-      position="br"
-      unmountOnExit={false}
-      popupAlign={{ bottom: 4 }}
-    >
+    <Trigger trigger="hover" popup={() => <DropContent />} position="br" unmountOnExit={false} popupAlign={{ bottom: 4 }}>
       <Badge count={9} dot>
         {children}
       </Badge>

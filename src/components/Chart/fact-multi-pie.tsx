@@ -9,14 +9,7 @@ interface FactMultiPieProps {
 }
 function FactMultiPie(props: FactMultiPieProps) {
   return (
-    <Chart
-      theme={useBizTheme()}
-      forceUpdate
-      autoFit
-      data={props.data}
-      height={props.height || 400}
-      padding={[0, 0, 10, 0]}
-    >
+    <Chart theme={useBizTheme()} forceUpdate autoFit data={props.data} height={props.height || 400} padding={[0, 0, 10, 0]}>
       <Legend visible={true} />
       <Facet
         fields={['category']}
@@ -35,13 +28,7 @@ function FactMultiPie(props: FactMultiPieProps) {
             .interval()
             .adjust('stack')
             .position('value')
-            .color('type', [
-              '#249eff',
-              '#846BCE',
-              '#21CCFF',
-              ' #86DF6C',
-              '#0E42D2',
-            ])
+            .color('type', ['#249eff', '#846BCE', '#21CCFF', ' #86DF6C', '#0E42D2'])
             .label('value', {
               content: (content) => {
                 return `${(content.value * 100).toFixed(2)} %`;

@@ -1,12 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import {
-  Statistic,
-  Typography,
-  Spin,
-  Grid,
-  Card,
-  Skeleton,
-} from '@arco-design/web-react';
+import { Statistic, Typography, Spin, Grid, Card, Skeleton } from '@arco-design/web-react';
 import cs from 'classnames';
 import { Chart, Line, Interval, Tooltip, Interaction } from 'bizcharts';
 import axios from 'axios';
@@ -52,11 +45,7 @@ function SimpleLine(props: { chartData: any[] }) {
   const { chartData } = props;
   return (
     <Chart data={chartData} {...basicChartProps}>
-      <Line
-        position="x*y"
-        shape={['name', ['smooth', 'dash']]}
-        color={['name', ['#165DFF', 'rgba(106,161,255,0.3)']]}
-      />
+      <Line position="x*y" shape={['name', ['smooth', 'dash']]} color={['name', ['#165DFF', 'rgba(106,161,255,0.3)']]} />
       <Tooltip shared={false} showCrosshairs={true}>
         {(_, items) => <CustomTooltip items={items} />}
       </Tooltip>
@@ -80,17 +69,14 @@ function SimpleInterval(props: { chartData: any[] }) {
           },
         ]}
       />
-      <Tooltip shared={false}>
-        {(_, items) => <CustomTooltip items={items} />}
-      </Tooltip>
+      <Tooltip shared={false}>{(_, items) => <CustomTooltip items={items} />}</Tooltip>
       <Interaction type="active-region" />
     </Chart>
   );
 }
 
 function CardBlock(props: CardProps) {
-  const { chartType, title, count, increment, diff, chartData, loading } =
-    props;
+  const { chartType, title, count, increment, diff, chartData, loading } = props;
 
   return (
     <Card className={styles.card}>
@@ -106,11 +92,7 @@ function CardBlock(props: CardProps) {
           extra={
             <div className={styles['compare-yesterday']}>
               {loading ? (
-                <Skeleton
-                  text={{ rows: 1 }}
-                  style={{ width: '100px' }}
-                  animation
-                />
+                <Skeleton text={{ rows: 1 }} style={{ width: '100px' }} animation />
               ) : (
                 <span
                   className={cs(styles['diff'], {
@@ -166,9 +148,7 @@ function CardList() {
 
   const getData = async () => {
     const requestList = cardInfo.map(async (info) => {
-      const { data } = await axios
-        .get(`/api/multi-dimension/card?type=${info.type}`)
-        .catch(() => ({ data: {} }));
+      const { data } = await axios.get(`/api/multi-dimension/card?type=${info.type}`).catch(() => ({ data: {} }));
       return {
         ...data,
         key: info.key,
@@ -177,9 +157,7 @@ function CardList() {
     });
 
     setLoading(true);
-    const result = await Promise.all(requestList).finally(() =>
-      setLoading(false)
-    );
+    const result = await Promise.all(requestList).finally(() => setLoading(false));
     setData(result);
   };
 

@@ -54,11 +54,7 @@ setupMock({
     };
 
     Mock.mock(new RegExp('/api/data-analysis/content-publishing'), () => {
-      return [
-        ...getTimeLine('纯文本'),
-        ...getTimeLine('视频类'),
-        ...getTimeLine('图文类'),
-      ];
+      return [...getTimeLine('纯文本'), ...getTimeLine('视频类'), ...getTimeLine('图文类')];
     });
 
     Mock.mock(new RegExp('/api/data-analysis/author-list'), () => {
@@ -66,15 +62,7 @@ setupMock({
         'list|8': [
           {
             'id|+1': 1,
-            author: () =>
-              Mock.Random.pick([
-                '用魔法打败魔法',
-                '王多鱼',
-                'Christopher',
-                '叫我小李好了',
-                '陈皮话梅糖',
-                '碳烤小肥羊',
-              ]),
+            author: () => Mock.Random.pick(['用魔法打败魔法', '王多鱼', 'Christopher', '叫我小李好了', '陈皮话梅糖', '碳烤小肥羊']),
             time: function () {
               return new Array(12).fill(0).map((_, index) => {
                 const time = index * 2;

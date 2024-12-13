@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Descriptions,
-  Table,
-  Typography,
-  Skeleton,
-  Tag,
-  Space,
-  Button,
-  Badge,
-} from '@arco-design/web-react';
+import { Descriptions, Table, Typography, Skeleton, Tag, Space, Button, Badge } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import axios from 'axios';
@@ -33,14 +24,10 @@ function Verified() {
   const [tableLoading, setTableLoading] = useState(true);
 
   const getData = async () => {
-    const { data } = await axios
-      .get('/api/user/verified/enterprise')
-      .finally(() => setLoading(false));
+    const { data } = await axios.get('/api/user/verified/enterprise').finally(() => setLoading(false));
     setData(data);
 
-    const { data: tableData } = await axios
-      .get('/api/user/verified/authList')
-      .finally(() => setTableLoading(false));
+    const { data: tableData } = await axios.get('/api/user/verified/authList').finally(() => setTableLoading(false));
     setTableData(tableData);
   };
 
@@ -52,9 +39,7 @@ function Verified() {
 
   return (
     <div className={styles.verified}>
-      <Typography.Title heading={6}>
-        {t['userSetting.verified.enterprise']}
-      </Typography.Title>
+      <Typography.Title heading={6}>{t['userSetting.verified.enterprise']}</Typography.Title>
       <Descriptions
         className={styles['verified-enterprise']}
         labelStyle={{ textAlign: 'right' }}
@@ -77,9 +62,7 @@ function Verified() {
         }))}
       />
 
-      <Typography.Title heading={6}>
-        {t['userSetting.verified.records']}
-      </Typography.Title>
+      <Typography.Title heading={6}>{t['userSetting.verified.records']}</Typography.Title>
       <Table
         columns={[
           { title: t['userSetting.verified.authType'], dataIndex: 'authType' },
@@ -92,16 +75,10 @@ function Verified() {
             dataIndex: 'authStatus',
             render(x) {
               return x ? (
-                <Badge
-                  status="success"
-                  text={t['userSetting.verified.status.success']}
-                ></Badge>
+                <Badge status="success" text={t['userSetting.verified.status.success']}></Badge>
               ) : (
                 <span>
-                  <Badge
-                    status="processing"
-                    text={t['userSetting.verified.status.waiting']}
-                  ></Badge>
+                  <Badge status="processing" text={t['userSetting.verified.status.waiting']}></Badge>
                 </span>
               );
             },
@@ -115,20 +92,12 @@ function Verified() {
             headerCellStyle: { paddingLeft: '15px' },
             render: (_, x) => {
               if (x.authStatus) {
-                return (
-                  <Button type="text">
-                    {t['userSetting.verified.operation.view']}
-                  </Button>
-                );
+                return <Button type="text">{t['userSetting.verified.operation.view']}</Button>;
               }
               return (
                 <Space>
-                  <Button type="text">
-                    {t['userSetting.verified.operation.view']}
-                  </Button>
-                  <Button type="text">
-                    {t['userSetting.verified.operation.revoke']}
-                  </Button>
+                  <Button type="text">{t['userSetting.verified.operation.view']}</Button>
+                  <Button type="text">{t['userSetting.verified.operation.revoke']}</Button>
                 </Space>
               );
             },
