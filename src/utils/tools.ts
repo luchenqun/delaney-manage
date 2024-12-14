@@ -5,6 +5,7 @@ export const UsdtPrecision = 1000000n;
 export const MudPrecision = 1000000000000000000n;
 
 export const humanReadable = (value: number | bigint | string, precision = 1000000000000000000n) => {
+  if (value === undefined || value === null) return '-';
   value = BigInt(value);
   if (value === 0n) return '0';
 

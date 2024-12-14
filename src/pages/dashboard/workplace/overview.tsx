@@ -50,7 +50,7 @@ function Overview() {
     args: [],
   });
 
-  const userInfo = useSelector((state: any) => state.userInfo || {});
+  console.log(data);
 
   return (
     <Card>
@@ -58,57 +58,53 @@ function Overview() {
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="质押数量" count={`${data[0]}`} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="质押数量" count={`${data?.[0]}`} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="质押Usdt" count={humanReadable(data[1])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="质押Usdt" count={humanReadable(data?.[1])} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="质押Mud" count={humanReadable(data[2])} loading={loading} />
+          <StatisticItem icon={<IconComments />} title="质押Mud" count={humanReadable(data?.[2])} loading={loading} />
         </Col>
       </Row>
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="奖励数量" count={`${data[3]}`} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="奖励数量" count={`${data?.[3]}`} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="奖励Usdt" count={humanReadable(data[4])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="奖励Usdt" count={humanReadable(data?.[4])} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="奖励Mud" count={humanReadable(data[5])} loading={loading} />
+          <StatisticItem icon={<IconComments />} title="奖励Mud" count={humanReadable(data?.[5])} loading={loading} />
         </Col>
       </Row>
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="取消质押数量" count={`${data[6]}`} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="取消质押数量" count={`${data?.[6]}`} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="取消质押Usdt" count={humanReadable(data[7])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="取消质押Usdt" count={humanReadable(data?.[7])} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="取消质押Mud" count={humanReadable(data[8])} loading={loading} />
+          <StatisticItem icon={<IconComments />} title="取消质押Mud" count={humanReadable(data?.[8])} loading={loading} />
         </Col>
       </Row>
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="存款Mud" count={humanReadable(data[9])} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="存款Mud" count={humanReadable(data?.[9])} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="利润Mud" count={humanReadable(data[10])} loading={loading} />
-        </Col>
-        <Divider type="vertical" className={styles.divider} />
-        <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="产品Id" count={`${data[11]}`} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="利润Mud" count={humanReadable(data?.[10])} loading={loading} />
         </Col>
       </Row>
     </Card>
