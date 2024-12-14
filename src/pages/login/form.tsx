@@ -13,7 +13,7 @@ export const enum ActionType {
 const message = authorizationSignMessage();
 
 export default function LoginForm() {
-  const { connect, isError: isErrorConnect, isSuccess: isSuccessConnect } = useConnect();
+  const { connect, isError: isErrorConnect, isSuccess: isSuccessConnect, failureReason } = useConnect();
   const { switchChain, isError: isErrorSwitchChain, isSuccess: isSuccessSwitchChain } = useSwitchChain();
   const { signMessage, data: signature, isError: isErrorSignMessage, isSuccess: isSuccessSignMessage } = useSignMessage();
   const { isConnected, address, chainId } = useAccount();
@@ -42,24 +42,28 @@ export default function LoginForm() {
     if (isErrorSwitchChain) {
       Message.error('切换链失败，请重试');
     }
+    setLoading(false);
 
     if (isSuccessSignMessage && address && signature) {
       setAuthorizationValue(address, message, signature);
       afterLoginSuccess();
+      setLoading(false);
     }
 
     setLoading(false);
-  }, [isSuccessSwitchChain, isErrorSwitchChain, isErrorConnect, isSuccessConnect, isErrorSignMessage, isSuccessSignMessage]);
+  }, [isSuccessSwitchChain, isErrorSwitchChain, isErrorConnect, isSuccessConnect, isErrorSignMessage, isSuccessSignMessage, failureReason]);
 
   useEffect(() => {
     console.log('wallet --------->', { isConnected, chainId, address });
     if (!isConnected || !address) {
       setAction(ActionType.Connect);
+      setLoading(false);
       return;
     }
 
     if (chainId !== Number(import.meta.env.VITE_APP_CHAIN_ID)) {
       setAction(ActionType.Switch);
+      setLoading(false);
       return;
     }
 
@@ -74,6 +78,7 @@ export default function LoginForm() {
       .catch((err) => {
         console.log('authorizationCheck error', err);
         setAction(ActionType.Sign);
+        setLoading(false);
       });
   }, [isConnected, chainId, address]);
 
