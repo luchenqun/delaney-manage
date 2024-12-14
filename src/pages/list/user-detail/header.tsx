@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Upload, Descriptions, Skeleton } from '@arco-design/web-react';
+import { Avatar, Upload, Descriptions, Skeleton, Link } from '@arco-design/web-react';
 import { IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import dayjs from 'dayjs';
 import styles from './style/header.module.less';
-import { humanReadable, UsdtPrecision } from '@/utils/tools';
+import { getAddressUrl, humanReadable, UsdtPrecision } from '@/utils/tools';
 
 export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const t = useLocale(locale);
@@ -40,12 +40,12 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
           {
             label: '用户地址',
             span: 24,
-            value: loading ? loadingNode : userInfo.address,
+            value: loading ? loadingNode : <Link onClick={() => window.open(getAddressUrl(userInfo.address), '_blank')}>{userInfo.address}</Link>,
           },
           {
             label: '推荐人地址',
             span: 24,
-            value: loading ? loadingNode : userInfo.parent,
+            value: loading ? loadingNode : <Link onClick={() => window.open(getAddressUrl(userInfo.parent), '_blank')}>{userInfo.parent}</Link>,
           },
           {
             label: '团队星级',

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Upload, Descriptions, Skeleton, Tag } from '@arco-design/web-react';
+import { Avatar, Upload, Descriptions, Skeleton, Tag, Link } from '@arco-design/web-react';
 import { IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import dayjs from 'dayjs';
 import styles from './style/header.module.less';
-import { humanReadable, UsdtPrecision } from '@/utils/tools';
+import { getAddressUrl, getHashUrl, humanReadable, UsdtPrecision } from '@/utils/tools';
 
 export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
@@ -21,17 +21,17 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
           {
             label: '用户地址',
             span: 24,
-            value: loading ? loadingNode : userInfo.address,
+            value: loading ? loadingNode : <Link onClick={() => window.open(getAddressUrl(userInfo.address), '_blank')}>{userInfo.address}</Link>,
           },
           {
             label: '交易哈希',
             span: 24,
-            value: loading ? loadingNode : userInfo.hash,
+            value: loading ? loadingNode : <Link onClick={() => window.open(getHashUrl(userInfo.hash), '_blank')}>{userInfo.hash}</Link>,
           },
           {
             label: '取消质押hash',
             span: 24,
-            value: loading ? loadingNode : userInfo.undelegate_hash,
+            value: loading ? loadingNode : <Link onClick={() => window.open(getHashUrl(userInfo.undelegate_hash), '_blank')}>{userInfo.undelegate_hash}</Link>,
           },
           {
             label: 'id',

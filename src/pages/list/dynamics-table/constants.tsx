@@ -55,7 +55,7 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       title: '哈希',
       width: 190,
       dataIndex: 'hash',
-      render: (value) => <AddressText address={value} />,
+      render: (value) => <AddressText address={value} type="hash" />,
     },
     {
       title: '状态',
