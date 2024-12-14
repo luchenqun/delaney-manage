@@ -363,7 +363,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 14 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 14 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangePersonInvestMinUsdt,
                 }}
@@ -378,7 +378,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 15 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 15 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangePersonRewardMinUsdt,
                 }}
@@ -393,7 +393,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 16 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 16 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangeTeamRewardMinUsdt,
                 }}
@@ -408,7 +408,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 17 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 17 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangeClaimMinUsdt,
                 }}
@@ -423,7 +423,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 18 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 18 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangeClaimMaxUsdt,
                 }}
@@ -438,7 +438,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 19 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 19 ? BigInt(value) : item)));
                   },
                   onEnd: handleChangeClaimGap,
                 }}
@@ -453,7 +453,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 20 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 20 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangeTeamLevel1SubUsdt,
                 }}
@@ -468,7 +468,7 @@ function Config() {
               <Typography.Paragraph
                 editable={{
                   onChange: (value) => {
-                    setData(data.map((item: any, index: number) => (index === 21 ? value : item)));
+                    setData(data.map((item: any, index: number) => (index === 21 ? BigInt(value) * UsdtPrecision : item)));
                   },
                   onEnd: handleChangeTeamLevel1TeamUsdt,
                 }}
