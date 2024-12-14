@@ -1,5 +1,6 @@
 import { Message } from '@arco-design/web-react';
 import axios from 'axios';
+import { authorizationValue, currentAddress } from './tools';
 
 const instance = axios.create({
   baseURL: '/api',
@@ -8,15 +9,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    // if (typeof window !== 'undefined') {
-    //   const token = localStorage.getItem('userToken');
-    //   if (!token) {
-    //     window.location.href = '/login';
-    //     throw new axios.Cancel('401');
-    //   } else {
-    //     config.headers.Authorization = 'Bearer ' + localStorage.getItem('userToken') || '';
-    //   }
-    // }
+    const authorization = authorizationValue(currentAddress());
+    if (authorization) {
+      config.headers.Authorization = authorization;
+    }
     return config;
   },
   function (error) {
