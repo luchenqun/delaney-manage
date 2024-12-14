@@ -78,7 +78,7 @@ export const routes: IRoute[] = [
   },
   {
     name: '消息中心',
-    key: 'news',
+    key: 'profile',
     children: [
       {
         name: '消息列表',
