@@ -29,7 +29,13 @@ function UserInfo() {
       <Card style={{ padding: '14px 20px' }}>
         <InfoHeader userInfo={info} loading={loading} />
       </Card>
-      <Card style={{ marginTop: '16px' }}>
+      <Card style={{ marginTop: '16px' }} title="动态奖励">
+        <DynamicsTable hash={hash} />
+      </Card>
+      <Card style={{ marginTop: '16px' }} title="静态奖励">
+        <StaticTable hash={hash} />
+      </Card>
+      {/* <Card style={{ marginTop: '16px' }}>
         <Tabs activeTab={activeTab} onChange={setActiveTab} type="rounded">
           <Tabs.TabPane key="1" title="动态奖励" lazyload>
             <DynamicsTable hash={hash} />
@@ -38,7 +44,7 @@ function UserInfo() {
             <StaticTable hash={hash} />
           </Tabs.TabPane>
         </Tabs>
-      </Card>
+      </Card> */}
     </div>
   );
 }

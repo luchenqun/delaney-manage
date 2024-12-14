@@ -14,7 +14,13 @@ function UserInfo() {
 
   return (
     <div>
-      <Card style={{ marginTop: '16px' }}>
+      <Card style={{ marginTop: '16px' }} title="动态奖励">
+        <DynamicsTable ids={dynamicIds} />
+      </Card>
+      <Card style={{ marginTop: '16px' }} title="静态奖励">
+        <StaticTable ids={staticIds} />
+      </Card>
+      {/* <Card style={{ marginTop: '16px' }}>
         <Tabs activeTab={activeTab} onChange={setActiveTab} type="rounded">
           <Tabs.TabPane key="1" title="动态奖励" lazyload>
             <DynamicsTable ids={dynamicIds} />
@@ -23,7 +29,7 @@ function UserInfo() {
             <StaticTable ids={staticIds} />
           </Tabs.TabPane>
         </Tabs>
-      </Card>
+      </Card> */}
     </div>
   );
 }
