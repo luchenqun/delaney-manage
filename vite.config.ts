@@ -8,6 +8,14 @@ import setting from './src/settings.json';
 export default defineConfig({
   build: {
     target: ['es2020'],
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+          return;
+        }
+        warn(warning);
+      },
+    },
   },
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
