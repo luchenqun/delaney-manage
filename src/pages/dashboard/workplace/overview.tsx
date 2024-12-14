@@ -50,8 +50,6 @@ function Overview() {
     args: [],
   });
 
-  console.log(data);
-
   return (
     <Card>
       <Typography.Title heading={5}>统计数据</Typography.Title>
