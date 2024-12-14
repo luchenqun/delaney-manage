@@ -184,7 +184,7 @@ function PageLayout() {
       pathnameNew = '/list/delegate-table';
     }
     const pathKeys = pathnameNew.split('/');
-    let newSelectedKeys: string[] = [];
+    const newSelectedKeys: string[] = [];
     const newOpenKeys: string[] = [...openKeys];
     while (pathKeys.length > 0) {
       const currentRouteKey = pathKeys.join('/');

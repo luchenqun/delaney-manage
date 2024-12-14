@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './style/index.module.less';
-import { Button, Message } from '@arco-design/web-react';
+import { Button, Link, Message } from '@arco-design/web-react';
 import { injected, useAccount, useConnect, useSignMessage, useSwitchChain } from 'wagmi';
-import { authorizationCheck, authorizationSignMessage, setAuthorizationValue } from '@/utils/tools';
+import { authorizationCheck, authorizationSignMessage, formatAddressString, getAddressUrl, setAuthorizationValue } from '@/utils/tools';
 
 export const enum ActionType {
   Connect = 0,
@@ -106,6 +106,9 @@ export default function LoginForm() {
         <Button loading={loading} onClick={handleConnect} type="primary" style={{ width: '100%', marginTop: 20 }}>
           {actionText}
         </Button>
+        <div>
+          目前连接的钱包地址：<Link onClick={() => window.open(getAddressUrl(address))}>{formatAddressString(address)}</Link>
+        </div>
       </div>
     </div>
   );
