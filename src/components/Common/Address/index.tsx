@@ -8,6 +8,7 @@ export const AddressText = ({ address, type }: { address: string; type?: string 
   const [formatAddress, setFormatAddress] = useState('');
   useEffect(() => {
     const formatAddressString = (address: string) => {
+      if (!address) return '-';
       if (address.length <= 8) {
         return address;
       } else {

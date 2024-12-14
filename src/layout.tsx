@@ -191,6 +191,7 @@ function PageLayout() {
       }
       pathKeys.pop();
     }
+    console.log(newSelectedKeys, newOpenKeys);
     setSelectedKeys(newSelectedKeys);
     setOpenKeys(newOpenKeys);
   }
