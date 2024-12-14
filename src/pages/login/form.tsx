@@ -106,9 +106,11 @@ export default function LoginForm() {
         <Button loading={loading} onClick={handleConnect} type="primary" style={{ width: '100%', marginTop: 20 }}>
           {actionText}
         </Button>
-        <div>
-          目前连接的钱包地址：<Link onClick={() => window.open(getAddressUrl(address))}>{formatAddressString(address)}</Link>
-        </div>
+        {address && (
+          <div>
+            目前连接的钱包地址：<Link onClick={() => window.open(getAddressUrl(address))}>{formatAddressString(address)}</Link>
+          </div>
+        )}
       </div>
     </div>
   );
