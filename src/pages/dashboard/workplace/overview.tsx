@@ -10,7 +10,7 @@ import IconContent from './assets/content.svg';
 import { ADDRESS_CONFIG } from '@/utils/wagmi';
 import { useReadContract } from 'wagmi';
 import delaneyAbi from '@/assets/delaney.json';
-import { humanReadable } from '@/utils/tools';
+import { humanReadable, MudPrecision, UsdtPrecision } from '@/utils/tools';
 
 const { Row, Col } = Grid;
 
@@ -60,11 +60,11 @@ function Overview() {
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="质押Usdt" count={humanReadable(data?.[1])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="质押USDT" count={humanReadable(data?.[1], UsdtPrecision)} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="质押Mud" count={humanReadable(data?.[2])} loading={loading} />
+          <StatisticItem icon={<IconComments />} title="质押MUD" count={humanReadable(data?.[2], MudPrecision)} loading={loading} />
         </Col>
       </Row>
       <Divider />
@@ -74,11 +74,11 @@ function Overview() {
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="奖励Usdt" count={humanReadable(data?.[4])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="奖励USDT" count={humanReadable(data?.[4], UsdtPrecision)} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="奖励Mud" count={humanReadable(data?.[5])} loading={loading} />
+          <StatisticItem icon={<IconComments />} title="奖励MUD" count={humanReadable(data?.[5], MudPrecision)} loading={loading} />
         </Col>
       </Row>
       <Divider />
@@ -88,21 +88,21 @@ function Overview() {
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="取消质押Usdt" count={humanReadable(data?.[7])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="取消质押USDT" count={humanReadable(data?.[7], UsdtPrecision)} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="取消质押Mud" count={humanReadable(data?.[8])} loading={loading} />
+          <StatisticItem icon={<IconComments />} title="取消质押MUD" count={humanReadable(data?.[8], MudPrecision)} loading={loading} />
         </Col>
       </Row>
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="存款Mud" count={humanReadable(data?.[9])} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="存款MUD" count={humanReadable(data?.[9], MudPrecision)} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="利润Mud" count={humanReadable(data?.[10])} loading={loading} />
+          <StatisticItem icon={<IconContent />} title="利润MUD" count={humanReadable(data?.[10], MudPrecision)} loading={loading} />
         </Col>
       </Row>
     </Card>
