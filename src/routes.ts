@@ -9,6 +9,7 @@ export type IRoute = AuthParams & {
   children?: IRoute[];
   // 当前路由是否渲染菜单项，为 true 的话不会在菜单中显示，但可通过路由地址访问。
   ignore?: boolean;
+  activeKey?: string;
 };
 
 export const routes: IRoute[] = [
@@ -41,6 +42,7 @@ export const routes: IRoute[] = [
             ignore: true,
             name: '用户详情',
             key: 'list/user-detail',
+            activeKey: 'list/user-table',
           },
         ],
       },
@@ -52,6 +54,7 @@ export const routes: IRoute[] = [
             ignore: true,
             name: '质押详情',
             key: 'list/delegate-detail',
+            activeKey: 'list/delegate-table',
           },
         ],
       },
@@ -71,6 +74,7 @@ export const routes: IRoute[] = [
             ignore: true,
             name: '领取奖励详情',
             key: 'list/claim-detail',
+            activeKey: 'list/claim-table',
           },
         ],
       },

@@ -176,8 +176,15 @@ function PageLayout() {
   }
 
   function updateMenuStatus() {
-    const pathKeys = pathname.split('/');
-    const newSelectedKeys: string[] = [];
+    let pathnameNew = pathname;
+    if (pathname === '/list/user-detail/') {
+      pathnameNew = '/list/user-table';
+    }
+    if (pathname === '/list/delegate-detail/') {
+      pathnameNew = '/list/delegate-table';
+    }
+    const pathKeys = pathnameNew.split('/');
+    let newSelectedKeys: string[] = [];
     const newOpenKeys: string[] = [...openKeys];
     while (pathKeys.length > 0) {
       const currentRouteKey = pathKeys.join('/');
@@ -191,7 +198,6 @@ function PageLayout() {
       }
       pathKeys.pop();
     }
-    console.log(newSelectedKeys, newOpenKeys);
     setSelectedKeys(newSelectedKeys);
     setOpenKeys(newOpenKeys);
   }
