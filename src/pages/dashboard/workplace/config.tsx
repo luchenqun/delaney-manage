@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link, Card, Typography, Button, Message, Spin } from '@arco-design/web-react';
+import { Card, Typography, Message, Spin } from '@arco-design/web-react';
 import styles from './style/docs.module.less';
 import { ADDRESS_CONFIG } from '@/utils/wagmi';
 import delaneyAbi from '@/assets/delaney.json';
 import { useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { humanReadable, UsdtPrecision } from '@/utils/tools';
 
 function Config() {
   const { data: hash, writeContract, isPending, status } = useWriteContract();
   const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash });
-  const [index, setIndex] = useState(0);
   const [data, setData] = useState<any>(null);
 
   const {
@@ -97,7 +97,7 @@ function Config() {
       address: ADDRESS_CONFIG.delaney,
       abi: delaneyAbi,
       functionName: 'setConfig',
-      args: ['person_invest_min_usdt', BigInt(value * 100000)],
+      args: ['person_invest_min_usdt', BigInt(Number(value) * 100000)],
     });
   };
 
@@ -106,7 +106,61 @@ function Config() {
       address: ADDRESS_CONFIG.delaney,
       abi: delaneyAbi,
       functionName: 'setConfig',
-      args: ['person_reward_min_usdt', BigInt(value * 100000)],
+      args: ['person_reward_min_usdt', BigInt(Number(value) * 100000)],
+    });
+  };
+
+  const handleChangeTeamRewardMinUsdt = (value: string) => {
+    writeContract({
+      address: ADDRESS_CONFIG.delaney,
+      abi: delaneyAbi,
+      functionName: 'setConfig',
+      args: ['team_reward_min_usdt', BigInt(Number(value) * 100000)],
+    });
+  };
+
+  const handleChangeClaimMinUsdt = (value: string) => {
+    writeContract({
+      address: ADDRESS_CONFIG.delaney,
+      abi: delaneyAbi,
+      functionName: 'setConfig',
+      args: ['claim_min_usdt', BigInt(Number(value) * 100000)],
+    });
+  };
+
+  const handleChangeClaimMaxUsdt = (value: string) => {
+    writeContract({
+      address: ADDRESS_CONFIG.delaney,
+      abi: delaneyAbi,
+      functionName: 'setConfig',
+      args: ['claim_max_usdt', BigInt(Number(value) * 100000)],
+    });
+  };
+
+  const handleChangeClaimGap = (value: string) => {
+    writeContract({
+      address: ADDRESS_CONFIG.delaney,
+      abi: delaneyAbi,
+      functionName: 'setConfig',
+      args: ['claim_gap', BigInt(Number(value) * 3600)],
+    });
+  };
+
+  const handleChangeTeamLevel1SubUsdt = (value: string) => {
+    writeContract({
+      address: ADDRESS_CONFIG.delaney,
+      abi: delaneyAbi,
+      functionName: 'setConfig',
+      args: ['team_level1_sub_usdt', BigInt(Number(value) * 100000)],
+    });
+  };
+
+  const handleChangeTeamLevel1TeamUsdt = (value: string) => {
+    writeContract({
+      address: ADDRESS_CONFIG.delaney,
+      abi: delaneyAbi,
+      functionName: 'setConfig',
+      args: ['team_level1_team_usdt', BigInt(Number(value) * 100000)],
     });
   };
 
@@ -118,7 +172,7 @@ function Config() {
       <Spin loading={isLoading || isPending} style={{ width: '100%' }}>
         <div className={styles.configs}>
           <div className={styles.item}>
-            <div>手续费</div>
+            <div>手续费(%)</div>
             <div>
               <Typography.Paragraph
                 editable={{
@@ -314,7 +368,7 @@ function Config() {
                   onEnd: handleChangePersonInvestMinUsdt,
                 }}
               >
-                {data?.[14].toString()}
+                {humanReadable(data?.[14], UsdtPrecision)}
               </Typography.Paragraph>
             </div>
           </div>
@@ -329,7 +383,97 @@ function Config() {
                   onEnd: handleChangePersonRewardMinUsdt,
                 }}
               >
-                {data?.[15].toString()}
+                {humanReadable(data?.[15], UsdtPrecision)}
+              </Typography.Paragraph>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div>团队奖励最小USDT金额</div>
+            <div>
+              <Typography.Paragraph
+                editable={{
+                  onChange: (value) => {
+                    setData(data.map((item: any, index: number) => (index === 16 ? value : item)));
+                  },
+                  onEnd: handleChangeTeamRewardMinUsdt,
+                }}
+              >
+                {humanReadable(data?.[16], UsdtPrecision)}
+              </Typography.Paragraph>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div>单次领取最小USDT金额</div>
+            <div>
+              <Typography.Paragraph
+                editable={{
+                  onChange: (value) => {
+                    setData(data.map((item: any, index: number) => (index === 17 ? value : item)));
+                  },
+                  onEnd: handleChangeClaimMinUsdt,
+                }}
+              >
+                {humanReadable(data?.[17], UsdtPrecision)}
+              </Typography.Paragraph>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div>单次领取最大USDT金额</div>
+            <div>
+              <Typography.Paragraph
+                editable={{
+                  onChange: (value) => {
+                    setData(data.map((item: any, index: number) => (index === 18 ? value : item)));
+                  },
+                  onEnd: handleChangeClaimMaxUsdt,
+                }}
+              >
+                {humanReadable(data?.[18], UsdtPrecision)}
+              </Typography.Paragraph>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div>领取间隔(小时)</div>
+            <div>
+              <Typography.Paragraph
+                editable={{
+                  onChange: (value) => {
+                    setData(data.map((item: any, index: number) => (index === 19 ? value : item)));
+                  },
+                  onEnd: handleChangeClaimGap,
+                }}
+              >
+                {data?.[19].toString()}
+              </Typography.Paragraph>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div>团队1级直推USDT要求</div>
+            <div>
+              <Typography.Paragraph
+                editable={{
+                  onChange: (value) => {
+                    setData(data.map((item: any, index: number) => (index === 20 ? value : item)));
+                  },
+                  onEnd: handleChangeTeamLevel1SubUsdt,
+                }}
+              >
+                {humanReadable(data?.[20], UsdtPrecision)}
+              </Typography.Paragraph>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div>团队1级团队USDT要求</div>
+            <div>
+              <Typography.Paragraph
+                editable={{
+                  onChange: (value) => {
+                    setData(data.map((item: any, index: number) => (index === 21 ? value : item)));
+                  },
+                  onEnd: handleChangeTeamLevel1TeamUsdt,
+                }}
+              >
+                {humanReadable(data?.[21], UsdtPrecision)}
               </Typography.Paragraph>
             </div>
           </div>

@@ -14,10 +14,10 @@ function Workplace() {
     <div className={styles.wrapper}>
       <Space size={16} direction="vertical" className={styles.left}>
         <Overview />
+        <Config />
       </Space>
       <Space className={styles.right} size={16} direction="vertical">
         <Docs />
-        <Config />
       </Space>
     </div>
   );
