@@ -1,16 +1,16 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import { Grid, Card, Typography, Divider, Skeleton, Link } from '@arco-design/web-react';
+import React, { ReactNode } from 'react';
+import { Grid, Card, Typography, Divider, Skeleton } from '@arco-design/web-react';
 import { useSelector } from 'react-redux';
-import { IconCaretUp } from '@arco-design/web-react/icon';
-import OverviewAreaLine from '@/components/Chart/overview-area-line';
-import axios from 'axios';
 import locale from './locale';
 import useLocale from '@/utils/useLocale';
 import styles from './style/overview.module.less';
 import IconCalendar from './assets/calendar.svg';
 import IconComments from './assets/comments.svg';
 import IconContent from './assets/content.svg';
-import IconIncrease from './assets/increase.svg';
+import { ADDRESS_CONFIG } from '@/utils/wagmi';
+import { useReadContract } from 'wagmi';
+import delaneyAbi from '@/assets/delaney.json';
+import { humanReadable } from '@/utils/tools';
 
 const { Row, Col } = Grid;
 
@@ -40,82 +40,77 @@ function StatisticItem(props: StatisticItemType) {
   );
 }
 
-type DataType = {
-  allContents?: string;
-  liveContents?: string;
-  increaseComments?: string;
-  growthRate?: string;
-  chartData?: { count?: number; date?: string }[];
-  down?: boolean;
-};
-
 function Overview() {
-  const [data, setData] = useState<DataType>({});
-  const [loading, setLoading] = useState(true);
   const t = useLocale(locale);
+
+  const { data, isLoading: loading } = useReadContract({
+    address: ADDRESS_CONFIG.delaney,
+    abi: delaneyAbi,
+    functionName: 'stat',
+    args: [],
+  });
 
   const userInfo = useSelector((state: any) => state.userInfo || {});
 
-  const fetchData = () => {
-    setLoading(true);
-    axios
-      .get('/api/workplace/overview-content')
-      .then((res) => {
-        setData(res.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
     <Card>
-      <Typography.Title heading={5}>
-        {t['workplace.welcomeBack']}
-        {userInfo.name}
-      </Typography.Title>
+      <Typography.Title heading={5}>统计数据</Typography.Title>
       <Divider />
       <Row>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title={t['workplace.totalOnlyData']} count={data.allContents} loading={loading} unit={t['workplace.pecs']} />
+          <StatisticItem icon={<IconCalendar />} title="质押数量" count={`${data[0]}`} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title={t['workplace.contentInMarket']} count={data.liveContents} loading={loading} unit={t['workplace.pecs']} />
+          <StatisticItem icon={<IconContent />} title="质押Usdt" count={humanReadable(data[1])} loading={loading} />
         </Col>
         <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title={t['workplace.comments']} count={data.increaseComments} loading={loading} unit={t['workplace.pecs']} />
-        </Col>
-        <Divider type="vertical" className={styles.divider} />
-        <Col flex={1}>
-          <StatisticItem
-            icon={<IconIncrease />}
-            title={t['workplace.growth']}
-            count={
-              <span>
-                {data.growthRate} <IconCaretUp style={{ fontSize: 18, color: 'rgb(var(--green-6))' }} />
-              </span>
-            }
-            loading={loading}
-          />
+          <StatisticItem icon={<IconComments />} title="质押Mud" count={humanReadable(data[2])} loading={loading} />
         </Col>
       </Row>
       <Divider />
-      <div>
-        <div className={styles.ctw}>
-          <Typography.Paragraph className={styles['chart-title']} style={{ marginBottom: 0 }}>
-            {t['workplace.contentData']}
-            <span className={styles['chart-sub-title']}>({t['workplace.1year']})</span>
-          </Typography.Paragraph>
-          <Link>{t['workplace.seeMore']}</Link>
-        </div>
-        <OverviewAreaLine data={data.chartData} loading={loading} />
-      </div>
+      <Row>
+        <Col flex={1}>
+          <StatisticItem icon={<IconCalendar />} title="奖励数量" count={`${data[3]}`} loading={loading} />
+        </Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <StatisticItem icon={<IconContent />} title="奖励Usdt" count={humanReadable(data[4])} loading={loading} />
+        </Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <StatisticItem icon={<IconComments />} title="奖励Mud" count={humanReadable(data[5])} loading={loading} />
+        </Col>
+      </Row>
+      <Divider />
+      <Row>
+        <Col flex={1}>
+          <StatisticItem icon={<IconCalendar />} title="取消质押数量" count={`${data[6]}`} loading={loading} />
+        </Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <StatisticItem icon={<IconContent />} title="取消质押Usdt" count={humanReadable(data[7])} loading={loading} />
+        </Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <StatisticItem icon={<IconComments />} title="取消质押Mud" count={humanReadable(data[8])} loading={loading} />
+        </Col>
+      </Row>
+      <Divider />
+      <Row>
+        <Col flex={1}>
+          <StatisticItem icon={<IconCalendar />} title="存款Mud" count={humanReadable(data[9])} loading={loading} />
+        </Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <StatisticItem icon={<IconContent />} title="利润Mud" count={humanReadable(data[10])} loading={loading} />
+        </Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <StatisticItem icon={<IconComments />} title="产品Id" count={`${data[11]}`} loading={loading} />
+        </Col>
+      </Row>
     </Card>
   );
 }
