@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Card, PaginationProps, Button, Space, Typography } from '@arco-design/web-react';
+import { Table, PaginationProps, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
-import { getUserList } from '../user-table/api';
 import { humanReadable, UsdtPrecision } from '@/utils/tools';
+import { getDelegateList } from '../delegate-table/api';
 
 const { Title } = Typography;
 
@@ -40,7 +40,7 @@ function DeletegateTable({ address }: { address: string }) {
   function fetchData() {
     const { current, pageSize } = pagination;
     setLoading(true);
-    getUserList({
+    getDelegateList({
       page: current,
       page_size: pageSize,
       ...formParams,
