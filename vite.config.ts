@@ -28,7 +28,7 @@ export default defineConfig({
     port: 4000,
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:3000' && 'https://delaney-api.mud-chain.net',
+        target: 'https://delaney-api.mud-chain.net',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

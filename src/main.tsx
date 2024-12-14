@@ -2,12 +2,12 @@ import './style/global.less';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from '@arco-design/web-react';
 import zhCN from '@arco-design/web-react/es/locale/zh-CN';
 import enUS from '@arco-design/web-react/es/locale/en-US';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
 import rootReducer from './store';
 import PageLayout from './layout';
 import { GlobalContext } from './context';
@@ -15,11 +15,12 @@ import Login from './pages/login';
 import checkLogin from './utils/checkLogin';
 import changeTheme from './utils/changeTheme';
 import useStorage from './utils/useStorage';
-import './mock';
-import Mock from 'mockjs';
-import { generatePermission } from '@/routes';
+import { WagmiProvider } from 'wagmi';
+import { config } from './utils/wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const store = createStore(rootReducer);
+const queryClient = new QueryClient();
 
 function Index() {
   const [lang, setLang] = useStorage('arco-lang', 'zh-CN');
@@ -36,44 +37,8 @@ function Index() {
     }
   }
 
-  function fetchUserInfo() {
-    store.dispatch({
-      type: 'update-userInfo',
-      payload: { userLoading: true },
-    });
-    // axios.get('/api/user/userInfo').then((res) => {
-    const userRole = window.localStorage.getItem('userRole') || 'admin';
-    store.dispatch({
-      type: 'update-userInfo',
-      payload: {
-        userInfo: {
-          name: 'admin',
-          avatar: 'https://lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png',
-          email: 'wangliqun@email.com',
-          job: 'frontend',
-          jobName: '前端开发工程师',
-          organization: 'Frontend',
-          organizationName: '前端',
-          location: 'beijing',
-          locationName: '北京',
-          introduction: '王力群并非是一个真实存在的人。',
-          personalWebsite: 'https://www.arco.design',
-          verified: true,
-          phoneNumber: /177[*]{6}[0-9]{2}/,
-          accountId: /[a-z]{4}[-][0-9]{8}/,
-          registrationTime: Mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
-          permissions: generatePermission(userRole),
-        },
-        userLoading: false,
-      },
-    });
-    // });
-  }
-
   useEffect(() => {
-    if (checkLogin()) {
-      fetchUserInfo();
-    } else if (window.location.pathname.replace(/\//g, '') !== 'login') {
+    if (!checkLogin() && window.location.pathname.replace(/\//g, '') !== 'login') {
       window.location.pathname = '/login';
     }
   }, []);
@@ -90,32 +55,38 @@ function Index() {
   };
 
   return (
-    <BrowserRouter>
-      <ConfigProvider
-        locale={getArcoLocale()}
-        componentConfig={{
-          Card: {
-            bordered: false,
-          },
-          List: {
-            bordered: false,
-          },
-          Table: {
-            border: false,
-          },
-        }}
-      >
-        <Provider store={store}>
-          <GlobalContext.Provider value={contextValue}>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/" component={PageLayout} />
-            </Switch>
-          </GlobalContext.Provider>
-        </Provider>
-      </ConfigProvider>
-    </BrowserRouter>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <ConfigProvider
+          locale={getArcoLocale()}
+          componentConfig={{
+            Card: {
+              bordered: false,
+            },
+            List: {
+              bordered: false,
+            },
+            Table: {
+              border: false,
+            },
+          }}
+        >
+          <BrowserRouter>
+            <Provider store={store}>
+              <GlobalContext.Provider value={contextValue}>
+                <Switch>
+                  <Route path="/login" component={Login} />
+                  <Route path="/" component={PageLayout} />
+                </Switch>
+              </GlobalContext.Provider>
+            </Provider>
+          </BrowserRouter>
+        </ConfigProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
   );
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(<Index />);

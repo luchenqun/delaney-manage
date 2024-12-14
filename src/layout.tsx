@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Spin } from '@arco-design/web-react';
+import { Layout, Menu, Breadcrumb, Spin, Message } from '@arco-design/web-react';
 import cs from 'classnames';
 import {
   IconDashboard,
@@ -26,6 +26,9 @@ import getUrlParams from './utils/getUrlParams';
 import lazyload from './utils/lazyload';
 import { GlobalState } from './store';
 import styles from './style/layout.module.less';
+import { useAccount } from 'wagmi';
+import { getIsAdmin } from './utils/api';
+import { authorizationCheck, currentAddress, setCurrentAddress } from './utils/tools';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -82,6 +85,8 @@ function getFlattenRoutes(routes) {
 }
 
 function PageLayout() {
+  const { isConnected, address, chainId } = useAccount();
+
   const urlParams = getUrlParams();
   const history = useHistory();
   const pathname = history.location.pathname;
@@ -195,6 +200,51 @@ function PageLayout() {
     setBreadCrumb(routeConfig || []);
     updateMenuStatus();
   }, [pathname]);
+
+  useEffect(() => {
+    // 这里只解决跳转链接的问题
+    const authCheck = async () => {
+      let useIsExist = false;
+      let valid = false;
+
+      try {
+        // 如果没有连接钱包或者钱包连接错误，通通跳转到连接钱包页面
+        if (!isConnected || !address || chainId !== Number(import.meta.env.VITE_APP_CHAIN_ID)) {
+          history.push('/login');
+          return;
+        }
+
+        const res = await getIsAdmin({ address });
+        useIsExist = !!res.data.data.find;
+        valid = await authorizationCheck(address);
+        if (useIsExist) {
+          if (!valid) {
+            localStorage.clear();
+            Message.error('没有权限');
+            history.push('/login');
+          }
+        } else {
+          localStorage.clear();
+          Message.error('没有权限');
+          history.push('/login');
+        }
+      } catch (error) {
+        localStorage.clear();
+        Message.error('没有权限');
+        history.push('/login');
+      }
+      if (address !== currentAddress()) {
+        localStorage.clear();
+        Message.error('没有权限');
+        history.push('/login');
+        return;
+      }
+    };
+    if (address) {
+      setCurrentAddress(address);
+    }
+    authCheck();
+  }, [isConnected, address, chainId]);
 
   return (
     <Layout className={styles.layout}>

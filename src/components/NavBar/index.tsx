@@ -39,6 +39,7 @@ function Navbar({ show }: { show: boolean }) {
 
   function logout() {
     setUserStatus('logout');
+    localStorage.clear();
     window.location.href = '/login';
   }
 
@@ -169,7 +170,17 @@ function Navbar({ show }: { show: boolean }) {
           </Tooltip>
         </li>
         {/* <Settings /> */}
-        {userInfo && (
+        <li>
+          <Button
+            type="primary"
+            onClick={() => {
+              logout();
+            }}
+          >
+            {t['navbar.logout']}
+          </Button>
+        </li>
+        {/* {userInfo && (
           <li>
             <Dropdown droplist={droplist} position="br" disabled={userLoading}>
               <Avatar size={32} style={{ cursor: 'pointer' }}>
@@ -177,7 +188,7 @@ function Navbar({ show }: { show: boolean }) {
               </Avatar>
             </Dropdown>
           </li>
-        )}
+        )} */}
       </ul>
     </div>
   );
