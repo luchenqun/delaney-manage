@@ -26,8 +26,11 @@ import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
 import { generatePermission } from '@/routes';
+import { useAccount } from 'wagmi';
+import { formatAddressString, getAddressUrl } from '@/utils/tools';
 
 function Navbar({ show }: { show: boolean }) {
+  const { address } = useAccount();
   const t = useLocale();
   const { userInfo, userLoading } = useSelector((state: GlobalState) => state);
   const dispatch = useDispatch();
@@ -168,6 +171,14 @@ function Navbar({ show }: { show: boolean }) {
           <Tooltip content={theme === 'light' ? t['settings.navbar.theme.toDark'] : t['settings.navbar.theme.toLight']}>
             <IconButton icon={theme !== 'dark' ? <IconMoonFill /> : <IconSunFill />} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
           </Tooltip>
+        </li>
+        <li
+          style={{ color: 'rgb(22, 93, 255)', cursor: 'pointer' }}
+          onClick={() => {
+            window.open(getAddressUrl(address));
+          }}
+        >
+          {formatAddressString(address)}
         </li>
         {/* <Settings /> */}
         <li>
