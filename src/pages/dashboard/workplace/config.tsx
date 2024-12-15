@@ -38,27 +38,27 @@ function Config() {
       <Spin loading={isLoadingConfigs} style={{ width: '100%' }}>
         <div className={styles.configs}>
           <ConfigItem title="手续费(%)" name="fee" count={data?.[0].toString()} />
-          <ConfigItem title="质押周期时长" name="period_duration" count={data?.[1].toString()} />
-          <ConfigItem title="质押周期数量" name="period_num" count={data?.[2].toString()} />
-          <ConfigItem title="每期收益率" name="period_reward_ratio" count={data?.[3].toString()} />
-          <ConfigItem title="个人奖励1(%)" name="person_reward_level1" count={data?.[4].toString()} />
-          <ConfigItem title="个人奖励2(%)" name="person_reward_level2" count={data?.[5].toString()} />
-          <ConfigItem title="个人奖励3(%)" name="person_reward_level3" count={data?.[6].toString()} />
-          <ConfigItem title="个人奖励4(%)" name="person_reward_level4" count={data?.[7].toString()} />
-          <ConfigItem title="个人奖励5(%)" name="person_reward_level5" count={data?.[8].toString()} />
-          <ConfigItem title="团队奖励1(%)" name="team_reward_level1" count={data?.[9].toString()} />
-          <ConfigItem title="团队奖励2(%)" name="team_reward_level2" count={data?.[10].toString()} />
-          <ConfigItem title="团队奖励3(%)" name="team_reward_level3" count={data?.[11].toString()} />
-          <ConfigItem title="团队奖励4(%)" name="team_reward_level4" count={data?.[12].toString()} />
-          <ConfigItem title="团队奖励5(%)" name="team_reward_level5" count={data?.[13].toString()} />
-          <ConfigItem title="个人投资最小USDT" name="person_invest_min_usdt" count={humanReadable(data?.[14], UsdtPrecision)} />
-          <ConfigItem title="个人奖励最小USDT" name="person_reward_min_usdt" count={humanReadable(data?.[15], UsdtPrecision)} />
-          <ConfigItem title="团队奖励最小USDT" name="team_reward_min_usdt" count={humanReadable(data?.[16], UsdtPrecision)} />
-          <ConfigItem title="最小可领取USDT" name="claim_min_usdt" count={humanReadable(data?.[17], UsdtPrecision)} />
-          <ConfigItem title="最大可领取USDT" name="claim_max_usdt" count={humanReadable(data?.[18], UsdtPrecision)} />
-          <ConfigItem title="领取间隔(秒)" name="claim_gap" count={data?.[19].toString()} />
-          <ConfigItem title="团队1级减投USDT" name="team_level1_sub_usdt" count={humanReadable(data?.[20], UsdtPrecision)} />
-          <ConfigItem title="团队1级团队USDT" name="team_level1_team_usdt" count={humanReadable(data?.[21], UsdtPrecision)} />
+          <ConfigItem title="每期时间" name="period_duration" count={data?.[1].toString()} />
+          <ConfigItem title="期数" name="period_num" count={data?.[2].toString()} />
+          <ConfigItem title="每期收益率(%)" name="period_reward_ratio" count={data?.[3].toString()} />
+          <ConfigItem title="层级奖励第一层(%)" name="person_reward_level1" count={data?.[4].toString()} />
+          <ConfigItem title="层级奖励第二层(%)" name="person_reward_level2" count={data?.[5].toString()} />
+          <ConfigItem title="层级奖励第三层(%)" name="person_reward_level3" count={data?.[6].toString()} />
+          <ConfigItem title="层级奖励第四层(%)" name="person_reward_level4" count={data?.[7].toString()} />
+          <ConfigItem title="层级奖励第五层(%)" name="person_reward_level5" count={data?.[8].toString()} />
+          <ConfigItem title="团队奖励一星(%)" name="team_reward_level1" count={data?.[9].toString()} />
+          <ConfigItem title="团队奖励二星(%)" name="team_reward_level2" count={data?.[10].toString()} />
+          <ConfigItem title="团队奖励三星(%)" name="team_reward_level3" count={data?.[11].toString()} />
+          <ConfigItem title="团队奖励四星(%)" name="team_reward_level4" count={data?.[12].toString()} />
+          <ConfigItem title="团队奖励五星(%)" name="team_reward_level5" count={data?.[13].toString()} />
+          <ConfigItem title="起投USDT" name="person_invest_min_usdt" count={humanReadable(data?.[14], UsdtPrecision)} />
+          <ConfigItem title="层级奖励最少起投USDT" name="person_reward_min_usdt" count={humanReadable(data?.[15], UsdtPrecision)} />
+          <ConfigItem title="团队奖励最少起投USDT" name="team_reward_min_usdt" count={humanReadable(data?.[16], UsdtPrecision)} />
+          <ConfigItem title="奖励领取单次最少USDT" name="claim_min_usdt" count={humanReadable(data?.[17], UsdtPrecision)} />
+          <ConfigItem title="奖励领取单次最大USDT" name="claim_max_usdt" count={humanReadable(data?.[18], UsdtPrecision)} />
+          <ConfigItem title="奖励领取间隔" name="claim_gap" count={data?.[19].toString()} />
+          <ConfigItem title="成为一星直推USDT" name="team_level1_sub_usdt" count={humanReadable(data?.[20], UsdtPrecision)} />
+          <ConfigItem title="成为一星团队USDT" name="team_level1_team_usdt" count={humanReadable(data?.[21], UsdtPrecision)} />
         </div>
       </Spin>
     </Card>
