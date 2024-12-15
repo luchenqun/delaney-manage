@@ -70,7 +70,7 @@ export default function LoginForm() {
     authorizationCheck(address)
       .then((valid) => {
         if (valid) {
-          window.location.href = '/';
+          afterLoginSuccess();
         } else {
           setAction(ActionType.Sign);
         }
