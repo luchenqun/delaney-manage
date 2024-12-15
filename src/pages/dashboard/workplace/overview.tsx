@@ -59,44 +59,50 @@ function Overview() {
       <Divider />
       <Row gutter={10} style={{ marginBottom: 10 }}>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="质押数量" count={`${data?.[0]}`} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="质押笔数" count={`${data?.[0]}`} loading={loading} />
         </Col>
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="质押USDT" count={humanReadable(data?.[1], UsdtPrecision)} loading={loading} />
+          <StatisticItem
+            icon={<IconComments />}
+            title="质押MUD/USDT"
+            count={`${humanReadable(data?.[2], MudPrecision)} / ${humanReadable(data?.[1], UsdtPrecision)}`}
+            loading={loading}
+          />
         </Col>
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="质押MUD" count={humanReadable(data?.[2], MudPrecision)} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="奖励笔数" count={`${data?.[3]}`} loading={loading} />
         </Col>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="奖励数量" count={`${data?.[3]}`} loading={loading} />
-        </Col>
-        <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="奖励USDT" count={humanReadable(data?.[4], UsdtPrecision)} loading={loading} />
+          <StatisticItem
+            icon={<IconComments />}
+            title="奖励MUD/USDT"
+            count={`${humanReadable(data?.[5], MudPrecision)} / ${humanReadable(data?.[4], UsdtPrecision)}`}
+            loading={loading}
+          />
         </Col>
       </Row>
       <Row gutter={10} style={{ marginBottom: 10 }}>
         <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="奖励MUD" count={humanReadable(data?.[5], MudPrecision)} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="取回笔数" count={`${data?.[6]}`} loading={loading} />
         </Col>
         <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="取消质押数量" count={`${data?.[6]}`} loading={loading} />
+          <StatisticItem
+            icon={<IconComments />}
+            title="取回MUD/USDT"
+            count={`${humanReadable(data?.[8], MudPrecision)} / ${humanReadable(data?.[7], UsdtPrecision)}`}
+            loading={loading}
+          />
         </Col>
         <Col flex={1}>
-          <StatisticItem icon={<IconContent />} title="取消质押USDT" count={humanReadable(data?.[7], UsdtPrecision)} loading={loading} />
+          <StatisticItem icon={<IconCalendar />} title="赔付MUD" count={humanReadable(data?.[9], MudPrecision)} loading={loading} />
         </Col>
-        <Col flex={1}>
-          <StatisticItem icon={<IconComments />} title="取消质押MUD" count={humanReadable(data?.[8], MudPrecision)} loading={loading} />
-        </Col>
-        <Col flex={1}>
-          <StatisticItem icon={<IconCalendar />} title="存款MUD" count={humanReadable(data?.[9], MudPrecision)} loading={loading} />
-        </Col>
-      </Row>
-      <Row gutter={10}>
         <Col flex={1}>
           <div>
             <StatisticItem icon={<IconContent />} title="利润MUD" count={humanReadable(data?.[10], MudPrecision)} loading={loading} />
           </div>
         </Col>
+      </Row>
+      <Row gutter={10}>
         <Col flex={1}>
           <div>
             <StatisticItem icon={<IconContent />} title="合约MUD" count={humanReadable(balanceData?.value, MudPrecision)} loading={balanceLoading} />
