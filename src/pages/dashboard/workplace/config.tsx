@@ -86,15 +86,15 @@ const ConfigItem = ({ title, name, count }) => {
   const handleOk = () => {
     let valueInput = Number(value);
     if (
-      name === 'person_invest_min_usdt' ||
-      name === 'person_reward_min_usdt' ||
+      name === 'preson_invest_min_usdt' ||
+      name === 'preson_reward_min_usdt' ||
       name === 'team_reward_min_usdt' ||
       name === 'claim_min_usdt' ||
       name === 'claim_max_usdt' ||
       name === 'team_level1_sub_usdt' ||
       name === 'team_level1_team_usdt'
     ) {
-      valueInput = valueInput * 100000;
+      valueInput = valueInput * 1000000;
     }
     writeContract({
       address: ADDRESS_CONFIG.delaney,
