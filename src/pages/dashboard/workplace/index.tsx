@@ -12,11 +12,9 @@ const gutter = 16;
 function Workplace() {
   return (
     <div className={styles.wrapper}>
-      <Space size={16} direction="vertical" className={styles.left}>
+      <Space size={16} direction="vertical">
         <Overview />
         <Config />
-      </Space>
-      <Space className={styles.right} size={16} direction="vertical">
         <Docs />
       </Space>
     </div>
