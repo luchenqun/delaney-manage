@@ -41,19 +41,23 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       sorter: true,
     },
     {
-      title: '质押MUD',
-      width: 130,
+      title: '质押',
+      width: 220,
       dataIndex: 'mud',
       sorter: true,
-      render: (value) => <>{humanReadable(value)}</>,
+      render: (value, record) => (
+        <>
+          {humanReadable(value)}MUD / {humanReadable(record.usdt, UsdtPrecision)}USDT
+        </>
+      ),
     },
-    {
-      title: '质押USDT',
-      width: 130,
-      dataIndex: 'usdt',
-      sorter: true,
-      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
-    },
+    // {
+    //   title: '质押USDT',
+    //   width: 130,
+    //   dataIndex: 'usdt',
+    //   sorter: true,
+    //   render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
+    // },
     {
       title: '直推人数',
       width: 130,
@@ -61,19 +65,23 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       sorter: true,
     },
     {
-      title: '直推MUD',
-      width: 130,
+      title: '直推',
+      width: 200,
       dataIndex: 'sub_mud',
       sorter: true,
-      render: (value) => <>{humanReadable(value)}</>,
+      render: (value, record) => (
+        <>
+          {humanReadable(value)}MUD / {humanReadable(record.sub_usdt, UsdtPrecision)}USDT
+        </>
+      ),
     },
-    {
-      title: '直推USDT',
-      width: 130,
-      dataIndex: 'sub_usdt',
-      sorter: true,
-      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
-    },
+    // {
+    //   title: '直推USDT',
+    //   width: 130,
+    //   dataIndex: 'sub_usdt',
+    //   sorter: true,
+    //   render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
+    // },
     {
       title: '团队人数',
       width: 130,
@@ -81,19 +89,23 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       sorter: true,
     },
     {
-      title: '团队MUD',
-      width: 130,
+      title: '团队',
+      width: 200,
       dataIndex: 'team_mud',
       sorter: true,
-      render: (value) => <>{humanReadable(value)}</>,
+      render: (value, record) => (
+        <>
+          {humanReadable(value)}MUD / {humanReadable(record.team_usdt, UsdtPrecision)}USDT
+        </>
+      ),
     },
-    {
-      title: '团队USDT',
-      width: 130,
-      dataIndex: 'team_usdt',
-      sorter: true,
-      render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
-    },
+    // {
+    //   title: '团队USDT',
+    //   width: 130,
+    //   dataIndex: 'team_usdt',
+    //   sorter: true,
+    //   render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
+    // },
     {
       title: '推荐码',
       width: 100,

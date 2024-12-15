@@ -9,7 +9,7 @@ const { Text } = Typography;
 export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, type: string) => Promise<void>) {
   return [
     {
-      title: 'id',
+      title: 'ID',
       fixed: 'left',
       width: 50,
       dataIndex: 'id',
