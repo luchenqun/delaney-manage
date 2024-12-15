@@ -183,6 +183,9 @@ function PageLayout() {
     if (pathname === '/list/delegate-detail/') {
       pathnameNew = '/list/delegate-table';
     }
+    if (pathname === '/list/claim-detail/') {
+      pathnameNew = '/list/claim-table';
+    }
     const pathKeys = pathnameNew.split('/');
     const newSelectedKeys: string[] = [];
     const newOpenKeys: string[] = [...openKeys];
