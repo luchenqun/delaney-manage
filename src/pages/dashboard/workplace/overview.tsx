@@ -57,65 +57,54 @@ function Overview() {
     <Card>
       <Typography.Title heading={5}>统计数据</Typography.Title>
       <Divider />
-      <Row>
+      <Row gutter={10} style={{ marginBottom: 10 }}>
         <Col flex={1}>
           <StatisticItem icon={<IconCalendar />} title="质押数量" count={`${data?.[0]}`} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconContent />} title="质押USDT" count={humanReadable(data?.[1], UsdtPrecision)} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconComments />} title="质押MUD" count={humanReadable(data?.[2], MudPrecision)} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconCalendar />} title="奖励数量" count={`${data?.[3]}`} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconContent />} title="奖励USDT" count={humanReadable(data?.[4], UsdtPrecision)} loading={loading} />
         </Col>
       </Row>
-      <Divider />
-      <Row>
+      <Row gutter={10} style={{ marginBottom: 10 }}>
         <Col flex={1}>
           <StatisticItem icon={<IconComments />} title="奖励MUD" count={humanReadable(data?.[5], MudPrecision)} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconCalendar />} title="取消质押数量" count={`${data?.[6]}`} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconContent />} title="取消质押USDT" count={humanReadable(data?.[7], UsdtPrecision)} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconComments />} title="取消质押MUD" count={humanReadable(data?.[8], MudPrecision)} loading={loading} />
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <StatisticItem icon={<IconCalendar />} title="存款MUD" count={humanReadable(data?.[9], MudPrecision)} loading={loading} />
         </Col>
       </Row>
-      <Divider />
-      <Row>
+      <Row gutter={10}>
         <Col flex={1}>
           <div>
             <StatisticItem icon={<IconContent />} title="利润MUD" count={humanReadable(data?.[10], MudPrecision)} loading={loading} />
           </div>
         </Col>
-        <Divider type="vertical" className={styles.divider} />
         <Col flex={1}>
           <div>
             <StatisticItem icon={<IconContent />} title="合约MUD" count={humanReadable(balanceData?.value, MudPrecision)} loading={balanceLoading} />
           </div>
         </Col>
-        <Col flex={1} style={{ paddingLeft: 20 }}></Col>
-        <Col flex={1} style={{ paddingLeft: 20 }}></Col>
-        <Col flex={1} style={{ paddingLeft: 20 }}></Col>
+        <Col flex={1}></Col>
+        <Col flex={1}></Col>
+        <Col flex={1}></Col>
       </Row>
     </Card>
   );
