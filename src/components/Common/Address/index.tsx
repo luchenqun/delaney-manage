@@ -20,6 +20,18 @@ export const AddressText = ({ address, type }: { address: string; type?: string 
     setFormatAddress(formatAddressString(address));
   }, [address]);
 
+  if (address === '0x0000000000000000000000000000000000000000000000000000000000000000') {
+    return (
+      <Text
+        copyable={{
+          text: address,
+        }}
+      >
+        {formatAddress}
+      </Text>
+    );
+  }
+
   return (
     <Text
       onClick={() => {
