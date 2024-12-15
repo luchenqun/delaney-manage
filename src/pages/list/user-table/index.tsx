@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Card, PaginationProps, Button, Space, Typography, Modal, Input, Message, InputNumber } from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography, Modal, Input, Message } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
@@ -16,7 +16,7 @@ function SearchTable() {
   const t = useLocale(locale);
   const [visible, setVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
-  const [newStar, setNewStar] = useState(0);
+  const [newStar, setNewStar] = useState('');
 
   const tableCallback = async (record, type) => {
     if (type === 'view') {
@@ -114,6 +114,24 @@ function SearchTable() {
     }
   };
 
+  const handleStarChange = (value: string) => {
+    // 如果输入为空，直接更新
+    if (!value) {
+      setNewStar('');
+      return;
+    }
+
+    // 转换为数字并验证
+    const num = parseInt(value);
+    if (isNaN(num) || num < 0 || num > 5) {
+      Message.error('星级必须在0-5之间');
+      setNewStar('');
+      return;
+    }
+
+    setNewStar(value);
+  };
+
   return (
     <Card>
       <Title heading={6}>用户列表</Title>
@@ -137,7 +155,7 @@ function SearchTable() {
         <div style={{ marginBottom: 15 }}>
           <div style={{ marginBottom: 10 }}>当前用户: {currentRecord?.address}</div>
           <div style={{ marginBottom: 10 }}>当前星级: {currentRecord ? Math.max(currentRecord.star, currentRecord.min_star) : '-'}</div>
-          <InputNumber placeholder="请输入新的星级" value={newStar} onChange={(value) => setNewStar(value)} min={0} max={5} precision={0} step={1} />
+          <Input placeholder="请输入新的星级" value={newStar} onChange={handleStarChange} type="number" />
         </div>
       </Modal>
     </Card>
