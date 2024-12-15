@@ -78,12 +78,6 @@ export const routes: IRoute[] = [
         name: '静态奖励列表',
         key: 'list/static-table',
       },
-    ],
-  },
-  {
-    name: '消息中心',
-    key: 'profile',
-    children: [
       {
         name: '消息列表',
         key: 'list/message-table',
