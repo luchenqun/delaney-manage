@@ -35,37 +35,18 @@ function UserInfo() {
       <Card style={{ marginTop: '16px' }} title="质押">
         <Deletegate address={id} />
       </Card>
+      <Card style={{ marginTop: '16px' }} title="领取奖励">
+        <ClaimTable address={id} />
+      </Card>
       <Card style={{ marginTop: '16px' }} title="动态奖励">
         <DynamicsTable address={id} />
       </Card>
       <Card style={{ marginTop: '16px' }} title="静态奖励">
         <StaticTable address={id} />
       </Card>
-      <Card style={{ marginTop: '16px' }} title="领取奖励">
-        <ClaimTable address={id} />
-      </Card>
       <Card style={{ marginTop: '16px' }} title="消息">
         <MessageTable address={id} />
       </Card>
-      {/* <Card style={{ marginTop: '16px' }}>
-        <Tabs activeTab={activeTab} onChange={setActiveTab} type="rounded">
-          <Tabs.TabPane key="1" title="质押">
-            <Deletegate address={id} />
-          </Tabs.TabPane>
-          <Tabs.TabPane key="2" title="动态奖励" lazyload>
-            <DynamicsTable address={id} />
-          </Tabs.TabPane>
-          <Tabs.TabPane key="3" title="静态奖励" lazyload>
-            <StaticTable address={id} />
-          </Tabs.TabPane>
-          <Tabs.TabPane key="4" title="领取奖励" lazyload>
-            <ClaimTable address={id} />
-          </Tabs.TabPane>
-          <Tabs.TabPane key="5" title="消息" lazyload>
-            <MessageTable address={id} />
-          </Tabs.TabPane>
-        </Tabs>
-      </Card> */}
     </div>
   );
 }

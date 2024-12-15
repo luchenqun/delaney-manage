@@ -75,36 +75,35 @@ function MessageTable({ address }: { address: string }) {
 export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, type: string) => Promise<void>) {
   return [
     {
-      title: 'id',
+      title: 'ID',
       fixed: 'left',
-      width: 50,
+      width: 70,
       dataIndex: 'id',
     },
     {
-      title: '操作者地址',
+      title: '地址',
       width: 200,
       dataIndex: 'address',
       render: (value) => <AddressText address={value} />,
     },
     {
-      title: '日志类型',
+      title: '类型',
       width: 120,
       sorter: true,
       dataIndex: 'type',
     },
     {
-      title: '日志标题',
-      width: 240,
+      title: '标题',
+      width: 180,
       dataIndex: 'title',
     },
     {
-      title: '日志消息',
-      width: 240,
+      title: '消息',
       dataIndex: 'content',
     },
     {
-      title: '是否已读日志',
-      width: 140,
+      title: '状态',
+      width: 120,
       dataIndex: 'is_read',
       sorter: true,
       render: (value) => (
@@ -121,22 +120,6 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       sorter: true,
       render: (x) => dayjs.unix(x).format('YYYY-MM-DD HH:mm:ss'),
     },
-    // {
-    //   title: '操作',
-    //   dataIndex: 'operations',
-    //   width: 100,
-    //   fixed: 'right',
-    //   headerCellStyle: { paddingLeft: '15px' },
-    //   render: (_, record) => (
-    //     <Button
-    //       type="text"
-    //       size="small"
-    //       onClick={() => callback(record, 'view')}
-    //     >
-    //       {t['searchTable.columns.operations.view']}
-    //     </Button>
-    //   ),
-    // },
   ];
 }
 

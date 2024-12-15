@@ -63,30 +63,6 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
             label: '最小团队星级',
             value: loading ? loadingNode : userInfo.min_star,
           },
-          // {
-          //   label: '个人质押mud数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.mud),
-          // },
-          // {
-          //   label: '个人质押usdt数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.usdt, UsdtPrecision),
-          // },
-          // {
-          //   label: '直推总额mud数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.sub_mud),
-          // },
-          // {
-          //   label: '直推总额usdt数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.sub_usdt, UsdtPrecision),
-          // },
-          // {
-          //   label: '团队总额mud数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.team_mud),
-          // },
-          // {
-          //   label: '团队总额usdt数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.team_usdt, UsdtPrecision),
-          // },
           {
             label: '推荐码',
             value: loading ? loadingNode : userInfo.ref,
