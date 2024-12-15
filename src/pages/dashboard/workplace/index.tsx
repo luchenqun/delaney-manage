@@ -14,8 +14,8 @@ function Workplace() {
     <div className={styles.wrapper}>
       <Space size={16} direction="vertical">
         <Overview />
-        <Config />
         <Docs />
+        <Config />
       </Space>
     </div>
   );

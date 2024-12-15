@@ -82,6 +82,9 @@ function QuickOperation() {
   useEffect(() => {
     if (isSuccess) {
       Message.success('操作成功');
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     }
     if (isError) {
       Message.error('操作失败');
@@ -160,28 +163,28 @@ function QuickOperation() {
       </div>
       <div className={styles.docs}>
         {isPaused ? (
-          <Button loading={isPending && txType === TxType.Unpause} onClick={handleUnpause}>
-            取消暂停
+          <Button type="primary" status="success" loading={isPending && txType === TxType.Unpause} onClick={handleUnpause}>
+            解除暂停
           </Button>
         ) : (
-          <Button loading={isPending && txType === TxType.Pause} onClick={handlePause}>
-            暂停
+          <Button type="primary" status="warning" loading={isPending && txType === TxType.Pause} onClick={handlePause}>
+            暂停所有
           </Button>
         )}
         {isBusinessPaused ? (
-          <Button loading={isPending && txType === TxType.UnpauseBusiness} onClick={handleUnpauseBusiness}>
-            重启业务
+          <Button type="primary" status="success" loading={isPending && txType === TxType.UnpauseBusiness} onClick={handleUnpauseBusiness}>
+            重启质押复投
           </Button>
         ) : (
-          <Button loading={isPending && txType === TxType.PauseBusiness} onClick={handlePauseBusiness}>
-            暂停业务
+          <Button type="primary" status="warning" loading={isPending && txType === TxType.PauseBusiness} onClick={handlePauseBusiness}>
+            暂停质押复投
           </Button>
         )}
-        <Button loading={isPending && txType === TxType.Deposit} onClick={() => showModal('deposit')}>
-          赔付
+        <Button type="primary" status="danger" loading={isPending && txType === TxType.Deposit} onClick={() => showModal('deposit')}>
+          MUD价格下跌赔付MUD
         </Button>
-        <Button loading={isPending && txType === TxType.Profit} onClick={() => showModal('profit')}>
-          取回利润
+        <Button type="primary" status="success" loading={isPending && txType === TxType.Profit} onClick={() => showModal('profit')}>
+          MUD价格上涨取回收益
         </Button>
       </div>
 
