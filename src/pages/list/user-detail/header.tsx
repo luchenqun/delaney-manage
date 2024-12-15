@@ -104,28 +104,22 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
       <Divider />
       <div className={styles.card}>
         <div className={styles.Item}>
-          <div className={styles.cardTitle}>个人质押mud数量</div>
-          <div className={styles.cardValue}>{humanReadable(userInfo.mud, MudPrecision)}</div>
+          <div className={styles.cardTitle}>质押MUD/USDT </div>
+          <div className={styles.cardValue}>
+            {humanReadable(userInfo.mud, MudPrecision)} / {humanReadable(userInfo.usdt, UsdtPrecision)}
+          </div>
         </div>
         <div className={styles.Item}>
-          <div className={styles.cardTitle}>个人质押usdt数量</div>
-          <div className={styles.cardValue}>{humanReadable(userInfo.usdt, UsdtPrecision)}</div>
+          <div className={styles.cardTitle}>直推MUD/USDT</div>
+          <div className={styles.cardValue}>
+            {humanReadable(userInfo.sub_mud, MudPrecision)} / {humanReadable(userInfo.sub_usdt, UsdtPrecision)}
+          </div>
         </div>
         <div className={styles.Item}>
-          <div className={styles.cardTitle}>直推总额mud数量</div>
-          <div className={styles.cardValue}>{humanReadable(userInfo.sub_mud)}</div>
-        </div>
-        <div className={styles.Item}>
-          <div className={styles.cardTitle}>直推总额usdt数量</div>
-          <div className={styles.cardValue}>{humanReadable(userInfo.sub_usdt, UsdtPrecision)}</div>
-        </div>
-        <div className={styles.Item}>
-          <div className={styles.cardTitle}>团队总额mud数量</div>
-          <div className={styles.cardValue}>{humanReadable(userInfo.team_mud)}</div>
-        </div>
-        <div className={styles.Item}>
-          <div className={styles.cardTitle}>团队总额usdt数量</div>
-          <div className={styles.cardValue}>{humanReadable(userInfo.team_usdt, UsdtPrecision)}</div>
+          <div className={styles.cardTitle}>团队MUD/USDT</div>
+          <div className={styles.cardValue}>
+            {humanReadable(userInfo.team_mud, MudPrecision)} / {humanReadable(userInfo.team_usdt, UsdtPrecision)}
+          </div>
         </div>
       </div>
     </div>
