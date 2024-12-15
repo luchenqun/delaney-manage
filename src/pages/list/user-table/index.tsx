@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Card, PaginationProps, Button, Space, Typography, Modal, Input, Message } from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography, Modal, Input, Message, InputNumber } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
@@ -16,7 +16,7 @@ function SearchTable() {
   const t = useLocale(locale);
   const [visible, setVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState(null);
-  const [newStar, setNewStar] = useState('');
+  const [newStar, setNewStar] = useState(0);
 
   const tableCallback = async (record, type) => {
     if (type === 'view') {
@@ -136,8 +136,8 @@ function SearchTable() {
       <Modal title="修改用户星级" visible={visible} onOk={handleOk} onCancel={() => setVisible(false)}>
         <div style={{ marginBottom: 15 }}>
           <div style={{ marginBottom: 10 }}>当前用户: {currentRecord?.address}</div>
-          <div style={{ marginBottom: 10 }}>当前星级: {currentRecord?.star}</div>
-          <Input placeholder="请输入新的星级" value={newStar} onChange={setNewStar} type="number" />
+          <div style={{ marginBottom: 10 }}>当前星级: {currentRecord ? Math.max(currentRecord.star, currentRecord.min_star) : '-'}</div>
+          <InputNumber placeholder="请输入新的星级" value={newStar} onChange={(value) => setNewStar(value)} min={0} max={5} precision={0} step={1} />
         </div>
       </Modal>
     </Card>
