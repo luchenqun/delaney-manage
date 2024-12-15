@@ -167,11 +167,11 @@ function Navbar({ show }: { show: boolean }) {
             <IconButton icon={<IconNotification />} />
           </MessageBox>
         </li> */}
-        <li>
+        {/* <li>
           <Tooltip content={theme === 'light' ? t['settings.navbar.theme.toDark'] : t['settings.navbar.theme.toLight']}>
             <IconButton icon={theme !== 'dark' ? <IconMoonFill /> : <IconSunFill />} onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} />
           </Tooltip>
-        </li>
+        </li> */}
         <li
           style={{ color: 'rgb(22, 93, 255)', cursor: 'pointer' }}
           onClick={() => {

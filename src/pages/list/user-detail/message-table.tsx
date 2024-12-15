@@ -100,6 +100,7 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
     {
       title: '消息',
       dataIndex: 'content',
+      width: 180,
     },
     {
       title: '状态',

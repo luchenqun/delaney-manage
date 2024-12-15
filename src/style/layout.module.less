@@ -1,5 +1,7 @@
 @nav-size-height: 60px;
-@layout-max-width: 1100px;
+@layout-max-width: 100%;
+
+@mobile-width: 768px;
 
 .layout {
   width: 100%;
@@ -123,6 +125,10 @@
 
 .layout-content-wrapper {
   padding: 16px 20px 0;
+
+  @media (max-width: 768px) {
+    padding: 10px 10px 0;
+  }
 }
 
 .layout-breadcrumb {

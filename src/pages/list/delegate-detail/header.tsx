@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import dayjs from 'dayjs';
 import styles from './style/header.module.less';
-import { getAddressUrl, getHashUrl, humanReadable, UsdtPrecision } from '@/utils/tools';
+import { formatAddressString, getAddressUrl, getHashUrl, humanReadable, isMobile, UsdtPrecision } from '@/utils/tools';
 
 export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
@@ -14,24 +14,38 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
     <div className={styles['info-wrapper']}>
       <Descriptions
         className={styles['info-content']}
-        column={2}
+        column={isMobile() ? 1 : 2}
         colon="："
-        labelStyle={{ textAlign: 'right' }}
+        labelStyle={{ textAlign: 'left', width: 120, whiteSpace: 'wrap' }}
         data={[
           {
             label: '用户地址',
             span: 24,
-            value: loading ? loadingNode : <Link onClick={() => window.open(getAddressUrl(userInfo.address), '_blank')}>{userInfo.address}</Link>,
+            value: loading ? (
+              loadingNode
+            ) : (
+              <Link onClick={() => window.open(getAddressUrl(userInfo.address), '_blank')}>{isMobile() ? formatAddressString(userInfo.address) : userInfo.address}</Link>
+            ),
           },
           {
             label: '交易哈希',
             span: 24,
-            value: loading ? loadingNode : <Link onClick={() => window.open(getHashUrl(userInfo.hash), '_blank')}>{userInfo.hash}</Link>,
+            value: loading ? (
+              loadingNode
+            ) : (
+              <Link onClick={() => window.open(getHashUrl(userInfo.hash), '_blank')}>{isMobile() ? formatAddressString(userInfo.hash) : userInfo.hash}</Link>
+            ),
           },
           {
             label: '取消质押hash',
             span: 24,
-            value: loading ? loadingNode : <Link onClick={() => window.open(getHashUrl(userInfo.undelegate_hash), '_blank')}>{userInfo.undelegate_hash}</Link>,
+            value: loading ? (
+              loadingNode
+            ) : (
+              <Link onClick={() => window.open(getHashUrl(userInfo.undelegate_hash), '_blank')}>
+                {isMobile() ? formatAddressString(userInfo.undelegate_hash) : userInfo.undelegate_hash}
+              </Link>
+            ),
           },
           {
             label: 'id',

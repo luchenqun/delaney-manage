@@ -5,6 +5,10 @@
 .title {
   font-size: 24px;
   font-weight: 600;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
 }
 
 .copy {
@@ -21,6 +25,11 @@
   display: flex;
   gap: 12px;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding-right: 25px;
+  }
 }
 
 .Item {

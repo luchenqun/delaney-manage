@@ -129,3 +129,7 @@ export async function authorizationCheck(address: `0x${string}`) {
     return Promise.reject('sign data timestamp value is not number');
   }
 }
+
+export function isMobile() {
+  return window.innerWidth < 768;
+}

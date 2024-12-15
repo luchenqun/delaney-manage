@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Space, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
-import { humanReadable, UsdtPrecision } from '@/utils/tools';
+import { humanReadable, isMobile, UsdtPrecision } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 import { AddressText } from '@/components/Common/Address';
 
@@ -11,13 +11,13 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
   return [
     {
       title: 'ID',
-      fixed: 'left',
+      fixed: isMobile() ? false : 'left',
       width: 60,
       dataIndex: 'id',
     },
     {
       title: '用户地址',
-      fixed: 'left',
+      fixed: isMobile() ? false : 'left',
       width: 190,
       dataIndex: 'address',
       render: (value) => <AddressText address={value} />,
@@ -127,7 +127,7 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
     {
       title: '操作',
       dataIndex: 'operations',
-      width: 180,
+      width: isMobile() ? 80 : 180,
       fixed: 'right',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (

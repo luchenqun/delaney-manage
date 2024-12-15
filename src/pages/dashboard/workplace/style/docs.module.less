@@ -2,6 +2,16 @@
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
   gap: 1.2%;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 100%;
+
+    :global {
+      .arco-btn-primary {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }
 
 .link {

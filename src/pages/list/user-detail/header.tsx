@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import dayjs from 'dayjs';
 import styles from './style/header.module.less';
-import { getAddressUrl, humanReadable, MudPrecision, UsdtPrecision } from '@/utils/tools';
+import { formatAddressString, getAddressUrl, humanReadable, isMobile, MudPrecision, UsdtPrecision } from '@/utils/tools';
 
 export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const t = useLocale(locale);
@@ -24,7 +24,7 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
     <div className={styles['info-wrapper']}>
       <div className={styles.title}>
         <Skeleton loading={loading} text={{ rows: 1 }} animation></Skeleton>
-        <span>{userInfo.address}</span>
+        <span>{isMobile() ? formatAddressString(userInfo.address) : userInfo.address}</span>
         <span
           className={styles.copy}
           onClick={() => {
@@ -53,7 +53,11 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
           {
             label: '推荐人地址',
             span: 24,
-            value: loading ? loadingNode : <Link onClick={() => window.open(getAddressUrl(userInfo.parent), '_blank')}>{userInfo.parent}</Link>,
+            value: loading ? (
+              loadingNode
+            ) : (
+              <Link onClick={() => window.open(getAddressUrl(userInfo.parent), '_blank')}>{isMobile() ? formatAddressString(userInfo.parent) : userInfo.parent}</Link>
+            ),
           },
           {
             label: '团队星级',

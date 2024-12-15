@@ -54,7 +54,7 @@ function Overview() {
   });
 
   return (
-    <Card>
+    <Card className={styles.card}>
       <Typography.Title heading={5}>统计数据</Typography.Title>
       <Divider />
       <Row gutter={10} style={{ marginBottom: 10 }}>
