@@ -8,7 +8,7 @@ import IconCalendar from './assets/calendar.svg';
 import IconComments from './assets/comments.svg';
 import IconContent from './assets/content.svg';
 import { ADDRESS_CONFIG } from '@/utils/wagmi';
-import { useReadContract } from 'wagmi';
+import { useBalance, useReadContract } from 'wagmi';
 import delaneyAbi from '@/assets/delaney.json';
 import { humanReadable, MudPrecision, UsdtPrecision } from '@/utils/tools';
 
@@ -47,6 +47,10 @@ function Overview() {
     abi: delaneyAbi,
     functionName: 'stat',
     args: [],
+  });
+
+  const { data: balanceData, isLoading: balanceLoading } = useBalance({
+    address: ADDRESS_CONFIG.delaney,
   });
 
   return (
@@ -99,14 +103,19 @@ function Overview() {
       <Divider />
       <Row>
         <Col flex={1}>
-          <div style={{ paddingRight: 20 }}>
+          <div>
             <StatisticItem icon={<IconContent />} title="利润MUD" count={humanReadable(data?.[10], MudPrecision)} loading={loading} />
           </div>
         </Col>
-        <Col flex={1}></Col>
-        <Col flex={1}></Col>
-        <Col flex={1}></Col>
-        <Col flex={1}></Col>
+        <Divider type="vertical" className={styles.divider} />
+        <Col flex={1}>
+          <div>
+            <StatisticItem icon={<IconContent />} title="合约MUD" count={humanReadable(balanceData?.value, MudPrecision)} loading={balanceLoading} />
+          </div>
+        </Col>
+        <Col flex={1} style={{ paddingLeft: 20 }}></Col>
+        <Col flex={1} style={{ paddingLeft: 20 }}></Col>
+        <Col flex={1} style={{ paddingLeft: 20 }}></Col>
       </Row>
     </Card>
   );
