@@ -28,7 +28,7 @@ import { GlobalState } from './store';
 import styles from './style/layout.module.less';
 import { useAccount } from 'wagmi';
 import { getIsAdmin } from './utils/api';
-import { authorizationCheck, currentAddress, setCurrentAddress } from './utils/tools';
+import { authorizationCheck, authorizationKey, currentAddress, setCurrentAddress } from './utils/tools';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -229,22 +229,26 @@ function PageLayout() {
         valid = await authorizationCheck(address);
         if (useIsExist) {
           if (!valid) {
-            localStorage.clear();
+            localStorage.removeItem('userInfo');
+            localStorage.removeItem(authorizationKey(address));
             Message.error('没有权限');
             history.push('/login');
           }
         } else {
-          localStorage.clear();
+          localStorage.removeItem('userInfo');
+          localStorage.removeItem(authorizationKey(address));
           Message.error('没有权限');
           history.push('/login');
         }
       } catch (error) {
-        localStorage.clear();
+        localStorage.removeItem('userInfo');
+        localStorage.removeItem(authorizationKey(address));
         Message.error('没有权限');
         history.push('/login');
       }
       if (address !== currentAddress()) {
-        localStorage.clear();
+        localStorage.removeItem('userInfo');
+        localStorage.removeItem(authorizationKey(address));
         Message.error('没有权限');
         history.push('/login');
         return;
