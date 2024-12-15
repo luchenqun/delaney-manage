@@ -50,7 +50,7 @@ function Config() {
           <ConfigItem title="团队奖励二星" name="team_reward_level2" count={data?.[10].toString() + '%'} />
           <ConfigItem title="团队奖励三星" name="team_reward_level3" count={data?.[11].toString() + '%'} />
           <ConfigItem title="团队奖励四星" name="team_reward_level4" count={data?.[12].toString() + '%'} />
-          <ConfigItem title="团队奖励五星" name="team_reward_level5" count={data?.[13].toString()} />
+          <ConfigItem title="团队奖励五星" name="team_reward_level5" count={data?.[13].toString() + '%'} />
           <ConfigItem title="起投" name="person_invest_min_usdt" count={humanReadable(data?.[14], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="层级奖励最少起投" name="person_reward_min_usdt" count={humanReadable(data?.[15], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="团队奖励最少起投" name="team_reward_min_usdt" count={humanReadable(data?.[16], UsdtPrecision) + ' USDT'} />
