@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Card, Typography, Button, Message, Modal, Input } from '@arco-design/web-react';
+import { Link, Card, Typography, Button, Message, Modal, Input, Spin } from '@arco-design/web-react';
 import styles from './style/docs.module.less';
 import { ADDRESS_CONFIG } from '@/utils/wagmi';
 import delaneyAbi from '@/assets/delaney.json';
@@ -24,6 +24,7 @@ function QuickOperation() {
   const { isLoading, isSuccess } = useWaitForTransactionReceipt({ hash });
   const [txType, setTxType] = useState(TxType.Pause);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [modalType, setModalType] = useState<'deposit' | 'profit'>(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -85,9 +86,13 @@ function QuickOperation() {
       setTimeout(() => {
         window.location.reload();
       }, 500);
+      setInputValue('');
+      setIsModalVisible(false);
     }
     if (isError) {
       Message.error('操作失败');
+      setInputValue('');
+      setIsModalVisible(false);
     }
   }, [isSuccess, isError]);
 
@@ -138,9 +143,6 @@ function QuickOperation() {
         });
         setTxType(TxType.Profit);
       }
-
-      setIsModalVisible(false);
-      setInputValue('');
     } catch (error) {
       Message.error('输入格式错误');
     }
@@ -189,7 +191,7 @@ function QuickOperation() {
       </div>
 
       <Modal
-        title={modalType === 'deposit' ? '存入 MUD' : '设置利润'}
+        title={modalType === 'deposit' ? 'MUD价格下跌赔付MUD' : 'MUD价格上涨取回收益'}
         visible={isModalVisible}
         onOk={handleModalOk}
         onCancel={handleModalCancel}
