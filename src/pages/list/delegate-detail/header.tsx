@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Upload, Descriptions, Skeleton, Tag, Link } from '@arco-design/web-react';
+import { Avatar, Upload, Descriptions, Skeleton, Tag, Link, Divider } from '@arco-design/web-react';
 import { IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -16,7 +16,7 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
         className={styles['info-content']}
         column={isMobile() ? 1 : 2}
         colon="："
-        labelStyle={{ textAlign: 'left', width: 120, whiteSpace: 'wrap' }}
+        labelStyle={isMobile() ? { textAlign: 'left', width: 120, whiteSpace: 'wrap' } : {}}
         data={[
           {
             label: '用户地址',
@@ -51,30 +51,30 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
             label: 'id',
             value: loading ? loadingNode : userInfo.id,
           },
-          {
-            label: '质押id',
-            value: loading ? loadingNode : userInfo.cid,
-          },
-          {
-            label: '质押数量',
-            value: loading ? loadingNode : humanReadable(userInfo.mud),
-          },
-          {
-            label: '希望得到最小的usdt价值',
-            value: loading ? loadingNode : humanReadable(userInfo.min_usdt, UsdtPrecision),
-          },
-          {
-            label: '质押的对应usdt数量',
-            value: loading ? loadingNode : humanReadable(userInfo.usdt, UsdtPrecision),
-          },
-          {
-            label: '取消质押希望返回最小mud',
-            value: loading ? loadingNode : humanReadable(userInfo.back_min_mud),
-          },
-          {
-            label: '取消质押返回的mud',
-            value: loading ? loadingNode : humanReadable(userInfo.back_mud),
-          },
+          // {
+          //   label: '质押id',
+          //   value: loading ? loadingNode : userInfo.cid,
+          // },
+          // {
+          //   label: '质押数量',
+          //   value: loading ? loadingNode : humanReadable(userInfo.mud),
+          // },
+          // {
+          //   label: '希望得到最小的usdt价值',
+          //   value: loading ? loadingNode : humanReadable(userInfo.min_usdt, UsdtPrecision),
+          // },
+          // {
+          //   label: '质押的对应usdt数量',
+          //   value: loading ? loadingNode : humanReadable(userInfo.usdt, UsdtPrecision),
+          // },
+          // {
+          //   label: '取消质押希望返回最小mud',
+          //   value: loading ? loadingNode : humanReadable(userInfo.back_min_mud),
+          // },
+          // {
+          //   label: '取消质押返回的mud',
+          //   value: loading ? loadingNode : humanReadable(userInfo.back_mud),
+          // },
           {
             label: '每期多久',
             value: loading ? loadingNode : userInfo.period_duration,
@@ -115,6 +115,33 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
           },
         ]}
       ></Descriptions>
+      <Divider />
+      <div className={styles.card}>
+        <div className={styles.cardItem}>
+          <div className={styles.cardItemTitle}>质押数量</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.mud, UsdtPrecision)}</div>
+        </div>
+        <div className={styles.cardItem}>
+          <div className={styles.cardItemTitle}>质押数量</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.mud, UsdtPrecision)}</div>
+        </div>
+        <div className={styles.cardItem}>
+          <div className={styles.cardItemTitle}>希望得到最小的usdt价值</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.min_usdt, UsdtPrecision)}</div>
+        </div>
+        <div className={styles.cardItem}>
+          <div className={styles.cardItemTitle}>质押的对应usdt数量</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.usdt, UsdtPrecision)}</div>
+        </div>
+        <div className={styles.cardItem}>
+          <div className={styles.cardItemTitle}>取消质押希望返回最小mud</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.back_min_mud, UsdtPrecision)}</div>
+        </div>
+        <div className={styles.cardItem}>
+          <div className={styles.cardItemTitle}>取消质押返回的mud</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.back_mud, UsdtPrecision)}</div>
+        </div>
+      </div>
     </div>
   );
 }

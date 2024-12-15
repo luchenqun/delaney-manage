@@ -17,7 +17,7 @@ function SearchTable() {
 
   const tableCallback = async (record, type) => {
     if (type === 'view') {
-      window.location.href = `/list/delegate-detail/?hash=${record.hash}`;
+      window.location.href = `/list/delegate-detail/?hash=${record.hash}&id=${record.id}`;
     }
   };
 

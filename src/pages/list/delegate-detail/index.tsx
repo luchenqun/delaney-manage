@@ -11,6 +11,7 @@ function UserInfo() {
   const t = useLocale(locale);
   const searchParams = new URLSearchParams(location.search);
   const hash = searchParams.get('hash');
+  const id = searchParams.get('id');
   const [info, setInfo] = useState({});
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('1');
@@ -30,10 +31,10 @@ function UserInfo() {
         <InfoHeader userInfo={info} loading={loading} />
       </Card>
       <Card style={{ marginTop: '16px' }} title="动态奖励">
-        <DynamicsTable hash={hash} />
+        <DynamicsTable hash={hash} id={id} />
       </Card>
       <Card style={{ marginTop: '16px' }} title="静态奖励">
-        <StaticTable hash={hash} />
+        <StaticTable hash={hash} id={id} />
       </Card>
       {/* <Card style={{ marginTop: '16px' }}>
         <Tabs activeTab={activeTab} onChange={setActiveTab} type="rounded">

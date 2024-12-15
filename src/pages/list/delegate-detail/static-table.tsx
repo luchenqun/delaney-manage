@@ -8,7 +8,7 @@ import { AddressText } from '@/components/Common/Address';
 import { humanReadable, UsdtPrecision } from '@/utils/tools';
 import { getStaticRewardsList } from '../static-table/api';
 
-function StaticTable({ hash }: { hash: string }) {
+function StaticTable({ hash, id }: { hash: string; id: string }) {
   const t = useLocale(locale);
 
   const tableCallback = async (record, type) => {
@@ -41,7 +41,8 @@ function StaticTable({ hash }: { hash: string }) {
       page_size: pageSize,
       ...formParams,
       ...sortParams,
-      'filters[hash]': `='${hash}'`,
+      // 'filters[hash]': `='${hash}'`,
+      'filters[delegate_id]': `=${id}`,
     }).then((res) => {
       setData(res.data.data.items);
       setPatination({
