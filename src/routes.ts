@@ -59,14 +59,6 @@ export const routes: IRoute[] = [
         ],
       },
       {
-        name: '动态奖励列表',
-        key: 'list/dynamics-table',
-      },
-      {
-        name: '静态奖励列表',
-        key: 'list/static-table',
-      },
-      {
         name: '领取奖励列表',
         key: 'list/claim-table',
         children: [
@@ -77,6 +69,14 @@ export const routes: IRoute[] = [
             activeKey: 'list/claim-table',
           },
         ],
+      },
+      {
+        name: '动态奖励列表',
+        key: 'list/dynamics-table',
+      },
+      {
+        name: '静态奖励列表',
+        key: 'list/static-table',
       },
     ],
   },
