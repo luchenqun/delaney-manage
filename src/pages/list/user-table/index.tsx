@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Card, PaginationProps, Button, Space, Typography } from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography, Modal, Input, Message } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
@@ -7,17 +7,23 @@ import SearchForm from './form';
 import locale from './locale';
 import styles from './style/index.module.less';
 import { getColumns } from './constants';
-import { getUserList } from './api';
+import { getUserList, setUserStart } from './api';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
 
 const { Title } = Typography;
 
 function SearchTable() {
   const t = useLocale(locale);
+  const [visible, setVisible] = useState(false);
+  const [currentRecord, setCurrentRecord] = useState(null);
+  const [newStar, setNewStar] = useState('');
 
   const tableCallback = async (record, type) => {
     if (type === 'view') {
       window.location.href = `/list/user-detail/?id=${record.address}`;
+    } else if (type === 'edit-star') {
+      setCurrentRecord(record);
+      setVisible(true);
     }
   };
 
@@ -87,6 +93,27 @@ function SearchTable() {
     });
   }
 
+  const handleOk = async () => {
+    if (!newStar) {
+      Message.error('请输入新的星级');
+      return;
+    }
+
+    try {
+      await setUserStart({
+        address: currentRecord.address,
+        star: parseInt(newStar),
+      });
+
+      Message.success('修改成功');
+      setVisible(false);
+      setNewStar('');
+      fetchData(); // 刷新表格数据
+    } catch (error) {
+      Message.error('修改失败');
+    }
+  };
+
   return (
     <Card>
       <Title heading={6}>用户列表</Title>
@@ -105,6 +132,14 @@ function SearchTable() {
         </div>
       </PermissionWrapper>
       <Table rowKey="id" loading={loading} onChange={onChangeTable} pagination={pagination} columns={columns} data={data} scroll={{ x: '100%' }} />
+
+      <Modal title="修改用户星级" visible={visible} onOk={handleOk} onCancel={() => setVisible(false)}>
+        <div style={{ marginBottom: 15 }}>
+          <div style={{ marginBottom: 10 }}>当前用户: {currentRecord?.address}</div>
+          <div style={{ marginBottom: 10 }}>当前星级: {currentRecord?.star}</div>
+          <Input placeholder="请输入新的星级" value={newStar} onChange={setNewStar} type="number" />
+        </div>
+      </Modal>
     </Card>
   );
 }

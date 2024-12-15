@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography } from '@arco-design/web-react';
+import { Button, Space, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import { humanReadable, UsdtPrecision } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
@@ -127,13 +127,18 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
     {
       title: '操作',
       dataIndex: 'operations',
-      width: 100,
+      width: 180,
       fixed: 'right',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <Button type="text" size="small" onClick={() => callback(record, 'view')}>
-          {t['searchTable.columns.operations.view']}
-        </Button>
+        <>
+          <Button type="text" size="small" onClick={() => callback(record, 'view')}>
+            {t['searchTable.columns.operations.view']}
+          </Button>
+          <Button type="text" size="small" onClick={() => callback(record, 'edit-star')}>
+            修改星级
+          </Button>
+        </>
       ),
     },
   ];

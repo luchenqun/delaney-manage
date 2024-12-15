@@ -4,6 +4,10 @@ export const getUserList = (params?: PageParams) => {
   return req.get('users', { params });
 };
 
+export const setUserStart = (data: { address: string; star: number }) => {
+  return req.post('set-user-star', data);
+};
+
 export interface PageParams {
   page?: number;
   page_size?: number;
