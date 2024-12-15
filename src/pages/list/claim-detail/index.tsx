@@ -4,16 +4,31 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import DynamicsTable from './dynamics-table';
 import StaticTable from './static-table';
+import { getClaim } from './api';
+import Info from './header';
 
 function UserInfo() {
   const t = useLocale(locale);
   const searchParams = new URLSearchParams(location.search);
+  const signature = searchParams.get('signature');
   const dynamicIds = searchParams.get('dynamic_ids');
   const staticIds = searchParams.get('static_ids');
   const [activeTab, setActiveTab] = useState('1');
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    getClaim({ signature }).then((res) => {
+      setData(res.data.data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <div>
+      <Card>
+        <Info userInfo={data} loading={loading} />
+      </Card>
       <Card style={{ marginTop: '16px' }} title="动态奖励">
         <DynamicsTable ids={dynamicIds} />
       </Card>
