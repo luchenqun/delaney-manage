@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import dayjs from 'dayjs';
 import styles from './style/header.module.less';
-import { formatAddressString, getAddressUrl, getHashUrl, humanReadable, isMobile, UsdtPrecision } from '@/utils/tools';
+import { formatAddressString, getAddressUrl, getHashUrl, humanReadable, isMobile, MudPrecision, UsdtPrecision } from '@/utils/tools';
 
 export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
@@ -51,30 +51,6 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
             label: 'id',
             value: loading ? loadingNode : userInfo.id,
           },
-          // {
-          //   label: '质押id',
-          //   value: loading ? loadingNode : userInfo.cid,
-          // },
-          // {
-          //   label: '质押数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.mud),
-          // },
-          // {
-          //   label: '希望得到最小的usdt价值',
-          //   value: loading ? loadingNode : humanReadable(userInfo.min_usdt, UsdtPrecision),
-          // },
-          // {
-          //   label: '质押的对应usdt数量',
-          //   value: loading ? loadingNode : humanReadable(userInfo.usdt, UsdtPrecision),
-          // },
-          // {
-          //   label: '取消质押希望返回最小mud',
-          //   value: loading ? loadingNode : humanReadable(userInfo.back_min_mud),
-          // },
-          // {
-          //   label: '取消质押返回的mud',
-          //   value: loading ? loadingNode : humanReadable(userInfo.back_mud),
-          // },
           {
             label: '每期多久',
             value: loading ? loadingNode : userInfo.period_duration,
@@ -119,28 +95,28 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
       <div className={styles.card}>
         <div className={styles.cardItem}>
           <div className={styles.cardItemTitle}>质押数量</div>
-          <div className={styles.cardItemContent}>{humanReadable(userInfo.mud, UsdtPrecision)}</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo.mud, MudPrecision)}</div>
         </div>
         <div className={styles.cardItem}>
-          <div className={styles.cardItemTitle}>质押数量</div>
-          <div className={styles.cardItemContent}>{humanReadable(userInfo.mud, UsdtPrecision)}</div>
-        </div>
-        <div className={styles.cardItem}>
-          <div className={styles.cardItemTitle}>希望得到最小的usdt价值</div>
+          <div className={styles.cardItemTitle}>希望得到最小的USDT价值</div>
           <div className={styles.cardItemContent}>{humanReadable(userInfo.min_usdt, UsdtPrecision)}</div>
         </div>
         <div className={styles.cardItem}>
-          <div className={styles.cardItemTitle}>质押的对应usdt数量</div>
+          <div className={styles.cardItemTitle}>质押得到USDT数量</div>
           <div className={styles.cardItemContent}>{humanReadable(userInfo.usdt, UsdtPrecision)}</div>
         </div>
-        <div className={styles.cardItem}>
-          <div className={styles.cardItemTitle}>取消质押希望返回最小mud</div>
-          <div className={styles.cardItemContent}>{humanReadable(userInfo.back_min_mud, UsdtPrecision)}</div>
-        </div>
-        <div className={styles.cardItem}>
-          <div className={styles.cardItemTitle}>取消质押返回的mud</div>
-          <div className={styles.cardItemContent}>{humanReadable(userInfo.back_mud, UsdtPrecision)}</div>
-        </div>
+        {userInfo.status === 4 && (
+          <>
+            <div className={styles.cardItem}>
+              <div className={styles.cardItemTitle}>取消质押希望返回最小MUD</div>
+              <div className={styles.cardItemContent}>{humanReadable(userInfo.back_min_mud, MudPrecision)}</div>
+            </div>
+            <div className={styles.cardItem}>
+              <div className={styles.cardItemTitle}>取消质押实际返回的MUD</div>
+              <div className={styles.cardItemContent}>{humanReadable(userInfo.back_mud, MudPrecision)}</div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

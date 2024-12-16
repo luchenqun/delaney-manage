@@ -84,50 +84,6 @@ export const routes: IRoute[] = [
       },
     ],
   },
-  // {
-  //   name: 'menu.form',
-  //   key: 'form',
-  //   children: [
-  //     {
-  //       name: 'menu.form.group',
-  //       key: 'form/group',
-  //       requiredPermissions: [
-  //         { resource: 'menu.form.group', actions: ['read', 'write'] },
-  //       ],
-  //     },
-  //     {
-  //       name: 'menu.form.step',
-  //       key: 'form/step',
-  //       requiredPermissions: [
-  //         { resource: 'menu.form.step', actions: ['read'] },
-  //       ],
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: 'menu.profile',
-  //   key: 'profile',
-  //   children: [
-  //     {
-  //       name: 'menu.profile.basic',
-  //       key: 'profile/basic',
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: 'menu.user',
-  //   key: 'user',
-  //   children: [
-  //     {
-  //       name: 'menu.user.info',
-  //       key: 'user/info',
-  //     },
-  //     {
-  //       name: 'menu.user.setting',
-  //       key: 'user/setting',
-  //     },
-  //   ],
-  // },
 ];
 
 export const getName = (path: string, routes) => {

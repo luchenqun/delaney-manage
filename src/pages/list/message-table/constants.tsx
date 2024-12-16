@@ -22,7 +22,7 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
     },
     {
       title: '类型',
-      width: 120,
+      width: 70,
       sorter: true,
       dataIndex: 'type',
     },
@@ -34,10 +34,11 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
     {
       title: '消息',
       dataIndex: 'content',
+      width: 600,
     },
     {
       title: '状态',
-      width: 120,
+      width: 70,
       dataIndex: 'is_read',
       sorter: true,
       render: (value) => (

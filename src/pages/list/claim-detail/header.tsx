@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import dayjs from 'dayjs';
 import styles from './style/header.module.less';
-import { formatAddressString, getAddressUrl, getHashUrl, humanReadable, isMobile, UsdtPrecision } from '@/utils/tools';
+import { formatAddressString, getAddressUrl, getHashUrl, humanReadable, isMobile, MudPrecision, UsdtPrecision } from '@/utils/tools';
 
 export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
@@ -74,12 +74,12 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
           <div className={styles.cardItemContent}>{humanReadable(userInfo?.usdt, UsdtPrecision)}</div>
         </div>
         <div className={styles.cardItem}>
-          <div className={styles.cardItemTitle}>希望领取到的最小mud数量</div>
-          <div className={styles.cardItemContent}>{humanReadable(userInfo?.min_mud, UsdtPrecision)}</div>
+          <div className={styles.cardItemTitle}>希望领取到的最小MUD数量</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo?.min_mud, MudPrecision)}</div>
         </div>
         <div className={styles.cardItem}>
           <div className={styles.cardItemTitle}>实际接收到的MUD</div>
-          <div className={styles.cardItemContent}>{humanReadable(userInfo?.mud, UsdtPrecision)}</div>
+          <div className={styles.cardItemContent}>{humanReadable(userInfo?.mud, MudPrecision)}</div>
         </div>
       </div>
     </div>
