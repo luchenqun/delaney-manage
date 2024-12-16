@@ -14,7 +14,7 @@ export const humanReadable = (value: number | bigint | string, precision = 10000
   const decimalPart = result.slice(-2); // 获取小数部分
 
   // 如果小数部分以0结尾,则去掉末尾的0
-  if (decimalPart === '00') {
+  if (decimalPart === '00' || decimalPart === '0') {
     return integerPart;
   } else if (decimalPart.endsWith('0')) {
     return `${integerPart}.${decimalPart[0]}`;

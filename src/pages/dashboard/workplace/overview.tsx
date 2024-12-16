@@ -105,7 +105,7 @@ function Overview() {
       <Row gutter={10}>
         <Col flex={1}>
           <div>
-            <StatisticItem icon={<IconContent />} title="合约MUD" count={humanReadable(balanceData?.value, MudPrecision)} loading={balanceLoading} />
+            <StatisticItem icon={<IconContent />} title="合约MUD余额" count={humanReadable(balanceData?.value, MudPrecision)} loading={balanceLoading} />
           </div>
         </Col>
         <Col flex={1}></Col>

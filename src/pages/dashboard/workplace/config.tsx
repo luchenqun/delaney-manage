@@ -6,7 +6,7 @@ import delaneyAbi from '@/assets/delaney.json';
 import { useReadContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { humanReadable, UsdtPrecision } from '@/utils/tools';
+import { formatSeconds, humanReadable, UsdtPrecision } from '@/utils/tools';
 import { IconEdit } from '@arco-design/web-react/icon';
 
 function Config() {
@@ -38,7 +38,7 @@ function Config() {
       <Spin loading={isLoadingConfigs} style={{ width: '100%' }}>
         <div className={styles.configs}>
           <ConfigItem title="手续费" name="fee" count={data?.[0].toString() + '%'} />
-          <ConfigItem title="每期时间" name="period_duration" count={data?.[1].toString()} />
+          <ConfigItem title="每期时间(秒)" name="period_duration" count={formatSeconds(Number(data?.[1]))} />
           <ConfigItem title="期数" name="period_num" count={data?.[2].toString()} />
           <ConfigItem title="每期收益率" name="period_reward_ratio" count={data?.[3].toString() + '%'} />
           <ConfigItem title="层级奖励第一层" name="person_reward_level1" count={data?.[4].toString() + '%'} />
@@ -56,7 +56,7 @@ function Config() {
           <ConfigItem title="团队奖励最少起投" name="team_reward_min_usdt" count={humanReadable(data?.[16], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="奖励领取单次最少" name="claim_min_usdt" count={humanReadable(data?.[17], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="奖励领取单次最大" name="claim_max_usdt" count={humanReadable(data?.[18], UsdtPrecision) + ' USDT'} />
-          <ConfigItem title="奖励领取间隔" name="claim_gap" count={data?.[19].toString()} />
+          <ConfigItem title="奖励领取间隔(秒)" name="claim_gap" count={formatSeconds(Number(data?.[19]))} />
           <ConfigItem title="成为一星直推" name="team_level1_sub_usdt" count={humanReadable(data?.[20], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="成为一星团队" name="team_level1_team_usdt" count={humanReadable(data?.[21], UsdtPrecision) + ' USDT'} />
         </div>
