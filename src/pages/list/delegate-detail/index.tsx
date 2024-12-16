@@ -6,6 +6,7 @@ import InfoHeader from './header';
 import { getDelegate } from './api';
 import DynamicsTable from './dynamics-table';
 import StaticTable from './static-table';
+import { getDelegateList } from '../delegate-table/api';
 
 function UserInfo() {
   const t = useLocale(locale);
@@ -17,10 +18,12 @@ function UserInfo() {
   const [activeTab, setActiveTab] = useState('1');
 
   useEffect(() => {
-    getDelegate({
-      hash,
+    getDelegateList({
+      'filters[id]': `=${id}`,
     }).then((res) => {
-      setInfo(res.data.data);
+      if (res.data.data.items.length > 0) {
+        setInfo(res.data.data.items[0]);
+      }
       setLoading(false);
     });
   }, []);

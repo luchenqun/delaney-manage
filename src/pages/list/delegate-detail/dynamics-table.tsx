@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Card, PaginationProps, Button, Space, Typography, Tag } from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography, Tag, Link } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -106,6 +106,20 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       title: '领取ID',
       width: 75,
       dataIndex: 'claim_id',
+      render: (value, record) => {
+        if (value === -1) {
+          return value;
+        }
+        return (
+          <Link
+            onClick={() => {
+              window.location.href = `/list/claim-detail/?id=${record.claim_id}`;
+            }}
+          >
+            {value}
+          </Link>
+        );
+      },
     },
     {
       title: '用户地址',

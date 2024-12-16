@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, Card, PaginationProps, Button, Space, Typography, Tag } from '@arco-design/web-react';
+import { Table, Card, PaginationProps, Button, Space, Typography, Tag, Link } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -104,6 +104,17 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       title: '质押ID',
       width: 75,
       dataIndex: 'delegate_id',
+      render: (value, record) => {
+        return (
+          <Link
+            onClick={() => {
+              window.open(`/list/delegate-detail/?id=${record.delegate_id}`, '_blank');
+            }}
+          >
+            {value}
+          </Link>
+        );
+      },
     },
     {
       title: '领取ID',

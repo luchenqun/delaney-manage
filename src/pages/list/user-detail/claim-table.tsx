@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Table, PaginationProps, Tag } from '@arco-design/web-react';
+import { Table, PaginationProps, Tag, Link } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -81,6 +81,15 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       fixed: 'left',
       width: 60,
       dataIndex: 'id',
+      render: (value, record) => (
+        <Link
+          onClick={() => {
+            window.location.href = `/list/claim-detail/?id=${record.id}`;
+          }}
+        >
+          {value}
+        </Link>
+      ),
     },
     {
       title: '合约ID',

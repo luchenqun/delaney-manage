@@ -99,7 +99,7 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       render: (value, record) => (
         <Link
           onClick={() => {
-            window.location.href = `/list/delegate-detail/?hash=${record.hash}`;
+            window.location.href = `/list/delegate-detail/?hash=${record.hash}&id=${record.id}`;
           }}
         >
           {value}

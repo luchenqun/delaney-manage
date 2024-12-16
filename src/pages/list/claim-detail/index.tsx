@@ -6,20 +6,29 @@ import DynamicsTable from './dynamics-table';
 import StaticTable from './static-table';
 import { getClaim } from './api';
 import Info from './header';
+import { getClaimsList } from '../claim-table/api';
 
 function UserInfo() {
   const t = useLocale(locale);
   const searchParams = new URLSearchParams(location.search);
-  const signature = searchParams.get('signature');
-  const dynamicIds = searchParams.get('dynamic_ids');
-  const staticIds = searchParams.get('static_ids');
+  const id = searchParams.get('id');
+  // const dynamicIds = searchParams.get('dynamic_ids');
+  // const staticIds = searchParams.get('static_ids');
   const [activeTab, setActiveTab] = useState('1');
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [dynamicIds, setDynamicIds] = useState('');
+  const [staticIds, setStaticIds] = useState('');
+
   useEffect(() => {
     setLoading(true);
-    getClaim({ signature }).then((res) => {
-      setData(res.data.data);
+    getClaimsList({
+      'filters[id]': `=${id}`,
+    }).then((res) => {
+      setData(res.data.data.items[0]);
+      const json = JSON.parse(res.data.data.items[0].reward_ids);
+      setDynamicIds(json.dynamic_ids);
+      setStaticIds(json.static_ids);
       setLoading(false);
     });
   }, []);
@@ -29,12 +38,16 @@ function UserInfo() {
       <Card>
         <Info userInfo={data} loading={loading} />
       </Card>
-      <Card style={{ marginTop: '16px' }} title="动态奖励">
-        <DynamicsTable ids={dynamicIds} />
-      </Card>
-      <Card style={{ marginTop: '16px' }} title="静态奖励">
-        <StaticTable ids={staticIds} />
-      </Card>
+      {dynamicIds && (
+        <Card style={{ marginTop: '16px' }} title="动态奖励">
+          <DynamicsTable ids={dynamicIds} />
+        </Card>
+      )}
+      {staticIds && (
+        <Card style={{ marginTop: '16px' }} title="静态奖励">
+          <StaticTable ids={staticIds} />
+        </Card>
+      )}
       {/* <Card style={{ marginTop: '16px' }}>
         <Tabs activeTab={activeTab} onChange={setActiveTab} type="rounded">
           <Tabs.TabPane key="1" title="动态奖励" lazyload>

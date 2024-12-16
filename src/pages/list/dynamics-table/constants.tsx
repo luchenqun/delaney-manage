@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Tag, Typography } from '@arco-design/web-react';
+import { Button, Link, Tag, Typography } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import { humanReadable, isMobile, UsdtPrecision } from '@/utils/tools';
 import { ColumnProps } from '@arco-design/web-react/es/Table';
@@ -19,11 +19,36 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
       title: '质押ID',
       width: 75,
       dataIndex: 'delegate_id',
+      render: (value, record) => {
+        return (
+          <Link
+            onClick={() => {
+              window.open(`/list/delegate-detail/?id=${record.delegate_id}`, '_blank');
+            }}
+          >
+            {value}
+          </Link>
+        );
+      },
     },
     {
       title: '领取ID',
       width: 75,
       dataIndex: 'claim_id',
+      render: (value, record) => {
+        if (value === -1) {
+          return value;
+        }
+        return (
+          <Link
+            onClick={() => {
+              window.open(`/list/claim-detail/?id=${record.claim_id}`, '_blank');
+            }}
+          >
+            {value}
+          </Link>
+        );
+      },
     },
     {
       title: '用户地址',

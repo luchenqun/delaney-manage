@@ -18,7 +18,7 @@ function SearchTable() {
   const tableCallback = async (record, type) => {
     if (type === 'view') {
       const parseData = JSON.parse(record.reward_ids);
-      window.location.href = `/list/claim-detail/?signature=${record.signature}&dynamic_ids=${parseData.dynamic_ids.join(',')}&static_ids=${parseData.static_ids.join(',')}`;
+      window.location.href = `/list/claim-detail/?id=${record.id}&dynamic_ids=${parseData.dynamic_ids.join(',')}&static_ids=${parseData.static_ids.join(',')}`;
     }
   };
 
