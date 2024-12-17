@@ -51,8 +51,8 @@ function Config() {
           <ConfigItem title="团队奖励三星" name="team_reward_level3" count={data?.[11].toString() + '%'} />
           <ConfigItem title="团队奖励四星" name="team_reward_level4" count={data?.[12].toString() + '%'} />
           <ConfigItem title="团队奖励五星" name="team_reward_level5" count={data?.[13].toString() + '%'} />
-          <ConfigItem title="起投" name="preson_invest_min_usdt" count={humanReadable(data?.[14], UsdtPrecision) + ' USDT'} />
-          <ConfigItem title="层级奖励最少起投" name="preson_reward_min_usdt" count={humanReadable(data?.[15], UsdtPrecision) + ' USDT'} />
+          <ConfigItem title="起投" name="person_invest_min_usdt" count={humanReadable(data?.[14], UsdtPrecision) + ' USDT'} />
+          <ConfigItem title="层级奖励最少起投" name="person_reward_min_usdt" count={humanReadable(data?.[15], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="团队奖励最少起投" name="team_reward_min_usdt" count={humanReadable(data?.[16], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="奖励领取单次最少" name="claim_min_usdt" count={humanReadable(data?.[17], UsdtPrecision) + ' USDT'} />
           <ConfigItem title="奖励领取单次最大" name="claim_max_usdt" count={humanReadable(data?.[18], UsdtPrecision) + ' USDT'} />
@@ -86,8 +86,8 @@ const ConfigItem = ({ title, name, count }) => {
   const handleOk = () => {
     let valueInput = Number(value);
     if (
-      name === 'preson_invest_min_usdt' ||
-      name === 'preson_reward_min_usdt' ||
+      name === 'person_invest_min_usdt' ||
+      name === 'person_reward_min_usdt' ||
       name === 'team_reward_min_usdt' ||
       name === 'claim_min_usdt' ||
       name === 'claim_max_usdt' ||
