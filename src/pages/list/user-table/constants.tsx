@@ -75,13 +75,6 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
         </>
       ),
     },
-    // {
-    //   title: '直推USDT',
-    //   width: 130,
-    //   dataIndex: 'sub_usdt',
-    //   sorter: true,
-    //   render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
-    // },
     {
       title: '团队人数',
       width: 130,
@@ -99,13 +92,17 @@ export function getColumns(t: ColumnProps, callback: (record: ColumnProps<any>, 
         </>
       ),
     },
-    // {
-    //   title: '团队USDT',
-    //   width: 130,
-    //   dataIndex: 'team_usdt',
-    //   sorter: true,
-    //   render: (value) => <>{humanReadable(value, UsdtPrecision)}</>,
-    // },
+    {
+      title: '领取奖励',
+      width: 200,
+      dataIndex: 'claim_mud',
+      sorter: true,
+      render: (value, record) => (
+        <>
+          {humanReadable(value)}MUD / {humanReadable(record.claim_usdt, UsdtPrecision)}USDT
+        </>
+      ),
+    },
     {
       title: '推荐码',
       width: 100,

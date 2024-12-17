@@ -101,6 +101,12 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
             {humanReadable(userInfo.team_mud, MudPrecision)} / {humanReadable(userInfo.team_usdt, UsdtPrecision)}
           </div>
         </div>
+        <div className={styles.Item}>
+          <div className={styles.cardTitle}>领取奖励MUD/USDT</div>
+          <div className={styles.cardValue}>
+            {humanReadable(userInfo.claim_mud, MudPrecision)} / {humanReadable(userInfo.claim_usdt, UsdtPrecision)}
+          </div>
+        </div>
       </div>
     </div>
   );
