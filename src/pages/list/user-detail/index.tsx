@@ -3,7 +3,7 @@ import { Card, Tabs } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import InfoHeader from './header';
-import { getUser } from './api';
+import { getUser, getUserReward } from './api';
 import Deletegate from './delegate-table';
 import DynamicsTable from './dynamics-table';
 import StaticTable from './static-table';
@@ -15,6 +15,7 @@ function UserInfo() {
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
   const [userInfo, setUserInfo] = useState({});
+  const [userReward, setUserReward] = useState({});
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('1');
 
@@ -25,12 +26,18 @@ function UserInfo() {
       setUserInfo(res.data.data);
       setLoading(false);
     });
+
+    getUserReward({
+      address: id,
+    }).then((res) => {
+      setUserReward(res.data.data);
+    });
   }, []);
 
   return (
     <div>
       <Card style={{ padding: '14px 20px' }}>
-        <InfoHeader userInfo={userInfo} loading={loading} />
+        <InfoHeader userInfo={userInfo} userReward={userReward} loading={loading} />
       </Card>
       <Card style={{ marginTop: '16px' }} title="质押">
         <Deletegate address={id} />

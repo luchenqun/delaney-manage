@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import styles from './style/header.module.less';
 import { formatAddressString, getAddressUrl, humanReadable, isMobile, MudPrecision, UsdtPrecision } from '@/utils/tools';
 
-export default function Info({ userInfo = {}, loading }: { userInfo: any; loading: boolean }) {
+export default function Info({ userInfo = {}, userReward = {}, loading }: { userInfo: any; userReward: any; loading: boolean }) {
   const t = useLocale(locale);
 
   const [avatar, setAvatar] = useState('https://black-unnecessary-koi-219.mypinata.cloud/ipfs/QmYDxbHvxCLpKQk1G9a9KzAJjZryUC7v5dXDEk9xR685KX');
@@ -15,6 +15,8 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
   useEffect(() => {
     // setAvatar(userInfo.avatar);
   }, [userInfo]);
+
+  console.log(userReward);
 
   const loadingImg = <Skeleton text={{ rows: 0 }} style={{ width: '100px', height: '100px' }} animation />;
 
@@ -83,6 +85,12 @@ export default function Info({ userInfo = {}, loading }: { userInfo: any; loadin
       ></Descriptions>
       <Divider />
       <div className={styles.card}>
+        <div className={styles.Item}>
+          <div className={styles.cardTitle}>总收益 MUD/USDT </div>
+          <div className={styles.cardValue}>
+            {humanReadable(userReward.mud, MudPrecision)} / {humanReadable(userReward.usdt, UsdtPrecision)}
+          </div>
+        </div>
         <div className={styles.Item}>
           <div className={styles.cardTitle}>质押MUD/USDT </div>
           <div className={styles.cardValue}>
