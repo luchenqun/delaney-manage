@@ -197,6 +197,7 @@ function QuickOperation() {
         onCancel={handleModalCancel}
         autoFocus={false}
         focusLock={true}
+        confirmLoading={isPending || isLoading}
       >
         <Input placeholder="请输入 MUD 数量" value={inputValue} onChange={(value) => setInputValue(value)} type="number" step="any" />
       </Modal>
