@@ -86,12 +86,6 @@ export default function Info({ userInfo = {}, userReward = {}, loading }: { user
       <Divider />
       <div className={styles.card}>
         <div className={styles.Item}>
-          <div className={styles.cardTitle}>总收益 MUD/USDT </div>
-          <div className={styles.cardValue}>
-            {humanReadable(userReward.mud, MudPrecision)} / {humanReadable(userReward.usdt, UsdtPrecision)}
-          </div>
-        </div>
-        <div className={styles.Item}>
           <div className={styles.cardTitle}>质押MUD/USDT </div>
           <div className={styles.cardValue}>
             {humanReadable(userInfo.mud, MudPrecision)} / {humanReadable(userInfo.usdt, UsdtPrecision)}
@@ -107,6 +101,12 @@ export default function Info({ userInfo = {}, userReward = {}, loading }: { user
           <div className={styles.cardTitle}>团队MUD/USDT</div>
           <div className={styles.cardValue}>
             {humanReadable(userInfo.team_mud, MudPrecision)} / {humanReadable(userInfo.team_usdt, UsdtPrecision)}
+          </div>
+        </div>
+        <div className={styles.Item}>
+          <div className={styles.cardTitle}>总收益 MUD/USDT </div>
+          <div className={styles.cardValue}>
+            {humanReadable(userReward.mud, MudPrecision)} / {humanReadable(userReward.usdt, UsdtPrecision)}
           </div>
         </div>
         <div className={styles.Item}>

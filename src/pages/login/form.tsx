@@ -97,7 +97,13 @@ export default function LoginForm() {
     } else if (action === ActionType.Switch) {
       switchChain({ chainId: Number(import.meta.env.VITE_APP_CHAIN_ID) });
     } else {
-      signMessage({ message });
+      const res = await getIsAdmin({ address });
+      if (res.data.data.find) {
+        signMessage({ message });
+      } else {
+        Message.error(`您连接的钱包地址 ${address} 没有权限`);
+        setLoading(false);
+      }
     }
   };
 
