@@ -3,6 +3,7 @@ import styles from './style/index.module.less';
 import { Button, Link, Message } from '@arco-design/web-react';
 import { injected, useAccount, useConnect, useSignMessage, useSwitchChain } from 'wagmi';
 import { authorizationCheck, authorizationSignMessage, formatAddressString, getAddressUrl, setAuthorizationValue } from '@/utils/tools';
+import { getIsAdmin } from '@/utils/api';
 
 export const enum ActionType {
   Connect = 0,
@@ -45,12 +46,19 @@ export default function LoginForm() {
     setLoading(false);
 
     if (isSuccessSignMessage && address && signature) {
-      setAuthorizationValue(address, message, signature);
-      afterLoginSuccess();
+      getIsAdmin({ address }).then((res) => {
+        if (res.data.data.find) {
+          setAuthorizationValue(address, message, signature);
+          afterLoginSuccess();
+          setLoading(false);
+        } else {
+          Message.error('没有权限');
+          setLoading(false);
+        }
+      });
+    } else {
       setLoading(false);
     }
-
-    setLoading(false);
   }, [isSuccessSwitchChain, isErrorSwitchChain, isErrorConnect, isSuccessConnect, isErrorSignMessage, isSuccessSignMessage, failureReason]);
 
   useEffect(() => {
