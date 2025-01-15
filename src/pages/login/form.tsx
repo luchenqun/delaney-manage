@@ -31,10 +31,10 @@ export default function LoginForm() {
   }
 
   useEffect(() => {
-    if (isSuccessSwitchChain) {
+    if (isSuccessConnect) {
       Message.success('钱包连接成功');
     }
-    if (isErrorSwitchChain) {
+    if (isErrorConnect) {
       Message.error('钱包连接失败，请重试');
     }
     if (isSuccessSwitchChain) {
