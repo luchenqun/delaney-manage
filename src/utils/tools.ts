@@ -7,7 +7,7 @@ export const MudPrecision = 1000000000000000000n;
 export const humanReadable = (value: number | bigint | string, precision = 1000000000000000000n, property = BigNumber.ROUND_DOWN) => {
   const b = new BigNumber(value);
   const result = b.dividedBy(precision).toFixed(2, property);
-  return result;
+  return Number(result);
 };
 
 // mudToUsdt
