@@ -13,7 +13,6 @@ import PageLayout from './layout';
 import { GlobalContext } from './context';
 import Login from './pages/login';
 import checkLogin from './utils/checkLogin';
-import changeTheme from './utils/changeTheme';
 import useStorage from './utils/useStorage';
 import { WagmiProvider } from 'wagmi';
 import { config } from './utils/wagmi';
@@ -42,10 +41,6 @@ function Index() {
       window.location.pathname = '/login';
     }
   }, []);
-
-  useEffect(() => {
-    changeTheme(theme);
-  }, [theme]);
 
   const contextValue = {
     lang,

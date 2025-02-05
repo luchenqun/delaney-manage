@@ -1,7 +1,6 @@
-import auth, { AuthParams } from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
 
-export type IRoute = AuthParams & {
+export type IRoute = {
   name: string;
   key: string;
   // 当前页是否展示面包屑
@@ -116,11 +115,7 @@ const useRoute = (userPermission): [IRoute[], string] => {
       return [];
     }
     for (const route of routes) {
-      const { requiredPermissions, oneOfPerm } = route;
-      let visible = true;
-      if (requiredPermissions) {
-        visible = auth({ requiredPermissions, oneOfPerm }, userPermission);
-      }
+      const visible = true;
 
       if (!visible) {
         continue;
