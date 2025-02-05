@@ -21,7 +21,6 @@ import useLocale from '@/utils/useLocale';
 import Logo from '@/assets/logo.svg';
 import MessageBox from '@/components/MessageBox';
 import IconButton from './IconButton';
-import Settings from '../Settings';
 import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
@@ -66,14 +65,6 @@ function Navbar({ show }: { show: boolean }) {
       },
     });
   }, [role]);
-
-  if (!show) {
-    return (
-      <div className={styles['fixed-settings']}>
-        <Settings trigger={<Button icon={<IconSettings />} type="primary" size="large" />} />
-      </div>
-    );
-  }
 
   const handleChangeRole = () => {
     const newRole = role === 'admin' ? 'user' : 'admin';
