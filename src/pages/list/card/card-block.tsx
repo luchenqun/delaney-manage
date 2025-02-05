@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import cs from 'classnames';
 import { Button, Switch, Tag, Card, Descriptions, Typography, Dropdown, Menu, Skeleton } from '@arco-design/web-react';
 import { IconStarFill, IconThumbUpFill, IconSunFill, IconFaceSmileFill, IconPenFill, IconCheckCircleFill, IconCloseCircleFill, IconMore } from '@arco-design/web-react/icon';
-import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { QualityInspection, BasicCard } from './interface';
@@ -56,15 +55,11 @@ function CardBlock(props: CardBlockType) {
     if (type === 'quality') {
       return (
         <>
-          <PermissionWrapper requiredPermissions={[{ resource: /^menu.list.*/, actions: ['read'] }]}>
-            <Button type="primary" style={{ marginLeft: '12px' }} loading={loading}>
-              {t['cardList.options.qualityInspection']}
-            </Button>
-          </PermissionWrapper>
+          <Button type="primary" style={{ marginLeft: '12px' }} loading={loading}>
+            {t['cardList.options.qualityInspection']}
+          </Button>
 
-          <PermissionWrapper requiredPermissions={[{ resource: /^menu.list.*/, actions: ['write'] }]}>
-            <Button loading={loading}>{t['cardList.options.remove']}</Button>
-          </PermissionWrapper>
+          <Button loading={loading}>{t['cardList.options.remove']}</Button>
         </>
       );
     }

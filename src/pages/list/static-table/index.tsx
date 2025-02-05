@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Table, Card, PaginationProps, Button, Space, Typography } from '@arco-design/web-react';
-import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import SearchForm from './form';
@@ -89,19 +88,17 @@ function SearchTable() {
     <Card>
       <Title heading={6}>静态奖励列表</Title>
       <SearchForm onSearch={handleSearch} />
-      <PermissionWrapper requiredPermissions={[{ resource: 'menu.list.searchTable', actions: ['write'] }]}>
-        <div className={styles['button-group']}>
-          <Space>
-            <Button type="primary" icon={<IconPlus />}>
-              {t['searchTable.operations.add']}
-            </Button>
-            <Button>{t['searchTable.operations.upload']}</Button>
-          </Space>
-          <Space>
-            <Button icon={<IconDownload />}>{t['searchTable.operation.download']}</Button>
-          </Space>
-        </div>
-      </PermissionWrapper>
+      <div className={styles['button-group']}>
+        <Space>
+          <Button type="primary" icon={<IconPlus />}>
+            {t['searchTable.operations.add']}
+          </Button>
+          <Button>{t['searchTable.operations.upload']}</Button>
+        </Space>
+        <Space>
+          <Button icon={<IconDownload />}>{t['searchTable.operation.download']}</Button>
+        </Space>
+      </div>
       <Table rowKey="id" loading={loading} onChange={onChangeTable} pagination={pagination} columns={columns} data={data} scroll={{ x: '100%' }} />
     </Card>
   );

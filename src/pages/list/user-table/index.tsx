@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Table, Card, PaginationProps, Button, Space, Typography, Modal, Input, Message } from '@arco-design/web-react';
-import PermissionWrapper from '@/components/PermissionWrapper';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import SearchForm from './form';
@@ -136,19 +135,17 @@ function SearchTable() {
     <Card>
       <Title heading={6}>用户列表</Title>
       <SearchForm onSearch={handleSearch} />
-      <PermissionWrapper requiredPermissions={[{ resource: 'menu.list.searchTable', actions: ['write'] }]}>
-        <div className={styles['button-group']}>
-          <Space>
-            <Button type="primary" icon={<IconPlus />}>
-              {t['searchTable.operations.add']}
-            </Button>
-            <Button>{t['searchTable.operations.upload']}</Button>
-          </Space>
-          <Space>
-            <Button icon={<IconDownload />}>{t['searchTable.operation.download']}</Button>
-          </Space>
-        </div>
-      </PermissionWrapper>
+      <div className={styles['button-group']}>
+        <Space>
+          <Button type="primary" icon={<IconPlus />}>
+            {t['searchTable.operations.add']}
+          </Button>
+          <Button>{t['searchTable.operations.upload']}</Button>
+        </Space>
+        <Space>
+          <Button icon={<IconDownload />}>{t['searchTable.operation.download']}</Button>
+        </Space>
+      </div>
       <Table rowKey="id" loading={loading} onChange={onChangeTable} pagination={pagination} columns={columns} data={data} scroll={{ x: '100%' }} />
 
       <Modal title="修改用户星级" visible={visible} onOk={handleOk} onCancel={() => setVisible(false)}>
